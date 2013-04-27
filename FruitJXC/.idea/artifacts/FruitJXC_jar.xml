@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="FruitJXC:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/FruitJXC_jar</output-path>
+    <root id="archive" name="FruitJXC.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="FruitJXC" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/log4j-1.2.15.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/slf4j-api.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/slf4j-log4j12-1.6.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-lang-2.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jxl-2.6.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

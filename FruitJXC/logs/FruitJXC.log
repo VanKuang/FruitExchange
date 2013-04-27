@@ -1,0 +1,201 @@
+[INFO ] 2013-01-30 20:25:00.800 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:35):start init out detail data
+ [INFO ] 2013-01-30 20:25:12.192 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:10859,data size:54000
+ [INFO ] 2013-01-30 20:25:14.550 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:38):end init out detail data, use time:13233ms,data size:54000
+ [INFO ] 2013-01-30 20:25:20.100 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:44):start analyze out detail data
+ [INFO ] 2013-01-30 20:25:33.364 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:59):end analyze out detail data, use time:13675ms,data size:10
+ [INFO ] 2013-01-30 20:26:37.754 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:35):start init out detail data
+ [INFO ] 2013-01-30 20:26:40.559 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:2791,data size:54000
+ [INFO ] 2013-01-30 20:26:40.560 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:38):end init out detail data, use time:2809ms,data size:54000
+ [INFO ] 2013-01-30 20:26:42.060 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:44):start analyze out detail data
+ [INFO ] 2013-01-30 20:26:42.661 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:59):end analyze out detail data, use time:601ms,data size:10
+ [INFO ] 2013-01-30 20:26:51.252 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:35):start init out detail data
+ [INFO ] 2013-01-30 20:26:53.954 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:2701,data size:54000
+ [INFO ] 2013-01-30 20:26:53.955 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:38):end init out detail data, use time:2703ms,data size:54000
+ [INFO ] 2013-01-30 20:31:49.608 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:35):start init out detail data
+ [INFO ] 2013-01-30 20:31:52.393 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:2777,data size:54000
+ [INFO ] 2013-01-30 20:31:52.394 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:38):end init out detail data, use time:2787ms,data size:54000
+ [INFO ] 2013-01-30 20:31:58.896 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:44):start analyze out detail data
+ [INFO ] 2013-01-30 20:32:00.126 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:59):end analyze out detail data, use time:1230ms,data size:10
+ [INFO ] 2013-01-30 20:32:48.820 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:35):start init out detail data
+ [INFO ] 2013-01-30 20:32:51.685 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:2829,data size:54000
+ [INFO ] 2013-01-30 20:32:51.686 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:38):end init out detail data, use time:2867ms,data size:54000
+ [INFO ] 2013-01-30 20:32:51.686 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:44):start analyze out detail data
+ [INFO ] 2013-01-30 20:32:51.712 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:59):end analyze out detail data, use time:25ms,data size:10
+ [INFO ] 2013-01-30 20:54:56.203 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:365,data size:9000
+ [INFO ] 2013-01-30 20:58:17.878 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:39):start init out detail data
+ [INFO ] 2013-01-30 20:58:18.343 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:462,data size:9000
+ [INFO ] 2013-01-30 20:58:18.344 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:43):end init out detail data, use time:467ms,data size:9000
+ [INFO ] 2013-01-30 20:58:18.344 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:49):start analyze out detail data
+ [INFO ] 2013-01-30 20:58:18.352 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:64):end analyze out detail data, use time:8ms,data size:10
+ [INFO ] 2013-01-30 20:58:18.388 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:2,data size:3
+ [INFO ] 2013-01-30 20:58:38.666 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:39):start init out detail data
+ [INFO ] 2013-01-30 20:58:38.688 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:18,data size:3
+ [INFO ] 2013-01-30 20:58:38.688 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:43):end init out detail data, use time:23ms,data size:3
+ [INFO ] 2013-01-30 20:58:46.000 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:49):start analyze out detail data
+ [INFO ] 2013-01-30 20:58:48.041 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:64):end analyze out detail data, use time:2041ms,data size:1
+ [INFO ] 2013-01-30 20:59:10.255 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:9,data size:3
+ [INFO ] 2013-01-30 20:59:27.761 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:39):start init out detail data
+ [INFO ] 2013-01-30 20:59:27.781 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:16,data size:3
+ [INFO ] 2013-01-30 20:59:27.782 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:43):end init out detail data, use time:21ms,data size:3
+ [INFO ] 2013-01-30 20:59:41.775 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:49):start analyze out detail data
+ [INFO ] 2013-01-30 20:59:41.777 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:64):end analyze out detail data, use time:2ms,data size:1
+ [INFO ] 2013-01-30 21:00:11.357 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:9,data size:3
+ [INFO ] 2013-01-30 21:00:14.238 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:39):start init out detail data
+ [INFO ] 2013-01-30 21:00:14.257 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:15,data size:3
+ [INFO ] 2013-01-30 21:00:14.258 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:43):end init out detail data, use time:20ms,data size:3
+ [INFO ] 2013-01-30 21:00:50.934 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:49):start analyze out detail data
+ [INFO ] 2013-01-30 21:00:50.937 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:64):end analyze out detail data, use time:3ms,data size:1
+ [INFO ] 2013-01-30 21:01:02.513 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:20,data size:3
+ [INFO ] 2013-01-30 21:01:10.930 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:39):start init out detail data
+ [INFO ] 2013-01-30 21:01:11.562 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:33,data size:3
+ [INFO ] 2013-01-30 21:01:15.371 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:43):end init out detail data, use time:4800ms,data size:3
+ [INFO ] 2013-01-30 21:01:16.632 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:49):start analyze out detail data
+ [INFO ] 2013-01-30 21:01:16.639 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:64):end analyze out detail data, use time:7ms,data size:1
+ [INFO ] 2013-01-30 21:01:17.128 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:6,data size:3
+ [INFO ] 2013-01-30 21:01:35.707 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:39):start init out detail data
+ [INFO ] 2013-01-30 21:01:36.976 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:49,data size:3
+ [INFO ] 2013-01-30 21:01:38.908 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:43):end init out detail data, use time:4804ms,data size:3
+ [INFO ] 2013-01-30 21:01:39.781 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:49):start analyze out detail data
+ [INFO ] 2013-01-30 21:01:39.784 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:64):end analyze out detail data, use time:3ms,data size:1
+ [INFO ] 2013-01-30 21:01:40.098 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:6,data size:3
+ [INFO ] 2013-01-30 21:01:51.652 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:319,data size:9000
+ [INFO ] 2013-01-30 21:01:59.761 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:328,data size:9000
+ [INFO ] 2013-01-30 21:02:09.785 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:39):start init out detail data
+ [INFO ] 2013-01-30 21:02:11.887 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:1753,data size:9000
+ [INFO ] 2013-01-30 21:02:13.771 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:43):end init out detail data, use time:3911ms,data size:9000
+ [INFO ] 2013-01-30 21:02:17.988 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:49):start analyze out detail data
+ [INFO ] 2013-01-30 21:02:18.096 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:64):end analyze out detail data, use time:109ms,data size:10
+ [INFO ] 2013-01-30 21:02:31.516 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:6,data size:5
+ [INFO ] 2013-01-30 21:02:54.503 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:39):start init out detail data
+ [INFO ] 2013-01-30 21:02:55.116 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:47,data size:5
+ [INFO ] 2013-01-30 21:03:01.017 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:43):end init out detail data, use time:6915ms,data size:5
+ [INFO ] 2013-01-30 21:03:04.005 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:49):start analyze out detail data
+ [INFO ] 2013-01-30 21:03:04.011 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:64):end analyze out detail data, use time:6ms,data size:1
+ [INFO ] 2013-01-30 21:03:22.666 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:4,data size:5
+ [INFO ] 2013-01-30 21:03:51.296 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:321,data size:9000
+ [INFO ] 2013-01-30 21:03:55.166 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:39):start init out detail data
+ [INFO ] 2013-01-30 21:03:55.658 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:481,data size:9000
+ [INFO ] 2013-01-30 21:03:55.658 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:43):end init out detail data, use time:494ms,data size:9000
+ [INFO ] 2013-01-30 21:03:57.103 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:49):start analyze out detail data
+ [INFO ] 2013-01-30 21:03:57.115 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:64):end analyze out detail data, use time:12ms,data size:10
+ [INFO ] 2013-01-30 21:04:11.191 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:9,data size:4
+ [INFO ] 2013-01-30 21:05:19.676 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:318,data size:9000
+ [INFO ] 2013-01-30 21:05:22.497 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:39):start init out detail data
+ [INFO ] 2013-01-30 21:05:22.992 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:483,data size:9000
+ [INFO ] 2013-01-30 21:05:22.992 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:43):end init out detail data, use time:499ms,data size:9000
+ [INFO ] 2013-01-30 21:05:23.431 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:49):start analyze out detail data
+ [INFO ] 2013-01-30 21:05:23.454 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:64):end analyze out detail data, use time:23ms,data size:10
+ [INFO ] 2013-01-30 21:05:57.772 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:1644,data size:9001
+ [INFO ] 2013-01-30 21:09:35.614 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:39):start init out detail data
+ [INFO ] 2013-01-30 21:09:36.082 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:464,data size:9001
+ [INFO ] 2013-01-30 21:09:36.083 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:43):end init out detail data, use time:469ms,data size:9001
+ [INFO ] 2013-01-30 21:09:36.083 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:49):start analyze out detail data
+ [INFO ] 2013-01-30 21:09:36.091 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:64):end analyze out detail data, use time:8ms,data size:10
+ [INFO ] 2013-01-30 21:09:36.444 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:288,data size:9002
+ [INFO ] 2013-01-30 21:09:36.735 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:290,data size:9001
+ [INFO ] 2013-01-30 21:10:11.988 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:39):start init out detail data
+ [INFO ] 2013-01-30 21:10:12.447 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:456,data size:9001
+ [INFO ] 2013-01-30 21:10:12.448 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:43):end init out detail data, use time:461ms,data size:9001
+ [INFO ] 2013-01-30 21:10:12.448 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:49):start analyze out detail data
+ [INFO ] 2013-01-30 21:10:12.456 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:64):end analyze out detail data, use time:8ms,data size:10
+ [INFO ] 2013-01-30 21:10:12.808 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:288,data size:9002
+ [INFO ] 2013-01-30 21:10:13.096 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:286,data size:9001
+ [INFO ] 2013-01-30 21:10:28.498 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:39):start init out detail data
+ [INFO ] 2013-01-30 21:10:28.982 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:477,data size:9001
+ [INFO ] 2013-01-30 21:10:28.982 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:43):end init out detail data, use time:485ms,data size:9001
+ [INFO ] 2013-01-30 21:10:31.003 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:49):start analyze out detail data
+ [INFO ] 2013-01-30 21:10:31.019 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:64):end analyze out detail data, use time:15ms,data size:10
+ [INFO ] 2013-01-30 21:10:35.404 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:314,data size:9002
+ [INFO ] 2013-01-30 21:10:48.879 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:39):start init out detail data
+ [INFO ] 2013-01-30 21:10:49.350 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:467,data size:9002
+ [INFO ] 2013-01-30 21:10:49.351 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:43):end init out detail data, use time:473ms,data size:9002
+ [INFO ] 2013-01-30 21:10:49.351 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:49):start analyze out detail data
+ [INFO ] 2013-01-30 21:10:49.360 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:64):end analyze out detail data, use time:9ms,data size:10
+ [INFO ] 2013-01-30 21:10:51.099 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:335,data size:9003
+ [INFO ] 2013-01-30 21:11:07.819 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:315,data size:9000
+ [INFO ] 2013-01-30 21:11:11.073 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:39):start init out detail data
+ [INFO ] 2013-01-30 21:11:11.538 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:462,data size:9000
+ [INFO ] 2013-01-30 21:11:11.538 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:43):end init out detail data, use time:466ms,data size:9000
+ [INFO ] 2013-01-30 21:11:11.539 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:49):start analyze out detail data
+ [INFO ] 2013-01-30 21:11:11.548 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:64):end analyze out detail data, use time:9ms,data size:10
+ [INFO ] 2013-01-30 21:11:12.565 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:307,data size:9001
+ [INFO ] 2013-01-30 21:11:25.551 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:312,data size:9000
+ [INFO ] 2013-01-30 21:11:42.947 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:319,data size:9000
+ [INFO ] 2013-01-30 21:11:48.367 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:39):start init out detail data
+ [INFO ] 2013-01-30 21:11:48.836 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:465,data size:9000
+ [INFO ] 2013-01-30 21:11:48.836 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:43):end init out detail data, use time:469ms,data size:9000
+ [INFO ] 2013-01-30 21:11:48.837 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:49):start analyze out detail data
+ [INFO ] 2013-01-30 21:11:48.846 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:64):end analyze out detail data, use time:9ms,data size:10
+ [INFO ] 2013-01-30 21:11:50.698 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:315,data size:9001
+ [INFO ] 2013-01-30 21:12:25.260 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:7565,data size:9000
+ [INFO ] 2013-01-30 21:13:04.159 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:316,data size:9000
+ [INFO ] 2013-01-30 21:13:06.374 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:39):start init out detail data
+ [INFO ] 2013-01-30 21:13:06.846 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:466,data size:9000
+ [INFO ] 2013-01-30 21:13:06.846 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:43):end init out detail data, use time:472ms,data size:9000
+ [INFO ] 2013-01-30 21:13:06.847 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:49):start analyze out detail data
+ [INFO ] 2013-01-30 21:13:06.856 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:64):end analyze out detail data, use time:9ms,data size:10
+ [INFO ] 2013-01-30 21:13:09.247 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:331,data size:9001
+ [INFO ] 2013-01-30 21:13:14.263 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:319,data size:9000
+ [INFO ] 2013-01-30 21:13:43.250 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:312,data size:9000
+ [INFO ] 2013-01-30 21:13:45.627 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:39):start init out detail data
+ [INFO ] 2013-01-30 21:13:46.094 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:461,data size:9000
+ [INFO ] 2013-01-30 21:13:46.095 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:43):end init out detail data, use time:468ms,data size:9000
+ [INFO ] 2013-01-30 21:13:46.096 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:49):start analyze out detail data
+ [INFO ] 2013-01-30 21:13:46.105 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:64):end analyze out detail data, use time:9ms,data size:10
+ [INFO ] 2013-01-30 21:13:49.042 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:330,data size:9001
+ [INFO ] 2013-01-30 21:13:53.895 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:306,data size:9000
+ [INFO ] 2013-01-30 21:14:22.630 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:315,data size:9000
+ [INFO ] 2013-01-30 21:14:24.049 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:39):start init out detail data
+ [INFO ] 2013-01-30 21:14:24.523 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:469,data size:9000
+ [INFO ] 2013-01-30 21:14:24.523 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:43):end init out detail data, use time:475ms,data size:9000
+ [INFO ] 2013-01-30 21:14:24.523 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:49):start analyze out detail data
+ [INFO ] 2013-01-30 21:14:24.533 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:64):end analyze out detail data, use time:10ms,data size:10
+ [INFO ] 2013-01-30 21:14:24.890 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:293,data size:9001
+ [INFO ] 2013-01-30 21:14:25.694 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:303,data size:9000
+ [INFO ] 2013-01-30 21:14:36.087 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:286,data size:9000
+ [INFO ] 2013-01-30 21:16:02.189 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:1748,data size:54000
+ [INFO ] 2013-01-30 21:17:41.600 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:39):start init out detail data
+ [INFO ] 2013-01-30 21:17:44.324 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:2721,data size:54000
+ [INFO ] 2013-01-30 21:17:44.325 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:43):end init out detail data, use time:2725ms,data size:54000
+ [INFO ] 2013-01-30 21:17:44.325 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:49):start analyze out detail data
+ [INFO ] 2013-01-30 21:17:44.352 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:64):end analyze out detail data, use time:27ms,data size:10
+ [INFO ] 2013-01-30 21:17:46.306 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:72):start create out detail data
+ [INFO ] 2013-01-30 21:17:48.006 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:1699,data size:54001
+ [INFO ] 2013-01-30 21:17:48.007 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:78):end create out detail data, use time:1701ms
+ [INFO ] 2013-01-30 21:17:48.007 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:84):start delete out detail data
+ [INFO ] 2013-01-30 21:17:49.742 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:1734,data size:54000
+ [INFO ] 2013-01-30 21:17:49.743 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:98):end delete out detail data, use time:1736ms
+ [INFO ] 2013-01-30 21:17:49.743 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:104):start update out detail data
+ [INFO ] 2013-01-30 21:17:51.406 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:1661,data size:54000
+ [INFO ] 2013-01-30 21:17:51.407 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:121):end update out detail data, use time:1664ms
+ [INFO ] 2013-01-30 21:18:46.540 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:877,data size:27000
+ [INFO ] 2013-01-30 21:18:47.404 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:39):start init out detail data
+ [INFO ] 2013-01-30 21:18:48.760 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:1353,data size:27000
+ [INFO ] 2013-01-30 21:18:48.761 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:43):end init out detail data, use time:1358ms,data size:27000
+ [INFO ] 2013-01-30 21:18:48.761 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:49):start analyze out detail data
+ [INFO ] 2013-01-30 21:18:48.782 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:64):end analyze out detail data, use time:21ms,data size:10
+ [INFO ] 2013-01-30 21:18:49.286 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:72):start create out detail data
+ [INFO ] 2013-01-30 21:18:50.189 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:902,data size:27001
+ [INFO ] 2013-01-30 21:18:50.189 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:78):end create out detail data, use time:903ms
+ [INFO ] 2013-01-30 21:18:50.190 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:84):start delete out detail data
+ [INFO ] 2013-01-30 21:18:51.009 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:819,data size:27000
+ [INFO ] 2013-01-30 21:18:51.009 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:98):end delete out detail data, use time:819ms
+ [INFO ] 2013-01-30 21:18:51.009 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:104):start update out detail data
+ [INFO ] 2013-01-30 21:18:54.296 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:894,data size:27000
+ [INFO ] 2013-01-30 21:18:54.297 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:121):end update out detail data, use time:3288ms
+ [INFO ] 2013-01-30 21:19:00.517 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:868,data size:27000
+ [INFO ] 2013-01-30 21:19:01.639 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:39):start init out detail data
+ [INFO ] 2013-01-30 21:19:03.002 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:72):read file:OutDetail.bin use time:1360,data size:27000
+ [INFO ] 2013-01-30 21:19:03.003 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:43):end init out detail data, use time:1365ms,data size:27000
+ [INFO ] 2013-01-30 21:19:03.003 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:49):start analyze out detail data
+ [INFO ] 2013-01-30 21:19:03.021 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:64):end analyze out detail data, use time:18ms,data size:10
+ [INFO ] 2013-01-30 21:19:03.522 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:72):start create out detail data
+ [INFO ] 2013-01-30 21:19:04.410 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:888,data size:27001
+ [INFO ] 2013-01-30 21:19:04.410 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:78):end create out detail data, use time:888ms
+ [INFO ] 2013-01-30 21:19:04.411 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:84):start delete out detail data
+ [INFO ] 2013-01-30 21:19:05.220 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:809,data size:27000
+ [INFO ] 2013-01-30 21:19:05.220 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:98):end delete out detail data, use time:809ms
+ [INFO ] 2013-01-30 21:19:05.221 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:104):start update out detail data
+ [INFO ] 2013-01-30 21:19:06.083 [main][] cn.vanchee.util.DataUtil@(DataUtil.java:45):write file:OutDetail.bin use time:861,data size:27000
+ [INFO ] 2013-01-30 21:19:06.083 [main][] cn.vanchee.service.OutDetailService@(OutDetailService.java:121):end update out detail data, use time:863ms
+ 
