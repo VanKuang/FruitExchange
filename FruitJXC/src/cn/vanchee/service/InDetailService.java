@@ -34,21 +34,28 @@ public class InDetailService {
 
     public void init() {
         long start = System.currentTimeMillis();
-        log.info("start init in detail data");
+        log.debug("start init in detail data");
+
         inDetailList = (List<InDetail>) DataUtil.readListFromFile(Constants.FILE_NAME_IN_DETAIL);
+
+        if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.GET_OTHERS_DATA)) {
+            inDetailList = queryInDetail(-1, -1, -1, -1, -1, -1, MyFactory.getCurrentUserId());
+        }
+
         Collections.sort(inDetailList);
         id = inDetailList.size() + 1;
+
         long end = System.currentTimeMillis();
-        log.info("end init in detail data, use time:" + (end - start) + "ms" +
+        log.debug("end init in detail data, use time:" + (end - start) + "ms" +
                 (inDetailList != null ? ",data size:" + inDetailList.size() : ""));
     }
 
     public boolean create(InDetail inDetail) {
         checkData();
         inDetail.setId(id);
-        inDetail.setUid(MyFactory.getUserService().getCurrentUser().getId());
+        inDetail.setUid(MyFactory.getCurrentUser().getId());
 
-        if (MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.CENSORED)) {
+        if (MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.CENSORED)) {
             inDetail.setCensored(Constants.CENSORED_PASS);
         }
 
@@ -56,7 +63,7 @@ public class InDetailService {
         id++;
         updateFile();
 
-        log.debug(MyFactory.getUserService().getCurrentUserName() + " create " + inDetail.toString());
+        log.debug(MyFactory.getUserService().getCurrentUserName() + " create " + inDetail);
         return true;
     }
 
@@ -73,7 +80,7 @@ public class InDetailService {
             }
         }
         if (flag) {
-            log.debug(MyFactory.getUserService().getCurrentUserName() + " delete " + i.toString());
+            log.debug(MyFactory.getUserService().getCurrentUserName() + " delete " + i);
             updateFile();
         }
         return flag;
@@ -88,7 +95,7 @@ public class InDetailService {
         for (InDetail od : inDetailList) {
             if (oid == od.getId()) {
                 id = od;
-                if (MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.CENSORED)) {
+                if (MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.CENSORED)) {
                     inDetail.setCensored(Constants.CENSORED_PASS);
                 } else {
                     inDetail.setCensored(Constants.CENSORED_ORIGINAL);
@@ -100,8 +107,9 @@ public class InDetailService {
             i++;
         }
         if (flag) {
-            log.debug(MyFactory.getUserService().getCurrentUserName() + " update " + id.toString() +
-                    " to " + inDetail.toString());
+            log.debug(MyFactory.getUserService().getCurrentUserName()
+                    + " update " + id
+                    + " to " + inDetail);
             updateFile();
         }
         return flag;
@@ -123,7 +131,7 @@ public class InDetailService {
             i++;
         }
         if (flag) {
-            log.debug(MyFactory.getUserService().getCurrentUserName() + " censored " + inDetail.toString());
+            log.debug(MyFactory.getUserService().getCurrentUserName() + " censored " + inDetail);
             updateFile();
         }
         return flag;
@@ -170,8 +178,8 @@ public class InDetailService {
     }
 
     public List<InDetail> selectCensoredReverse(List<InDetail> list, int censored) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (censored == ((InDetail)iterator.next()).getCensored()) {
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            if (censored == ((InDetail) iterator.next()).getCensored()) {
                 iterator.remove();
             }
         }
@@ -252,35 +260,41 @@ public class InDetailService {
     }
 
     private List<InDetail> selectId(List<InDetail> list, int id) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (id !=((InDetail)iterator.next()).getId()) {
-                iterator.remove();
+        List<InDetail> result = new ArrayList<InDetail>();
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            InDetail inDetail = (InDetail) iterator.next();
+            if (id == inDetail.getId()) {
+                result.add(inDetail);
             }
         }
-        return list;
+        return result;
     }
 
     private List<InDetail> selectOwner(List<InDetail> list, int owner) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (owner !=((InDetail)iterator.next()).getOwner()) {
-                iterator.remove();
+        List<InDetail> result = new ArrayList<InDetail>();
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            InDetail inDetail = (InDetail) iterator.next();
+            if (owner == inDetail.getOwner()) {
+                result.add(inDetail);
             }
         }
-        return list;
+        return result;
     }
 
     private List<InDetail> selectFruit(List<InDetail> list, int fruit) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (fruit != ((InDetail)iterator.next()).getFruit()) {
-                iterator.remove();
+        List<InDetail> result = new ArrayList<InDetail>();
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            InDetail inDetail = (InDetail) iterator.next();
+            if (fruit == inDetail.getFruit()) {
+                result.add(inDetail);
             }
         }
-        return list;
+        return result;
     }
 
     private List<InDetail> selectCensored(List<InDetail> list, int censored) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (censored != ((InDetail)iterator.next()).getCensored()) {
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            if (censored != ((InDetail) iterator.next()).getCensored()) {
                 iterator.remove();
             }
         }
@@ -288,8 +302,8 @@ public class InDetailService {
     }
 
     private List<InDetail> selectDateFrom(List<InDetail> list, long from) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (((InDetail)iterator.next()).getDate() < from) {
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            if (((InDetail) iterator.next()).getDate() < from) {
                 iterator.remove();
             }
         }
@@ -297,8 +311,8 @@ public class InDetailService {
     }
 
     private List<InDetail> selectDateEnd(List<InDetail> list, long end) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (((InDetail)iterator.next()).getDate() > end) {
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            if (((InDetail) iterator.next()).getDate() > end) {
                 iterator.remove();
             }
         }
@@ -306,12 +320,14 @@ public class InDetailService {
     }
 
     private static List<InDetail> selectUser(List<InDetail> list, int uid) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (uid != ((InDetail)iterator.next()).getUid()) {
-                iterator.remove();
+        List<InDetail> result = new ArrayList<InDetail>();
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            InDetail inDetail = (InDetail) iterator.next();
+            if (uid == inDetail.getUid()) {
+                result.add(inDetail);
             }
         }
-        return list;
+        return result;
     }
 
 }

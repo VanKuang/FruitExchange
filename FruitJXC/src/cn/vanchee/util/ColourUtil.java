@@ -1,6 +1,5 @@
 package cn.vanchee.util;
 
-import java.awt.Color;
 import jxl.format.Colour;
 
 /**

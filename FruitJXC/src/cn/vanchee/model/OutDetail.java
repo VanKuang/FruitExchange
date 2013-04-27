@@ -228,13 +228,20 @@ public class OutDetail implements Comparable<OutDetail>, Serializable {
 
     @Override
     public int compareTo(OutDetail o) {
-        return this.getDate() > o.getDate() ? 0 : 1;
+        return this.getDate() > o.getDate() ? this.getDate() == o.getDate() ? 0 : -1 : 1;
     }
 
     @Override
     public String toString() {
-        return "out detail--iid:" + this.iid + "owner:" + getOwnerName() + ",consumer:" + getConsumerName()
-                + ",fruit:" + getFruitName() + ",price:" + this.price + ",num:" + this.num
-                + ",color:" + this.color + ",censored:" + this.censored + ",uid:" + uid;
+        return "out detail--[iid:" + this.iid
+                + "owner:" + getOwnerName()
+                + ",consumer:" + getConsumerName()
+                + ",fruit:" + getFruitName()
+                + ",price:" + this.price
+                + ",num:" + this.num
+                + ",color:" + this.color
+                + ",censored:" + this.censored
+                + ",uid:" + uid
+                + "]";
     }
 }

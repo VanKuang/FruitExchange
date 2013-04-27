@@ -107,6 +107,6 @@ public class OutDetailHistory implements Comparable<OutDetailHistory>, Serializa
 
     @Override
     public int compareTo(OutDetailHistory o) {
-        return this.getDate() > o.getDate() ? 1 : 0;
+        return this.getDate() > o.getDate() ? this.getDate() == o.getDate() ? 0 : -1 : 0;
     }
 }

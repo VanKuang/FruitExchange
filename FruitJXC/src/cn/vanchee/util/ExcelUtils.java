@@ -5,10 +5,8 @@ import cn.vanchee.model.InDetail;
 import cn.vanchee.model.OutDetail;
 import cn.vanchee.model.PaidVo;
 import jxl.Workbook;
-import jxl.format.Colour;
-import jxl.format.UnderlineStyle;
-import jxl.write.*;
 import jxl.write.Label;
+import jxl.write.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,6 +15,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -37,320 +36,290 @@ public class ExcelUtils {
         return new File("").getAbsolutePath() + "\\report\\";
     }
 
-    public static void writePaid(String fileName, String[] headers, List<PaidVo> data) {
-        File file = null;
-        OutputStream os = null;
-        WritableWorkbook wwb = null;
-        WritableSheet ws = null;
-        try {
-            file  = new File(getReportPath() + fileName);
-            os = new FileOutputStream(file);
-            wwb = Workbook.createWorkbook(os);
-            ws = wwb.createSheet("欠款总表", 0); //创建sheet
+    public static void writePaid(String fileName, String sheetName, String[] headers, List<PaidVo> data)
+            throws WriteException {
+        List<Label> labels = new ArrayList<Label>();
+        for (int i = 0, length = data.size(); i < length; i++) {
+            PaidVo paidVo = data.get(i);
+            Color c = new Color(paidVo.getColor());
 
-            //header
-            for (int i = 0, length = headers.length; i < length; i++) {
-                Label label = new Label(i, 0, headers[i]);
-                ws.addCell(label);
-            }
-            //data
-            for (int i = 0, length = data.size(); i < length; i++) {
-                PaidVo paidVo = data.get(i);
-                Color c = new Color(paidVo.getColor());
+            WritableCellFormat wcfFC = new WritableCellFormat();
+            wcfFC.setBackground(ColourUtil.getNearestColour(c.getRed(), c.getGreen(), c.getBlue()));
 
-                WritableCellFormat wcfFC = new WritableCellFormat();
-                wcfFC.setBackground(ColourUtil.getNearestColour(c.getRed(), c.getGreen(), c.getBlue()));
-
-                Label label = new Label(0, i + 1, paidVo.getName(), wcfFC);
-                ws.addCell(label);
-                label = new Label(1, i + 1, paidVo.getShouldPaid() + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(2, i + 1, paidVo.getHadPaid() + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(3, i + 1, (paidVo.getShouldPaid() - paidVo.getHadPaid()) + "", wcfFC);
-                ws.addCell(label);
-            }
-
-            wwb.write();
-        } catch (Exception e) {
-            e.printStackTrace();
-            log.error(e.getMessage());
-        } finally {
-            try {
-                wwb.close();
-                os.close();
-            } catch (Exception e) {
-                log.error(e.getMessage());
-            }
+            Label label = new Label(0, i + 1, paidVo.getName(), wcfFC);
+            labels.add(label);
+            label = new Label(1, i + 1, paidVo.getShouldPaid() + "", wcfFC);
+            labels.add(label);
+            label = new Label(2, i + 1, paidVo.getHadPaid() + "", wcfFC);
+            labels.add(label);
+            label = new Label(3, i + 1, (paidVo.getShouldPaid() - paidVo.getHadPaid()) + "", wcfFC);
+            labels.add(label);
         }
+        write(fileName, sheetName, headers, labels);
     }
 
-    public static void writeMyPaid(String fileName, String[] headers, List<PaidVo> data) {
+    public static void writeMyPaid(String fileName, String sheetName, String[] headers, List<PaidVo> data) throws WriteException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        List<Label> labels = new ArrayList<Label>();
+        for (int i = 0, length = data.size(); i < length; i++) {
+            PaidVo paidVo = data.get(i);
+            Color c = new Color(paidVo.getColor());
 
-        File file = null;
-        OutputStream os = null;
-        WritableWorkbook wwb = null;
-        WritableSheet ws = null;
-        try {
-            file  = new File(getReportPath() + fileName);
-            os = new FileOutputStream(file);
-            wwb = Workbook.createWorkbook(os);
-            ws = wwb.createSheet("欠款总表", 0); //创建sheet
+            WritableCellFormat wcfFC = new WritableCellFormat();
+            wcfFC.setBackground(ColourUtil.getNearestColour(c.getRed(), c.getGreen(), c.getBlue()));
 
-            //header
-            for (int i = 0, length = headers.length; i < length; i++) {
-                Label label = new Label(i, 0, headers[i]);
-                ws.addCell(label);
-            }
-            //data
-            for (int i = 0, length = data.size(); i < length; i++) {
-                PaidVo paidVo = data.get(i);
-                Color c = new Color(paidVo.getColor());
-
-                WritableCellFormat wcfFC = new WritableCellFormat();
-                wcfFC.setBackground(ColourUtil.getNearestColour(c.getRed(), c.getGreen(), c.getBlue()));
-
-                Label label = new Label(0, i + 1, paidVo.getName(), wcfFC);
-                ws.addCell(label);
-                label = new Label(1, i + 1, paidVo.getFruitName() + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(2, i + 1, sdf.format(new Date(paidVo.getDate())) + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(3, i + 1, paidVo.getShouldPaid() + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(4, i + 1, paidVo.getHadPaid() + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(5, i + 1, (paidVo.getShouldPaid() - paidVo.getHadPaid()) + "", wcfFC);
-                ws.addCell(label);
-            }
-
-            wwb.write();
-        } catch (Exception e) {
-            e.printStackTrace();
-            log.error(e.getMessage());
-        } finally {
-            try {
-                wwb.close();
-                os.close();
-            } catch (Exception e) {
-                log.error(e.getMessage());
-            }
+            Label label = new Label(0, i + 1, paidVo.getName(), wcfFC);
+            labels.add(label);
+            label = new Label(1, i + 1, paidVo.getFruitName() + "", wcfFC);
+            labels.add(label);
+            label = new Label(2, i + 1, sdf.format(new Date(paidVo.getDate())) + "", wcfFC);
+            labels.add(label);
+            label = new Label(3, i + 1, paidVo.getShouldPaid() + "", wcfFC);
+            labels.add(label);
+            label = new Label(4, i + 1, paidVo.getHadPaid() + "", wcfFC);
+            labels.add(label);
+            label = new Label(5, i + 1, (paidVo.getShouldPaid() - paidVo.getHadPaid()) + "", wcfFC);
+            labels.add(label);
         }
+        write(fileName, sheetName, headers, labels);
     }
 
-    public static void writePaidDetail(String fileName, String[] headers, List<OutDetail> data) {
+    public static void writePaidDetail(String fileName, String sheetName, String[] headers, List<OutDetail> data)
+            throws WriteException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        List<Label> labels = new ArrayList<Label>();
 
-        File file = null;
-        OutputStream os = null;
-        WritableWorkbook wwb = null;
-        WritableSheet ws = null;
-        try {
-            file  = new File(getReportPath() + fileName);
-            os = new FileOutputStream(file);
-            wwb = Workbook.createWorkbook(os);
-            ws = wwb.createSheet("欠款明细", 0); //创建sheet
+        //data
+        for (int i = 0, length = data.size(); i < length; i++) {
+            OutDetail outDetail = data.get(i);
+            Color c = new Color(outDetail.getColor());
 
+            WritableCellFormat wcf = new WritableCellFormat();
+            wcf.setBackground(ColourUtil.getNearestColour(c.getRed(), c.getGreen(), c.getBlue()));
 
-            //header
-            for (int i = 0, length = headers.length; i < length; i++) {
-                Label label = new Label(i, 0, headers[i]);
-                ws.addCell(label);
-            }
-            //data
-            for (int i = 0, length = data.size(); i < length; i++) {
-                OutDetail outDetail = data.get(i);
-                Color c = new Color(outDetail.getColor());
-
-                WritableCellFormat wcf = new WritableCellFormat();
-                wcf.setBackground(ColourUtil.getNearestColour(c.getRed(), c.getGreen(), c.getBlue()));
-
-                Label label = new Label(0, i + 1, outDetail.getId() + "", wcf);
-                ws.addCell(label);
-                label = new Label(1, i + 1, outDetail.getIid() + "", wcf);
-                ws.addCell(label);
-                label = new Label(2, i + 1, sdf.format(new Date(outDetail.getDate())), wcf);
-                ws.addCell(label);
-                label = new Label(3, i + 1, outDetail.getOwnerName(), wcf);
-                ws.addCell(label);
-                label = new Label(4, i + 1, outDetail.getConsumerName(), wcf);
-                ws.addCell(label);
-                label = new Label(5, i + 1, outDetail.getFruitName(), wcf);
-                ws.addCell(label);
-                label = new Label(6, i + 1, outDetail.getPrice() + "", wcf);
-                ws.addCell(label);
-                label = new Label(7, i + 1, outDetail.getNum() + "", wcf);
-                ws.addCell(label);
-                label = new Label(8, i + 1, outDetail.getMoney() + "", wcf);
-                ws.addCell(label);
-                label = new Label(9, i + 1, outDetail.getPaidMoneyNotIncludeDiscount() + "", wcf);
-                ws.addCell(label);
-                label = new Label(10, i + 1, outDetail.getPaidMoneyDiscount() + "", wcf);
-                ws.addCell(label);
-                label = new Label(11, i + 1, outDetail.getStatusName(), wcf);
-                ws.addCell(label);
-                label = new Label(12, i + 1, Constants.getCensorName(outDetail.getCensored()), wcf);
-                ws.addCell(label);
-            }
-
-            wwb.write();
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        } finally {
-            try {
-                wwb.close();
-                os.close();
-            } catch (Exception e) {
-                log.error(e.getMessage());
-            }
+            Label label = new Label(0, i + 1, outDetail.getId() + "", wcf);
+            labels.add(label);
+            label = new Label(1, i + 1, outDetail.getIid() + "", wcf);
+            labels.add(label);
+            label = new Label(2, i + 1, sdf.format(new Date(outDetail.getDate())), wcf);
+            labels.add(label);
+            label = new Label(3, i + 1, outDetail.getOwnerName(), wcf);
+            labels.add(label);
+            label = new Label(4, i + 1, outDetail.getConsumerName(), wcf);
+            labels.add(label);
+            label = new Label(5, i + 1, outDetail.getFruitName(), wcf);
+            labels.add(label);
+            label = new Label(6, i + 1, outDetail.getPrice() + "", wcf);
+            labels.add(label);
+            label = new Label(7, i + 1, outDetail.getNum() + "", wcf);
+            labels.add(label);
+            label = new Label(8, i + 1, outDetail.getMoney() + "", wcf);
+            labels.add(label);
+            label = new Label(9, i + 1, outDetail.getPaidMoneyNotIncludeDiscount() + "", wcf);
+            labels.add(label);
+            label = new Label(10, i + 1, outDetail.getPaidMoneyDiscount() + "", wcf);
+            labels.add(label);
+            label = new Label(11, i + 1, outDetail.getStatusName(), wcf);
+            labels.add(label);
+            label = new Label(12, i + 1, Constants.getCensorName(outDetail.getCensored()), wcf);
+            labels.add(label);
         }
-
+        write(fileName, sheetName, headers, labels);
     }
 
-    public static void reportInDetails(String fileName, String[] headers, List<InDetail> data) {
+    public static void reportInDetails(String fileName, String sheetName, String[] headers, List<InDetail> data)
+            throws WriteException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        List<Label> labels = new ArrayList<Label>();
+        for (int i = 0, length = data.size(); i < length; i++) {
+            InDetail inDetail = data.get(i);
+            Color c = new Color(inDetail.getColor());
 
-        File file = null;
-        OutputStream os = null;
-        WritableWorkbook wwb = null;
-        WritableSheet ws = null;
-        try {
-            file  = new File(getReportPath() + fileName);
-            os = new FileOutputStream(file);
-            wwb = Workbook.createWorkbook(os);
-            ws = wwb.createSheet("进货明细", 0); //创建sheet
+            WritableCellFormat wcfFC = new WritableCellFormat();
+            wcfFC.setBackground(ColourUtil.getNearestColour(c.getRed(), c.getGreen(), c.getBlue()));
 
-            //header
-            for (int i = 0, length = headers.length; i < length; i++) {
-                Label label = new Label(i, 0, headers[i]);
-                ws.addCell(label);
-            }
-            //data
-            for (int i = 0, length = data.size(); i < length; i++) {
-                InDetail inDetail = data.get(i);
-                Color c = new Color(inDetail.getColor());
-
-                WritableCellFormat wcfFC = new WritableCellFormat();
-                wcfFC.setBackground(ColourUtil.getNearestColour(c.getRed(), c.getGreen(), c.getBlue()));
-
-                Label label = new Label(0, i + 1, inDetail.getId() + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(1, i + 1, sdf.format(new Date(inDetail.getDate())), wcfFC);
-                ws.addCell(label);
-                label = new Label(2, i + 1, inDetail.getOwnerName(), wcfFC);
-                ws.addCell(label);
-                label = new Label(3, i + 1, inDetail.getFruitName() + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(4, i + 1, inDetail.getPrice() + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(5, i + 1, inDetail.getNum() + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(6, i + 1, inDetail.getMoney() + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(7, i + 1, inDetail.getPaidMoney() + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(8, i + 1, inDetail.getSale() + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(9, i + 1, inDetail.getRemain() + "", wcfFC);
-                ws.addCell(label);
-            }
-
-            wwb.write();
-        } catch (Exception e) {
-            e.printStackTrace();
-            log.error(e.getMessage());
-        } finally {
-            try {
-                wwb.close();
-                os.close();
-            } catch (Exception e) {
-                log.error(e.getMessage());
-            }
+            Label label = new Label(0, i + 1, inDetail.getId() + "", wcfFC);
+            labels.add(label);
+            label = new Label(1, i + 1, sdf.format(new Date(inDetail.getDate())), wcfFC);
+            labels.add(label);
+            label = new Label(2, i + 1, inDetail.getOwnerName(), wcfFC);
+            labels.add(label);
+            label = new Label(3, i + 1, inDetail.getFruitName() + "", wcfFC);
+            labels.add(label);
+            label = new Label(4, i + 1, inDetail.getPrice() + "", wcfFC);
+            labels.add(label);
+            label = new Label(5, i + 1, inDetail.getNum() + "", wcfFC);
+            labels.add(label);
+            label = new Label(6, i + 1, inDetail.getMoney() + "", wcfFC);
+            labels.add(label);
+            label = new Label(7, i + 1, inDetail.getPaidMoney() + "", wcfFC);
+            labels.add(label);
+            label = new Label(8, i + 1, inDetail.getSale() + "", wcfFC);
+            labels.add(label);
+            label = new Label(9, i + 1, inDetail.getRemain() + "", wcfFC);
+            labels.add(label);
         }
+        write(fileName, sheetName, headers, labels);
     }
 
-    public static void reportOutDetails(String fileName, String[] headers, List<OutDetail> data) {
+    public static void reportOutDetails(String fileName, String sheetName, String[] headers, List<OutDetail> data) throws WriteException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        List<Label> labels = new ArrayList<Label>();
 
-        File file = null;
-        OutputStream os = null;
-        WritableWorkbook wwb = null;
-        WritableSheet ws = null;
-        try {
-            file  = new File(getReportPath() + fileName);
-            os = new FileOutputStream(file);
-            wwb = Workbook.createWorkbook(os);
-            ws = wwb.createSheet("销售明细", 0); //创建sheet
+        for (int i = 0, length = data.size(); i < length; i++) {
+            OutDetail outDetail = data.get(i);
+            Color c = new Color(outDetail.getColor());
 
-            //header
-            for (int i = 0, length = headers.length; i < length; i++) {
-                Label label = new Label(i, 0, headers[i]);
-                ws.addCell(label);
-            }
-            //data
-            for (int i = 0, length = data.size(); i < length; i++) {
-                OutDetail outDetail = data.get(i);
-                Color c = new Color(outDetail.getColor());
+            WritableCellFormat wcfFC = new WritableCellFormat();
+            wcfFC.setBackground(ColourUtil.getNearestColour(c.getRed(), c.getGreen(), c.getBlue()));
 
-                WritableCellFormat wcfFC = new WritableCellFormat();
-                wcfFC.setBackground(ColourUtil.getNearestColour(c.getRed(), c.getGreen(), c.getBlue()));
-
-                Label label = new Label(0, i + 1, outDetail.getId() + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(1, i + 1, outDetail.getIid() + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(2, i + 1, sdf.format(new Date(outDetail.getDate())), wcfFC);
-                ws.addCell(label);
-                label = new Label(3, i + 1, outDetail.getOwnerName() + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(4, i + 1, outDetail.getConsumerName() + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(5, i + 1, outDetail.getFruitName() + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(6, i + 1, outDetail.getPrice() + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(7, i + 1, outDetail.getNum() + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(8, i + 1, outDetail.getMoney() + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(9, i + 1, outDetail.getPaidMoneyNotIncludeDiscount() + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(10, i + 1, outDetail.getPaidMoneyDiscount() + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(11, i + 1, outDetail.getStatusName(), wcfFC);
-                ws.addCell(label);
-                label = new Label(12, i + 1, Constants.getCensorName(outDetail.getCensored()), wcfFC);
-                ws.addCell(label);
-            }
-
-            wwb.write();
-        } catch (Exception e) {
-            e.printStackTrace();
-            log.error(e.getMessage());
-        } finally {
-            try {
-                wwb.close();
-                os.close();
-            } catch (Exception e) {
-                log.error(e.getMessage());
-            }
+            Label label = new Label(0, i + 1, outDetail.getId() + "", wcfFC);
+            labels.add(label);
+            label = new Label(1, i + 1, outDetail.getIid() + "", wcfFC);
+            labels.add(label);
+            label = new Label(2, i + 1, sdf.format(new Date(outDetail.getDate())), wcfFC);
+            labels.add(label);
+            label = new Label(3, i + 1, outDetail.getOwnerName() + "", wcfFC);
+            labels.add(label);
+            label = new Label(4, i + 1, outDetail.getConsumerName() + "", wcfFC);
+            labels.add(label);
+            label = new Label(5, i + 1, outDetail.getFruitName() + "", wcfFC);
+            labels.add(label);
+            label = new Label(6, i + 1, outDetail.getPrice() + "", wcfFC);
+            labels.add(label);
+            label = new Label(7, i + 1, outDetail.getNum() + "", wcfFC);
+            labels.add(label);
+            label = new Label(8, i + 1, outDetail.getMoney() + "", wcfFC);
+            labels.add(label);
+            label = new Label(9, i + 1, outDetail.getPaidMoneyNotIncludeDiscount() + "", wcfFC);
+            labels.add(label);
+            label = new Label(10, i + 1, outDetail.getPaidMoneyDiscount() + "", wcfFC);
+            labels.add(label);
+            label = new Label(11, i + 1, outDetail.getStatusName(), wcfFC);
+            labels.add(label);
+            label = new Label(12, i + 1, Constants.getCensorName(outDetail.getCensored()), wcfFC);
+            labels.add(label);
         }
 
+        write(fileName, sheetName, headers, labels);
     }
 
-    public static void reportConsumptions(String fileName, String[] headers, List<Consumption> data) {
+    public static void reportConsumptions(String fileName, String sheetName, String[] headers, List<Consumption> data)
+            throws WriteException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        List<Label> labels = new ArrayList<Label>();
 
+        for (int i = 0, length = data.size(); i < length; i++) {
+            Consumption consumption = data.get(i);
+            Color c = new Color(consumption.getColor());
+
+            WritableCellFormat wcfFC = new WritableCellFormat();
+            wcfFC.setBackground(ColourUtil.getNearestColour(c.getRed(), c.getGreen(), c.getBlue()));
+
+            Label label = new Label(0, i + 1, consumption.getId() + "", wcfFC);
+            labels.add(label);
+            label = new Label(1, i + 1, sdf.format(new Date(consumption.getDate())), wcfFC);
+            labels.add(label);
+            label = new Label(2, i + 1, consumption.getMoney() + "", wcfFC);
+            labels.add(label);
+            label = new Label(3, i + 1, consumption.getDesc() + "", wcfFC);
+            labels.add(label);
+        }
+        write(fileName, sheetName, headers, labels);
+    }
+
+    public static void writeInDetail(String fileName, String sheetName, String[] headers, List<InDetail> data)
+            throws WriteException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        List<Label> labels = new ArrayList<Label>();
+
+        for (int i = 0, length = data.size(); i < length; i++) {
+            InDetail inDetail = data.get(i);
+            Color c = new Color(inDetail.getColor());
+
+            WritableCellFormat wcfFC = new WritableCellFormat();
+            wcfFC.setBackground(ColourUtil.getNearestColour(c.getRed(), c.getGreen(), c.getBlue()));
+
+            Label label = new Label(0, i + 1, inDetail.getId() + "", wcfFC);
+            labels.add(label);
+            label = new Label(1, i + 1, sdf.format(new Date(inDetail.getDate())), wcfFC);
+            labels.add(label);
+            label = new Label(2, i + 1, inDetail.getOwnerName(), wcfFC);
+            labels.add(label);
+            label = new Label(3, i + 1, inDetail.getFruitName(), wcfFC);
+            labels.add(label);
+            label = new Label(4, i + 1, inDetail.getPrice() + "", wcfFC);
+            labels.add(label);
+            label = new Label(5, i + 1, inDetail.getNum() + "", wcfFC);
+            labels.add(label);
+            label = new Label(6, i + 1, inDetail.getMoney() + "", wcfFC);
+            labels.add(label);
+            label = new Label(7, i + 1, inDetail.getPaidMoney() + "", wcfFC);
+            labels.add(label);
+            label = new Label(8, i + 1, inDetail.getSale() + "", wcfFC);
+            labels.add(label);
+            label = new Label(9, i + 1, inDetail.getRemain() + "", wcfFC);
+            labels.add(label);
+            label = new Label(10, i + 1, Constants.getCensorName(inDetail.getCensored()) + "", wcfFC);
+            labels.add(label);
+        }
+
+        write(fileName, sheetName, headers, labels);
+    }
+
+    public static void writeOutDetail(String fileName, String sheetName, String[] headers, List<OutDetail> data)
+            throws WriteException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        List<Label> labels = new ArrayList<Label>();
+
+        for (int i = 0, length = data.size(); i < length; i++) {
+            OutDetail outDetail = data.get(i);
+            Color c = new Color(outDetail.getColor());
+
+            WritableCellFormat wcfFC = new WritableCellFormat();
+            wcfFC.setBackground(ColourUtil.getNearestColour(c.getRed(), c.getGreen(), c.getBlue()));
+
+            Label label = new Label(0, i + 1, outDetail.getId() + "", wcfFC);
+            labels.add(label);
+            label = new Label(1, i + 1, outDetail.getIid() + "", wcfFC);
+            labels.add(label);
+            label = new Label(2, i + 1, sdf.format(new Date(outDetail.getDate())), wcfFC);
+            labels.add(label);
+            label = new Label(3, i + 1, outDetail.getOwnerName(), wcfFC);
+            labels.add(label);
+            label = new Label(4, i + 1, outDetail.getConsumerName() + "", wcfFC);
+            labels.add(label);
+            label = new Label(5, i + 1, outDetail.getFruitName() + "", wcfFC);
+            labels.add(label);
+            label = new Label(6, i + 1, outDetail.getPrice() + "", wcfFC);
+            labels.add(label);
+            label = new Label(7, i + 1, outDetail.getNum() + "", wcfFC);
+            labels.add(label);
+            label = new Label(8, i + 1, outDetail.getMoney() + "", wcfFC);
+            labels.add(label);
+            label = new Label(9, i + 1, outDetail.getPaidMoneyNotIncludeDiscount() + "", wcfFC);
+            labels.add(label);
+            label = new Label(10, i + 1, outDetail.getDiscounts() + "", wcfFC);
+            labels.add(label);
+            label = new Label(11, i + 1, outDetail.getStatusName(), wcfFC);
+            labels.add(label);
+            label = new Label(12, i + 1, Constants.getCensorName(outDetail.getCensored()), wcfFC);
+            labels.add(label);
+        }
+
+        write(fileName, sheetName, headers, labels);
+    }
+
+    private static void write(String fileName, String sheetName, String[] headers, List<Label> labels) {
         File file = null;
         OutputStream os = null;
         WritableWorkbook wwb = null;
         WritableSheet ws = null;
         try {
-            file  = new File(getReportPath() + fileName);
+            file = new File(getReportPath() + fileName);
             os = new FileOutputStream(file);
             wwb = Workbook.createWorkbook(os);
-            ws = wwb.createSheet("销售明细", 0); //创建sheet
+            ws = wwb.createSheet(sheetName, 0); //创建sheet
 
             //header
             for (int i = 0, length = headers.length; i < length; i++) {
@@ -358,20 +327,7 @@ public class ExcelUtils {
                 ws.addCell(label);
             }
             //data
-            for (int i = 0, length = data.size(); i < length; i++) {
-                Consumption consumption = data.get(i);
-                Color c = new Color(consumption.getColor());
-
-                WritableCellFormat wcfFC = new WritableCellFormat();
-                wcfFC.setBackground(ColourUtil.getNearestColour(c.getRed(), c.getGreen(), c.getBlue()));
-
-                Label label = new Label(0, i + 1, consumption.getId() + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(1, i + 1, sdf.format(new Date(consumption.getDate())), wcfFC);
-                ws.addCell(label);
-                label = new Label(2, i + 1, consumption.getMoney() + "", wcfFC);
-                ws.addCell(label);
-                label = new Label(3, i + 1, consumption.getDesc() + "", wcfFC);
+            for (Label label : labels) {
                 ws.addCell(label);
             }
             wwb.write();
@@ -386,6 +342,5 @@ public class ExcelUtils {
                 log.error(e.getMessage());
             }
         }
-
     }
 }

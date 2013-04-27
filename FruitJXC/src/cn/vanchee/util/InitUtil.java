@@ -12,7 +12,7 @@ import java.util.*;
  * @author vanchee
  * @date 13-1-28
  * @package cn.vanchee.util
- * @verson v1.0.0 
+ * @verson v1.0.0
  */
 public class InitUtil {
 

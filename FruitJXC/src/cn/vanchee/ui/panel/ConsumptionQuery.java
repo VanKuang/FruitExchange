@@ -149,10 +149,10 @@ public class ConsumptionQuery extends JPanel {
             e = endDate.getTime();
         }
 
-        User user = MyFactory.getUserService().getCurrentUser();
+        User user = MyFactory.getCurrentUser();
         int uid = -1;
         if (!MyFactory.getResourceService()
-                .hasRight(MyFactory.getUserService().getCurrentUser(), Resource.GET_OTHERS_DATA)) {
+                .hasRight(MyFactory.getCurrentUser(), Resource.GET_OTHERS_DATA)) {
             uid = user.getId();
         }
 
@@ -253,7 +253,7 @@ public class ConsumptionQuery extends JPanel {
     }
 
     private void toUpdate(int row) {
-        if (!MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.CONSUMPTION_W)) {
+        if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.CONSUMPTION_W)) {
             return;
         }
         Consumption selectedRow = result == null ? null : result.get(row);
@@ -265,7 +265,7 @@ public class ConsumptionQuery extends JPanel {
     }
 
     private void delete(int row) {
-        if (!MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.CONSUMPTION_W)) {
+        if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.CONSUMPTION_W)) {
             return;
         }
         Consumption selectedRow = result == null ? null : result.get(row);
@@ -280,7 +280,7 @@ public class ConsumptionQuery extends JPanel {
     }
 
     private void censored(int row) {
-        if (!MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.CENSORED)) {
+        if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.CENSORED)) {
             return;
         }
         Consumption selectedRow = result == null ? null : result.get(row);

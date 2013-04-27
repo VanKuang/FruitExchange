@@ -15,6 +15,8 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -245,6 +247,17 @@ public class OutDetailQuery extends JPanel {
         });
         searchPanel.add(searchBtn);
 
+        if (MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.OUT_O)) {
+            JButton report = new JButton("导出");
+            report.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    report();
+                }
+            });
+            searchPanel.add(report);
+        }
+
         gridX = 0; // X0
         gridY = 0; // Y0
         gridWidth = 1; // 横占一个单元格
@@ -314,10 +327,10 @@ public class OutDetailQuery extends JPanel {
             e = endDate.getTime();
         }
 
-        User user = MyFactory.getUserService().getCurrentUser();
+        User user = MyFactory.getCurrentUser();
         int uid = -1;
         if (!MyFactory.getResourceService()
-                .hasRight(MyFactory.getUserService().getCurrentUser(), Resource.GET_OTHERS_DATA)) {
+                .hasRight(MyFactory.getCurrentUser(), Resource.GET_OTHERS_DATA)) {
             uid = user.getId();
         }
 
@@ -455,7 +468,7 @@ public class OutDetailQuery extends JPanel {
     }
 
     private void toUpdate(int row) {
-        if (!MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.OUT_W)) {
+        if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.OUT_W)) {
             return;
         }
         OutDetail selectedRow = result == null ? null : result.get(row);
@@ -467,7 +480,7 @@ public class OutDetailQuery extends JPanel {
     }
 
     private void toPaid(int row) {
-        if (!MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.PAID_W)) {
+        if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.PAID_W)) {
             return;
         }
         OutDetail selectedRow = result == null ? null : result.get(row);
@@ -480,7 +493,7 @@ public class OutDetailQuery extends JPanel {
     }
 
     private void censored(int row) {
-        if (!MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.CENSORED)) {
+        if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.CENSORED)) {
             return;
         }
         OutDetail selectedRow = result == null ? null : result.get(row);
@@ -491,7 +504,31 @@ public class OutDetailQuery extends JPanel {
                         result == JOptionPane.YES_OPTION ? true : false)) {
                     JOptionPane.showMessageDialog(null, "审核成功！");
                     refreshData();
-                    ;
+                }
+            }
+        }
+    }
+
+    private void report() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH_mm_ss");
+        String fileName = "销售_" + sdf.format(new Date()) + ".xls";
+        String header[] = {"销售单号", "货号", "日期", "货主",
+                "买家", "货品", "价钱", "数量", "应还款", "实际还款", "折扣", "还款状态", "审核状态"};
+        try {
+            ExcelUtils.writeOutDetail(fileName, "销售详细", header, result);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "导出失败，请重试");
+        }
+        if (JOptionPane.showConfirmDialog(null, "导出成功，请在report文件夹下查看，文件名是：" + fileName + "，打开该文件？")
+                == JOptionPane.OK_OPTION) {
+            File file = new File(ExcelUtils.getReportPath() + fileName);
+            if (file.exists()) {
+                Desktop desktop = Desktop.getDesktop();
+                try {
+                    desktop.open(file);
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(null, "打开失败，请手动打开");
+                    log.error(e.getMessage());
                 }
             }
         }

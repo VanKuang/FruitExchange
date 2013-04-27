@@ -76,12 +76,15 @@ public class Consumption implements Serializable, Comparable<Consumption> {
 
     @Override
     public int compareTo(Consumption o) {
-        return this.getDate() > o.getDate() ? 0 : 1;
+        return this.getDate() > o.getDate() ? this.getDate() == o.getDate() ? 0 : -1 : 1;
     }
 
     @Override
     public String toString() {
-        return "consumption--money:" + this.money + ",desc:" + this.desc + ",color:" + this.color
-                + ",censored:" + this.censored + ",uid:" + uid;
+        return "consumption--money:" + this.money
+                + ",desc:" + this.desc
+                + ",color:" + this.color
+                + ",censored:" + this.censored
+                + ",uid:" + this.uid;
     }
 }

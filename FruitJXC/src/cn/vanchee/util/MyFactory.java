@@ -1,5 +1,6 @@
 package cn.vanchee.util;
 
+import cn.vanchee.model.User;
 import cn.vanchee.service.*;
 
 import java.util.concurrent.ExecutorService;
@@ -59,6 +60,14 @@ public class MyFactory {
             return executorService;
         }
         return Executors.newCachedThreadPool();
+    }
+
+    public static User getCurrentUser() {
+        return getUserService().getCurrentUser();
+    }
+
+    public static int getCurrentUserId() {
+        return getUserService().getCurrentUserId();
     }
 
     public synchronized static OutDetailService getOutDetailService() {

@@ -76,7 +76,7 @@ public class JGroupPanel extends JPanel {
     private void createDefaultGroup() {
 
         ResourceService resourceService = MyFactory.getResourceService();
-        User user = MyFactory.getUserService().getCurrentUser();
+        User user = MyFactory.getCurrentUser();
 
         /////////////////////////////
         int index = 0;

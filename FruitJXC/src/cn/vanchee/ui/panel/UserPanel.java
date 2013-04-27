@@ -63,7 +63,7 @@ public class UserPanel extends JPanel {
         password_jtf.setPreferredSize(inputDimension);
         addPanel.add(password_jtf);
 
-        if (MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.USER_MNG)) {
+        if (MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.USER_MNG)) {
             JButton save = new JButton("保存");
             save.addActionListener(new ActionListener() {
                 @Override
@@ -109,7 +109,7 @@ public class UserPanel extends JPanel {
             resourcePanel.add(cb);
         }
 
-        if (MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.USER_MNG)) {
+        if (MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.USER_MNG)) {
             JButton save = new JButton("保存");
             save.addMouseListener(new MouseListener() {
                 @Override
@@ -197,7 +197,7 @@ public class UserPanel extends JPanel {
     }
 
     private void save() {
-        if (!MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.USER_MNG)) {
+        if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.USER_MNG)) {
             return;
         }
         String username = username_jtf.getText();
@@ -220,7 +220,7 @@ public class UserPanel extends JPanel {
     }
 
     private void delete(int row) {
-        if (!MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.USER_MNG)) {
+        if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.USER_MNG)) {
             return;
         }
         User selectedRow = result == null ? null : result.get(row);
@@ -239,7 +239,7 @@ public class UserPanel extends JPanel {
     }
 
     private void saveResource(String username) {
-        if (!MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.USER_MNG)) {
+        if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.USER_MNG)) {
             return;
         }
         User user = MyFactory.getUserService().queryUserByName(username);

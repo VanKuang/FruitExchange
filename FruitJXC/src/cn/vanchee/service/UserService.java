@@ -101,7 +101,7 @@ public class UserService {
             if (name == user.getName()) {
                 userList.remove(user);
                 updateFile();
-                log.debug(MyFactory.getUserService().getCurrentUserName() + " delete " + user.toString());
+                log.debug(MyFactory.getUserService().getCurrentUserName() + " delete " + user);
                 return true;
             }
         }
@@ -115,7 +115,7 @@ public class UserService {
             if (user.getName() == o.getName()) {
                 userList.set(i, user);
                 updateFile();
-                log.debug(MyFactory.getUserService().getCurrentUserName() + " update " + user.toString());
+                log.debug(MyFactory.getUserService().getCurrentUserName() + " update " + user);
                 return true;
             }
             i++;
@@ -144,6 +144,13 @@ public class UserService {
             return currentUser.getName();
         }
         return "not login user";
+    }
+
+    public int getCurrentUserId() {
+        if (currentUser != null) {
+            return currentUser.getId();
+        }
+        return 0;
     }
 
     private void checkData() {

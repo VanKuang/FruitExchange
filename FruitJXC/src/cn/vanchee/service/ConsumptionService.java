@@ -8,7 +8,10 @@ import cn.vanchee.util.MyFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author vanchee
@@ -33,20 +36,25 @@ public class ConsumptionService {
 
     public void init() {
         long start = System.currentTimeMillis();
-        log.info("start init consumption data");
+        log.debug("start init consumption data");
+
         consumptionList = (List<Consumption>) DataUtil.readListFromFile(Constants.FILE_NAME_CONSUMPTION);
+        if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.GET_OTHERS_DATA)) {
+            consumptionList = queryConsumption(-1, -1, MyFactory.getCurrentUserId());
+        }
         Collections.sort(consumptionList);
         id = consumptionList.size() + 1;
+
         long end = System.currentTimeMillis();
-        log.info("end init consumption data, use time:" + (end - start) + "ms" +
+        log.debug("end init consumption data, use time:" + (end - start) + "ms" +
                 (consumptionList != null ? ",data size:" + consumptionList.size() : ""));
     }
 
     public boolean create(Consumption consumption) {
         checkData();
         consumption.setId(id);
-        consumption.setUid(MyFactory.getUserService().getCurrentUser().getId());
-        if (MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.CENSORED)) {
+        consumption.setUid(MyFactory.getCurrentUserId());
+        if (MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.CENSORED)) {
             consumption.setCensored(Constants.CENSORED_PASS);
         }
         consumptionList.add(0, consumption);
@@ -85,7 +93,7 @@ public class ConsumptionService {
         for (Consumption od : consumptionList) {
             if (oid == od.getId()) {
                 c = od;
-                if (MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.CENSORED)) {
+                if (MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.CENSORED)) {
                     consumption.setCensored(Constants.CENSORED_PASS);
                 } else {
                     consumption.setCensored(Constants.CENSORED_ORIGINAL);
@@ -98,8 +106,9 @@ public class ConsumptionService {
         }
         if (flag) {
             updateFile();
-            log.debug(MyFactory.getUserService().getCurrentUserName() + " update " + c.toString() +
-                    " to " + consumption.toString());
+            log.debug(MyFactory.getUserService().getCurrentUserName()
+                    + " update " + c
+                    + " to " + consumption);
         }
         return flag;
     }
@@ -120,7 +129,7 @@ public class ConsumptionService {
             i++;
         }
         if (flag) {
-            log.debug(MyFactory.getUserService().getCurrentUserName() + " censored " + p.toString());
+            log.debug(MyFactory.getUserService().getCurrentUserName() + " censored " + p);
             updateFile();
         }
         return flag;
@@ -158,8 +167,8 @@ public class ConsumptionService {
     }
 
     public List<Consumption> selectCensoredReverse(List<Consumption> list, int censored) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (censored == ((Consumption)iterator.next()).getCensored()) {
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            if (censored == ((Consumption) iterator.next()).getCensored()) {
                 iterator.remove();
             }
         }
@@ -183,8 +192,8 @@ public class ConsumptionService {
     }
 
     private List<Consumption> selectDateFrom(List<Consumption> list, long from) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (((Consumption)iterator.next()).getDate() < from) {
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            if (((Consumption) iterator.next()).getDate() < from) {
                 iterator.remove();
             }
         }
@@ -192,8 +201,8 @@ public class ConsumptionService {
     }
 
     private List<Consumption> selectDateEnd(List<Consumption> list, long end) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (((Consumption)iterator.next()).getDate() > end) {
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            if (((Consumption) iterator.next()).getDate() > end) {
                 iterator.remove();
             }
         }
@@ -201,12 +210,14 @@ public class ConsumptionService {
     }
 
     private static List<Consumption> selectUser(List<Consumption> list, int uid) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (uid != ((Consumption)iterator.next()).getUid()) {
-                iterator.remove();
+        List<Consumption> result = new ArrayList<Consumption>();
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            Consumption consumption = (Consumption) iterator.next();
+            if (uid == consumption.getUid()) {
+                result.add(consumption);
             }
         }
-        return list;
+        return result;
     }
 
 }

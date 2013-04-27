@@ -121,8 +121,11 @@ public class MyPaid implements Serializable, Comparable<MyPaid> {
 
     @Override
     public String toString() {
-        return "my detail--owner:" + this.getOwnerName()
-                + ",fruit:" + getFruitName() + ",money:" + this.money
-                + ",censored:" + this.censored + ",uid:" + uid;
+        return "my detail--[owner:" + this.getOwnerName()
+                + ",fruit:" + getFruitName()
+                + ",money:" + this.money
+                + ",censored:" + this.censored
+                + ",uid:" + uid
+                + "]";
     }
 }

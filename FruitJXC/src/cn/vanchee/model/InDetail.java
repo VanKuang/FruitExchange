@@ -150,8 +150,14 @@ public class InDetail implements Serializable, Comparable<InDetail> {
 
     @Override
     public String toString() {
-        return "in detail--owner:" + getOwnerName() + ",fruit:" + getFruitName()
-                + ",price" + this.price + ",num:" + this.num + ",sale:" + this.sale + ",color:" + this.color
-                + ",censored:" + this.censored + ",uid:" + uid;
+        return "in detail--[owner:" + getOwnerName()
+                + ",fruit:" + getFruitName()
+                + ",price" + this.price
+                + ",num:" + this.num
+                + ",sale:" + this.sale
+                + ",color:" + this.color
+                + ",censored:" + this.censored
+                + ",uid:" + uid
+                + "]";
     }
 }

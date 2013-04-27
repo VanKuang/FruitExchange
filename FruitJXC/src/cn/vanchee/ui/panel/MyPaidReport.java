@@ -135,7 +135,7 @@ public class MyPaidReport extends JPanel {
         });
         searchPanel.add(searchBtn);
 
-        if (MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.PAID_EXPORT)) {
+        if (MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.PAID_EXPORT)) {
             JButton report = new JButton("导出");
             report.addActionListener(new ActionListener() {
                 @Override
@@ -191,10 +191,10 @@ public class MyPaidReport extends JPanel {
             e = endDate.getTime();
         }
 
-        User user = MyFactory.getUserService().getCurrentUser();
+        User user = MyFactory.getCurrentUser();
         int uid = -1;
         if (!MyFactory.getResourceService()
-                .hasRight(MyFactory.getUserService().getCurrentUser(), Resource.GET_OTHERS_DATA)) {
+                .hasRight(MyFactory.getCurrentUser(), Resource.GET_OTHERS_DATA)) {
             uid = user.getId();
         }
 
@@ -242,7 +242,7 @@ public class MyPaidReport extends JPanel {
         String fileName = "我的欠款" + sdf.format(new Date()) + ".xls";
         String header[] = {"货主", "货品", "日期", "应还款", "实际还款", "欠款"};
         try {
-            ExcelUtils.writeMyPaid(fileName, header, result);
+            ExcelUtils.writeMyPaid(fileName, "我的欠款", header, result);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "导出失败，请重试");
         }

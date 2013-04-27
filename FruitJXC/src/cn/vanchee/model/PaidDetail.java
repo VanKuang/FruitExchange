@@ -151,16 +151,17 @@ public class PaidDetail implements Serializable, Comparable<PaidDetail> {
 
     @Override
     public int compareTo(PaidDetail o) {
-        return this.getDate() > o.getDate() ? 0 : 1;
+        return this.getDate() > o.getDate() ? this.getDate() == o.getDate() ? 0 : -1 : 1;
     }
 
     @Override
     public String toString() {
-        return "paid detail--owner:" + getOwnerName()
+        return "paid detail--[owner:" + getOwnerName()
                 + ",consumer:" + getConsumerName()
                 + ",money:" + this.money
                 + ",discount:" + this.discount
                 + ",censored:" + this.censored
-                + ",uid:" + uid;
+                + ",uid:" + uid
+                + "]";
     }
 }

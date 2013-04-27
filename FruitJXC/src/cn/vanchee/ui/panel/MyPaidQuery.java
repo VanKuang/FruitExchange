@@ -274,10 +274,10 @@ public class MyPaidQuery extends JPanel {
             e = endDate.getTime();
         }
 
-        User user = MyFactory.getUserService().getCurrentUser();
+        User user = MyFactory.getCurrentUser();
         int uid = -1;
         if (!MyFactory.getResourceService()
-                .hasRight(MyFactory.getUserService().getCurrentUser(), Resource.GET_OTHERS_DATA)) {
+                .hasRight(MyFactory.getCurrentUser(), Resource.GET_OTHERS_DATA)) {
             uid = user.getId();
         }
 
@@ -354,7 +354,7 @@ public class MyPaidQuery extends JPanel {
     }
 
     private void toUpdate(int row) {
-        if (!MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.MY_PAID_W)) {
+        if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.MY_PAID_W)) {
             return;
         }
         MyPaid selectedRow = result == null ? null : result.get(row);
@@ -366,7 +366,7 @@ public class MyPaidQuery extends JPanel {
     }
 
     private void delete(int row) {
-        if (!MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.MY_PAID_W)) {
+        if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.MY_PAID_W)) {
             return;
         }
         MyPaid selectedRow = result == null ? null : result.get(row);
@@ -381,7 +381,7 @@ public class MyPaidQuery extends JPanel {
     }
 
     private void censored(int row) {
-        if (!MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.CENSORED)) {
+        if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.CENSORED)) {
             return;
         }
         MyPaid selectedRow = result == null ? null : result.get(row);

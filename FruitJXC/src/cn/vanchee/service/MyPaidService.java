@@ -8,7 +8,10 @@ import cn.vanchee.util.MyFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author vanchee
@@ -29,20 +32,25 @@ public class MyPaidService {
 
     public void init() {
         long start = System.currentTimeMillis();
-        log.info("start init my paid detail data");
+        log.debug("start init my paid detail data");
+
         myPaidList = (List<MyPaid>) DataUtil.readListFromFile(Constants.FILE_NAME_MY_PAID);
+        if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.GET_OTHERS_DATA)) {
+            myPaidList = queryMyPaid(-1, -1, -1, -1, -1, -1, -1, MyFactory.getCurrentUserId());
+        }
         Collections.sort(myPaidList);
         id = myPaidList.size() + 1;
+
         long end = System.currentTimeMillis();
-        log.info("end init my paid detail data, use time:" + (end - start) + "ms" +
+        log.debug("end init my paid detail data, use time:" + (end - start) + "ms" +
                 (myPaidList != null ? ",data size:" + myPaidList.size() : ""));
     }
 
     public boolean create(MyPaid myPaid) {
         checkData();
         myPaid.setId(id);
-        myPaid.setUid(MyFactory.getUserService().getCurrentUser().getId());
-        if (MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.CENSORED)) {
+        myPaid.setUid(MyFactory.getCurrentUser().getId());
+        if (MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.CENSORED)) {
             myPaid.setCensored(Constants.CENSORED_PASS);
         }
         myPaidList.add(0, myPaid);
@@ -51,7 +59,7 @@ public class MyPaidService {
 
         updateFile();
 
-        log.info(MyFactory.getUserService().getCurrentUserName() + " create " + myPaid.toString());
+        log.info(MyFactory.getUserService().getCurrentUserName() + " create " + myPaid);
         return true;
     }
 
@@ -68,7 +76,7 @@ public class MyPaidService {
             }
         }
         if (flag) {
-            log.debug(MyFactory.getUserService().getCurrentUserName() + " delete " + p.toString());
+            log.debug(MyFactory.getUserService().getCurrentUserName() + " delete " + p);
             updateFile();
         }
         return flag;
@@ -83,7 +91,7 @@ public class MyPaidService {
         for (MyPaid od : myPaidList) {
             if (oid == od.getId()) {
                 p = od;
-                if (MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.CENSORED)) {
+                if (MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.CENSORED)) {
                     myPaid.setCensored(Constants.CENSORED_PASS);
                 } else {
                     myPaid.setCensored(Constants.CENSORED_ORIGINAL);
@@ -95,8 +103,9 @@ public class MyPaidService {
             i++;
         }
         if (flag) {
-            log.debug(MyFactory.getUserService().getCurrentUserName() + " update " + p.toString() +
-                    " to " + myPaid.toString());
+            log.debug(MyFactory.getUserService().getCurrentUserName()
+                    + " update " + p
+                    + " to " + myPaid);
             updateFile();
         }
         return flag;
@@ -118,7 +127,7 @@ public class MyPaidService {
             i++;
         }
         if (flag) {
-            log.debug(MyFactory.getUserService().getCurrentUserName() + " censored " + p.toString());
+            log.debug(MyFactory.getUserService().getCurrentUserName() + " censored " + p);
             updateFile();
         }
         return flag;
@@ -156,8 +165,8 @@ public class MyPaidService {
     }
 
     public List<MyPaid> selectCensoredReverse(List<MyPaid> list, int censored) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (censored == ((MyPaid)iterator.next()).getCensored()) {
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            if (censored == ((MyPaid) iterator.next()).getCensored()) {
                 iterator.remove();
             }
         }
@@ -180,44 +189,52 @@ public class MyPaidService {
     }
 
     private List<MyPaid> selectMyPaid(List<MyPaid> list, int id) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (id != ((MyPaid)iterator.next()).getId()) {
-                iterator.remove();
+        List<MyPaid> result = new ArrayList<MyPaid>();
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            MyPaid myPaid = (MyPaid) iterator.next();
+            if (id == myPaid.getId()) {
+                result.add(myPaid);
             }
         }
-        return list;
+        return result;
     }
 
     private List<MyPaid> selectInDetail(List<MyPaid> list, int iid) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (iid != ((MyPaid)iterator.next()).getIid()) {
-                iterator.remove();
+        List<MyPaid> result = new ArrayList<MyPaid>();
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            MyPaid myPaid = (MyPaid) iterator.next();
+            if (iid == myPaid.getIid()) {
+                result.add(myPaid);
             }
         }
-        return list;
+        return result;
     }
 
     private List<MyPaid> selectOwner(List<MyPaid> list, int cid) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (cid != ((MyPaid)iterator.next()).getOwnerId()) {
-                iterator.remove();
+        List<MyPaid> result = new ArrayList<MyPaid>();
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            MyPaid myPaid = (MyPaid) iterator.next();
+            if (cid == myPaid.getOwnerId()) {
+                result.add(myPaid);
             }
         }
-        return list;
+        return result;
     }
 
     private List<MyPaid> selectFruit(List<MyPaid> list, int fid) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (fid != ((MyPaid)iterator.next()).getFid()) {
-                iterator.remove();
+        List<MyPaid> result = new ArrayList<MyPaid>();
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            MyPaid myPaid = (MyPaid) iterator.next();
+            if (fid == myPaid.getFid()) {
+                result.add(myPaid);
             }
         }
-        return list;
+        return result;
     }
 
     private List<MyPaid> selectCensored(List<MyPaid> list, int censored) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (censored != ((MyPaid)iterator.next()).getCensored()) {
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            if (censored != ((MyPaid) iterator.next()).getCensored()) {
                 iterator.remove();
             }
         }
@@ -225,8 +242,8 @@ public class MyPaidService {
     }
 
     private List<MyPaid> selectDateFrom(List<MyPaid> list, long from) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (((MyPaid)iterator.next()).getDate() <= from) {
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            if (((MyPaid) iterator.next()).getDate() <= from) {
                 iterator.remove();
             }
         }
@@ -234,8 +251,8 @@ public class MyPaidService {
     }
 
     private List<MyPaid> selectDateEnd(List<MyPaid> list, long end) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (((MyPaid)iterator.next()).getDate() >= end) {
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            if (((MyPaid) iterator.next()).getDate() >= end) {
                 iterator.remove();
             }
         }
@@ -243,12 +260,14 @@ public class MyPaidService {
     }
 
     private static List<MyPaid> selectUser(List<MyPaid> list, int uid) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (uid != ((MyPaid)iterator.next()).getUid()) {
-                iterator.remove();
+        List<MyPaid> result = new ArrayList<MyPaid>();
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            MyPaid myPaid = (MyPaid) iterator.next();
+            if (uid == myPaid.getUid()) {
+                result.add(myPaid);
             }
         }
-        return list;
+        return result;
     }
 
 }

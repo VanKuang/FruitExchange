@@ -8,7 +8,10 @@ import cn.vanchee.util.MyFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author vanchee
@@ -34,9 +37,14 @@ public class PaidDetailService {
     public void init() {
         long start = System.currentTimeMillis();
         log.info("start init paid detail data");
+
         paidDetailList = (List<PaidDetail>) DataUtil.readListFromFile(Constants.FILE_NAME_PAID_DETAIL);
+        if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.GET_OTHERS_DATA)) {
+            paidDetailList = queryPaidDetail(-1, -1, -1, -1, -1, -1, -1, -1, -1, MyFactory.getCurrentUserId());
+        }
         Collections.sort(paidDetailList);
         id = paidDetailList.size() + 1;
+
         long end = System.currentTimeMillis();
         log.info("end init paid detail data, use time:" + (end - start) + "ms" +
                 (paidDetailList != null ? ",data size:" + paidDetailList.size() : ""));
@@ -45,8 +53,8 @@ public class PaidDetailService {
     public boolean create(PaidDetail paidDetail) {
         checkData();
         paidDetail.setId(id);
-        paidDetail.setUid(MyFactory.getUserService().getCurrentUser().getId());
-        if (MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.CENSORED)) {
+        paidDetail.setUid(MyFactory.getCurrentUser().getId());
+        if (MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.CENSORED)) {
             paidDetail.setCensored(Constants.CENSORED_PASS);
         }
         paidDetailList.add(0, paidDetail);
@@ -55,7 +63,7 @@ public class PaidDetailService {
 
         updateFile();
 
-        log.info(MyFactory.getUserService().getCurrentUserName() + " create " + paidDetail.toString());
+        log.info(MyFactory.getUserService().getCurrentUserName() + " create " + paidDetail);
 
         OutDetailService outDetailService = MyFactory.getOutDetailService();
         outDetailService.paid(paidDetail);
@@ -76,7 +84,7 @@ public class PaidDetailService {
             }
         }
         if (flag) {
-            log.debug(MyFactory.getUserService().getCurrentUserName() + " delete " + p.toString());
+            log.debug(MyFactory.getUserService().getCurrentUserName() + " delete " + p);
             updateFile();
 
             OutDetailService outDetailService = MyFactory.getOutDetailService();
@@ -101,7 +109,7 @@ public class PaidDetailService {
             i++;
         }
         if (flag) {
-            log.debug(MyFactory.getUserService().getCurrentUserName() + " censored " + p.toString());
+            log.debug(MyFactory.getUserService().getCurrentUserName() + " censored " + p);
 
             updateFile();
         }
@@ -117,7 +125,7 @@ public class PaidDetailService {
         for (PaidDetail od : paidDetailList) {
             if (oid == od.getId()) {
                 p = od;
-                if (MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.CENSORED)) {
+                if (MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.CENSORED)) {
                     paidDetail.setCensored(Constants.CENSORED_PASS);
                 } else {
                     paidDetail.setCensored(Constants.CENSORED_ORIGINAL);
@@ -129,8 +137,7 @@ public class PaidDetailService {
             i++;
         }
         if (flag) {
-            log.debug(MyFactory.getUserService().getCurrentUserName() + " update " + p.toString() +
-                    " to " + paidDetail.toString());
+            log.debug(MyFactory.getUserService().getCurrentUserName() + " update " + p + " to " + paidDetail);
 
             OutDetailService outDetailService = MyFactory.getOutDetailService();
             outDetailService.paid(paidDetail);
@@ -141,13 +148,13 @@ public class PaidDetailService {
     }
 
     /**
-     * @param iid    in detail id
-     * @param oid    out detail id
+     * @param iid     in detail id
+     * @param oid     out detail id
      * @param ownerId owner id
-     * @param cid    consumer id
-     * @param fid    fruit id
-     * @param from   date from
-     * @param to     date to
+     * @param cid     consumer id
+     * @param fid     fruit id
+     * @param from    date from
+     * @param to      date to
      * @return
      */
     public List<PaidDetail> queryPaidDetail(int id, int iid, int oid, int ownerId, int cid, int fid, int censored,
@@ -189,8 +196,8 @@ public class PaidDetailService {
     }
 
     public List<PaidDetail> selectCensoredReverse(List<PaidDetail> list, int censored) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (censored == ((PaidDetail)iterator.next()).getCensored()) {
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            if (censored == ((PaidDetail) iterator.next()).getCensored()) {
                 iterator.remove();
             }
         }
@@ -213,63 +220,75 @@ public class PaidDetailService {
     }
 
     private List<PaidDetail> selectPaid(List<PaidDetail> list, int id) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (id != ((PaidDetail)iterator.next()).getId()) {
-                iterator.remove();
+        List<PaidDetail> result = new ArrayList<PaidDetail>();
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            PaidDetail paidDetail = (PaidDetail) iterator.next();
+            if (id == paidDetail.getId()) {
+                result.add(paidDetail);
             }
         }
-        return list;
+        return result;
     }
 
     private List<PaidDetail> selectInDetail(List<PaidDetail> list, int iid) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (iid != ((PaidDetail)iterator.next()).getIid()) {
-                iterator.remove();
+        List<PaidDetail> result = new ArrayList<PaidDetail>();
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            PaidDetail paidDetail = (PaidDetail) iterator.next();
+            if (iid == paidDetail.getIid()) {
+                result.add(paidDetail);
             }
         }
-        return list;
+        return result;
     }
 
     private List<PaidDetail> selectOutDetail(List<PaidDetail> list, int oid) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (oid != ((PaidDetail)iterator.next()).getOid()) {
-                iterator.remove();
+        List<PaidDetail> result = new ArrayList<PaidDetail>();
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            PaidDetail paidDetail = (PaidDetail) iterator.next();
+            if (oid == paidDetail.getOid()) {
+                result.add(paidDetail);
             }
         }
-        return list;
+        return result;
     }
 
     private List<PaidDetail> selectOwner(List<PaidDetail> list, int ownerId) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (ownerId != ((PaidDetail)iterator.next()).getOwnerId()) {
-                iterator.remove();
+        List<PaidDetail> result = new ArrayList<PaidDetail>();
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            PaidDetail paidDetail = (PaidDetail) iterator.next();
+            if (ownerId == paidDetail.getOwnerId()) {
+                result.add(paidDetail);
             }
         }
-        return list;
+        return result;
     }
 
 
     private List<PaidDetail> selectConsumer(List<PaidDetail> list, int cid) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (cid != ((PaidDetail)iterator.next()).getCid()) {
-                iterator.remove();
+        List<PaidDetail> result = new ArrayList<PaidDetail>();
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            PaidDetail paidDetail = (PaidDetail) iterator.next();
+            if (cid == paidDetail.getCid()) {
+                result.add(paidDetail);
             }
         }
-        return list;
+        return result;
     }
 
     private List<PaidDetail> selectFruit(List<PaidDetail> list, int fid) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (fid != ((PaidDetail)iterator.next()).getFid()) {
-                iterator.remove();
+        List<PaidDetail> result = new ArrayList<PaidDetail>();
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            PaidDetail paidDetail = (PaidDetail) iterator.next();
+            if (fid == paidDetail.getFid()) {
+                result.add(paidDetail);
             }
         }
-        return list;
+        return result;
     }
 
     private List<PaidDetail> selectCensored(List<PaidDetail> list, int censored) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (censored != ((PaidDetail)iterator.next()).getCensored()) {
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            if (censored != ((PaidDetail) iterator.next()).getCensored()) {
                 iterator.remove();
             }
         }
@@ -277,8 +296,8 @@ public class PaidDetailService {
     }
 
     private List<PaidDetail> selectDateFrom(List<PaidDetail> list, long from) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (((PaidDetail)iterator.next()).getDate() <= from) {
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            if (((PaidDetail) iterator.next()).getDate() <= from) {
                 iterator.remove();
             }
         }
@@ -286,8 +305,8 @@ public class PaidDetailService {
     }
 
     private List<PaidDetail> selectDateEnd(List<PaidDetail> list, long end) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (((PaidDetail)iterator.next()).getDate() >= end) {
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            if (((PaidDetail) iterator.next()).getDate() >= end) {
                 iterator.remove();
             }
         }
@@ -295,12 +314,14 @@ public class PaidDetailService {
     }
 
     private static List<PaidDetail> selectUser(List<PaidDetail> list, int uid) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-            if (uid != ((PaidDetail)iterator.next()).getUid()) {
-                iterator.remove();
+        List<PaidDetail> result = new ArrayList<PaidDetail>();
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            PaidDetail paidDetail = (PaidDetail) iterator.next();
+            if (uid == paidDetail.getUid()) {
+                result.add(paidDetail);
             }
         }
-        return list;
+        return result;
     }
 
 }

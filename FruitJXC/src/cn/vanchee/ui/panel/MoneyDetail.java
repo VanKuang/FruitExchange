@@ -226,10 +226,10 @@ public class MoneyDetail extends JPanel {
             e = endDate.getTime();
         }
 
-        User user = MyFactory.getUserService().getCurrentUser();
+        User user = MyFactory.getCurrentUser();
         int uid = -1;
         if (!MyFactory.getResourceService()
-                .hasRight(MyFactory.getUserService().getCurrentUser(), Resource.GET_OTHERS_DATA)) {
+                .hasRight(MyFactory.getCurrentUser(), Resource.GET_OTHERS_DATA)) {
             uid = user.getId();
         }
 

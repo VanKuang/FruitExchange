@@ -46,9 +46,9 @@ public class InDetailServiceTmp {
     public boolean create(InDetail inDetail) {
         checkData();
         inDetail.setId(id);
-        inDetail.setUid(MyFactory.getUserService().getCurrentUser().getId());
+        inDetail.setUid(MyFactory.getCurrentUser().getId());
 
-        if (MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.CENSORED)) {
+        if (MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.CENSORED)) {
             inDetail.setCensored(Constants.CENSORED_PASS);
         }
 
@@ -88,7 +88,7 @@ public class InDetailServiceTmp {
         for (InDetail od : inDetailList) {
             if (oid == od.getId()) {
                 id = od;
-                if (MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.CENSORED)) {
+                if (MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.CENSORED)) {
                     inDetail.setCensored(Constants.CENSORED_PASS);
                 } else {
                     inDetail.setCensored(Constants.CENSORED_ORIGINAL);

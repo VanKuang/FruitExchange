@@ -17,6 +17,8 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -204,6 +206,17 @@ public class InDetailQuery extends JPanel {
         });
         searchPanel.add(searchBtn);
 
+        if (MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.IN_O)) {
+            JButton report = new JButton("导出");
+            report.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    report();
+                }
+            });
+            searchPanel.add(report);
+        }
+
         gridX = 0; // X0
         gridY = 0; // Y0
         gridWidth = 1; // 横占一个单元格
@@ -263,10 +276,10 @@ public class InDetailQuery extends JPanel {
             e = endDate.getTime();
         }
 
-        User user = MyFactory.getUserService().getCurrentUser();
+        User user = MyFactory.getCurrentUser();
         int uid = -1;
         if (!MyFactory.getResourceService()
-                .hasRight(MyFactory.getUserService().getCurrentUser(), Resource.GET_OTHERS_DATA)) {
+                .hasRight(MyFactory.getCurrentUser(), Resource.GET_OTHERS_DATA)) {
             uid = user.getId();
         }
 
@@ -348,7 +361,7 @@ public class InDetailQuery extends JPanel {
     }
 
     private void toUpdate(int row) {
-        if (!MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.IN_W)) {
+        if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.IN_W)) {
             return;
         }
         InDetail selectedRow = result == null ? null : result.get(row);
@@ -360,7 +373,7 @@ public class InDetailQuery extends JPanel {
     }
 
     private void toOutDetailAdd(int row) {
-        if (!MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.OUT_W)) {
+        if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.OUT_W)) {
             return;
         }
         InDetail selectedRow = result == null ? null : result.get(row);
@@ -374,7 +387,7 @@ public class InDetailQuery extends JPanel {
     }
 
     private void toPaid(int row) {
-        if (!MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.MY_PAID_W)) {
+        if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.MY_PAID_W)) {
             return;
         }
         InDetail selectedRow = result == null ? null : result.get(row);
@@ -387,7 +400,7 @@ public class InDetailQuery extends JPanel {
     }
 
     private void censored(int row) {
-        if (!MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.CENSORED)) {
+        if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.CENSORED)) {
             return;
         }
         InDetail selectedRow = result == null ? null : result.get(row);
@@ -403,4 +416,28 @@ public class InDetailQuery extends JPanel {
         }
     }
 
+    private void report() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH_mm_ss");
+        String fileName = "进货_" + sdf.format(new Date()) + ".xls";
+        String header[] = {"货号", "日期", "货主", "货品", "价钱", "数量",
+                "总价", "还款", "销售数量", "库存", "审核状态"};
+        try {
+            ExcelUtils.writeInDetail(fileName, "进货详细", header, result);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "导出失败，请重试");
+        }
+        if (JOptionPane.showConfirmDialog(null, "导出成功，请在report文件夹下查看，文件名是：" + fileName + "，打开该文件？")
+                == JOptionPane.OK_OPTION) {
+            File file = new File(ExcelUtils.getReportPath() + fileName);
+            if (file.exists()) {
+                Desktop desktop = Desktop.getDesktop();
+                try {
+                    desktop.open(file);
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(null, "打开失败，请手动打开");
+                    log.error(e.getMessage());
+                }
+            }
+        }
+    }
 }

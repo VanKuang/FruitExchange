@@ -145,7 +145,7 @@ public class PaidReport extends JPanel {
         });
         searchPanel.add(searchBtn);
 
-        if (MyFactory.getResourceService().hasRight(MyFactory.getUserService().getCurrentUser(), Resource.PAID_EXPORT)) {
+        if (MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.PAID_EXPORT)) {
             JButton report1 = new JButton("导出总表");
             report1.addActionListener(new ActionListener() {
                 @Override
@@ -211,10 +211,10 @@ public class PaidReport extends JPanel {
             e = endDate.getTime();
         }
 
-        User user = MyFactory.getUserService().getCurrentUser();
+        User user = MyFactory.getCurrentUser();
         int uid = -1;
         if (!MyFactory.getResourceService()
-                .hasRight(MyFactory.getUserService().getCurrentUser(), Resource.GET_OTHERS_DATA)) {
+                .hasRight(MyFactory.getCurrentUser(), Resource.GET_OTHERS_DATA)) {
             uid = user.getId();
         }
 
@@ -317,7 +317,7 @@ public class PaidReport extends JPanel {
         String fileName = "他人欠款" + sdf.format(new Date()) + ".xls";
         String header[] = {"买家", "应还款", "实际还款", "欠款"};
         try {
-            ExcelUtils.writePaid(fileName, header, paidVos);
+            ExcelUtils.writePaid(fileName, "欠款总表", header, paidVos);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "导出失败，请重试");
         }
@@ -372,10 +372,10 @@ public class PaidReport extends JPanel {
             e = endDate.getTime();
         }
 
-        User user = MyFactory.getUserService().getCurrentUser();
+        User user = MyFactory.getCurrentUser();
         int uid = -1;
         if (!MyFactory.getResourceService()
-                .hasRight(MyFactory.getUserService().getCurrentUser(), Resource.GET_OTHERS_DATA)) {
+                .hasRight(MyFactory.getCurrentUser(), Resource.GET_OTHERS_DATA)) {
             uid = user.getId();
         }
 
@@ -387,7 +387,7 @@ public class PaidReport extends JPanel {
         String header[] = {"销售单号", "货号", "日期", "货主",
                 "买家", "货品", "价钱", "数量", "应还款", "实际还款", "折扣", "还款状态", "审核状态"};
         try {
-            ExcelUtils.writePaidDetail(fileName, header, list);
+            ExcelUtils.writePaidDetail(fileName, "欠款明细", header, list);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "导出失败，请重试");
         }

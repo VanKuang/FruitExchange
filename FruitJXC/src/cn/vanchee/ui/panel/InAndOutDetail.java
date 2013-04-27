@@ -336,10 +336,10 @@ public class InAndOutDetail extends JPanel {
             e = endDate.getTime();
         }
 
-        User user = MyFactory.getUserService().getCurrentUser();
+        User user = MyFactory.getCurrentUser();
         int uid = -1;
         if (!MyFactory.getResourceService()
-                .hasRight(MyFactory.getUserService().getCurrentUser(), Resource.GET_OTHERS_DATA)) {
+                .hasRight(MyFactory.getCurrentUser(), Resource.GET_OTHERS_DATA)) {
             uid = user.getId();
         }
 
@@ -470,7 +470,7 @@ public class InAndOutDetail extends JPanel {
                 fileName = fileName1;
                 String header1[] = {"货号", "日期", "货主", "货品", "价钱", "数量", "总价", "还款", "销售数量", "库存"};
                 try {
-                    ExcelUtils.reportInDetails(fileName1, header1, ins);
+                    ExcelUtils.reportInDetails(fileName1, "进货明细", header1, ins);
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "导出失败，请重试");
                 }
@@ -481,7 +481,7 @@ public class InAndOutDetail extends JPanel {
                 String header2[] = {"销售单号", "进货货号", "日期", "货主",
                         "买家", "货品", "价钱", "数量", "应还款", "实际还款", "折扣", "还款状态", "审核状态"};
                 try {
-                    ExcelUtils.reportOutDetails(fileName2, header2, outs);
+                    ExcelUtils.reportOutDetails(fileName2, "销售明细", header2, outs);
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "导出失败，请重试");
                 }
@@ -491,7 +491,7 @@ public class InAndOutDetail extends JPanel {
                 fileName = fileName3;
                 String header3[] = {"消费单号", "日期", "花费", "备注"};
                 try {
-                    ExcelUtils.reportConsumptions(fileName3, header3, consumptions);
+                    ExcelUtils.reportConsumptions(fileName3, "其他消费", header3, consumptions);
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "导出失败，请重试");
                 }
