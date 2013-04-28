@@ -6,42 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="a0c60421-6183-4d61-af58-1da70d4cf2b4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/findbugs-idea.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/util/ColourUtil.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/util/ColourUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/model/Consumption.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/model/Consumption.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/ui/panel/ConsumptionQuery.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/ui/panel/ConsumptionQuery.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/service/ConsumptionService.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/service/ConsumptionService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/util/ExcelUtils.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/util/ExcelUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FruitJXC.iml" afterPath="$PROJECT_DIR$/FruitJXC.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/ui/panel/InAndOutDetail.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/ui/panel/InAndOutDetail.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/model/InDetail.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/model/InDetail.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/ui/panel/InDetailQuery.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/ui/panel/InDetailQuery.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/service/InDetailService.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/service/InDetailService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/service/InDetailServiceTmp.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/service/InDetailServiceTmp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/ui/JGroupPanel.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/ui/JGroupPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/ui/panel/MoneyDetail.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/ui/panel/MoneyDetail.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/util/MyFactory.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/util/MyFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/model/MyPaid.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/model/MyPaid.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/ui/panel/MyPaidPanel.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/ui/panel/MyPaidPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/ui/panel/MyPaidQuery.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/ui/panel/MyPaidQuery.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/ui/panel/MyPaidReport.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/ui/panel/MyPaidReport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/service/MyPaidService.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/service/MyPaidService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/model/OutDetail.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/model/OutDetail.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/model/OutDetailHistory.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/model/OutDetailHistory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/ui/panel/OutDetailQuery.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/ui/panel/OutDetailQuery.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/service/OutDetailService.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/service/OutDetailService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/model/PaidDetail.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/model/PaidDetail.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/ui/panel/PaidDetailPanel.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/ui/panel/PaidDetailPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/service/PaidDetailService.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/service/PaidDetailService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/ui/panel/PaidQuery.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/ui/panel/PaidQuery.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/ui/panel/PaidReport.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/ui/panel/PaidReport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/model/User.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/model/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/ui/panel/UserPanel.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/ui/panel/UserPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/vanchee/service/UserService.java" afterPath="$PROJECT_DIR$/src/cn/vanchee/service/UserService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" readonly="true" id="a0c60421-6183-4d61-af58-1da70d4cf2b4" name="Default" comment="" />
     <ignored path="FruitJXC.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/OutPanel.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1360310889069" ignored="false" />
@@ -59,7 +24,7 @@
     <file path="/fragment.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1366899649935" ignored="false" />
     <file path="/MainApp.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1366987355568" ignored="false" />
     <file path="/InitUtil.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1364224415662" ignored="false" />
-    <file path="/JGroupPanel.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1365127458428" ignored="false" />
+    <file path="/JGroupPanel.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1367157653282" ignored="false" />
     <file path="/BackupUtils.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1365127270749" ignored="false" />
     <file path="/FileUtil.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1360846572232" ignored="false" />
     <file path="/PaidReport.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1366897250622" ignored="false" />
@@ -67,9 +32,9 @@
     <file path="/InDetailTableModel.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1364828541551" ignored="false" />
     <file path="/InDetailAdd.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1363006129709" ignored="false" />
     <file path="/OutDetail.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1366895965061" ignored="false" />
-    <file path="/InDetailQuery.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1367048142271" ignored="false" />
-    <file path="/OutDetailAdd.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1363100299905" ignored="false" />
-    <file path="/OutDetailQuery.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1367048478135" ignored="false" />
+    <file path="/InDetailQuery.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1367157693360" ignored="false" />
+    <file path="/OutDetailAdd.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1367157663991" ignored="false" />
+    <file path="/OutDetailQuery.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1367157699688" ignored="false" />
     <file path="/InDetailService.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1367047404313" ignored="false" />
     <file path="/InputUtils.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1365343251511" ignored="false" />
     <file path="/OutDetailServiceTest.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1362405768539" ignored="false" />
@@ -78,7 +43,7 @@
     <file path="/ConsumerPaidTableModel.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1363185348984" ignored="false" />
     <file path="/ConsumptionTableModel.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1365343604725" ignored="false" />
     <file path="/UserTableModel.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1362490143495" ignored="false" />
-    <file path="/PaidDetailService.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1367047876309" ignored="false" />
+    <file path="/PaidDetailService.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1367154569731" ignored="false" />
     <file path="/PaidQuery.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1366897144581" ignored="false" />
     <file path="/CorlorChooserTest.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1362494102973" ignored="false" />
     <file path="/MyColorTableCellRenderer.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1362751368284" ignored="false" />
@@ -103,11 +68,11 @@
     <file path="/a.dummy" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1367035374057" ignored="false" />
     <file path="/InAndOutDetail.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1366897195009" ignored="false" />
     <file path="/ConsumptionQuery.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1366897162158" ignored="false" />
-    <file path="/Resource.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1366988924273" ignored="false" />
+    <file path="/Resource.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1367157624668" ignored="false" />
     <file path="/ResourceService.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1366989001719" ignored="false" />
     <file path="/User.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1367035047034" ignored="false" />
-    <file path="/UserService.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1367035683630" ignored="false" />
-    <file path="/UserPanel.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1364480605839" ignored="false" />
+    <file path="/UserService.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1367156662747" ignored="false" />
+    <file path="/UserPanel.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1367157254919" ignored="false" />
     <file path="/MyPaidService.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1367047395260" ignored="false" />
     <file path="/MyPaidVo.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1364914925205" ignored="false" />
     <file path="/MyPaidReport.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1366899315834" ignored="false" />
@@ -115,7 +80,7 @@
     <file path="/ColourUtil.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1366545705866" ignored="false" />
     <file path="/PaidVo.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1366547107141" ignored="false" />
     <file path="/NeedUserModel.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1366896214152" ignored="false" />
-    <file path="/DataUtil.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1366896458749" ignored="false" />
+    <file path="/DataUtil.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1367154184479" ignored="false" />
     <file path="/PaidReportTableModel.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1366898731044" ignored="false" />
     <file path="F:/nbworkspace/bbs7/trunk/src/main/java/cn/pconline/bbs7/plugins/pickax/PickaxContentTag.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1367041742557" ignored="false" />
     <file path="F:/nbworkspace/bbs7/trunk/src/main/java/cn/pconline/bbs7/utils/PickPriorityTag.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1367041742556" ignored="false" />
@@ -127,6 +92,8 @@
     <file path="/RightKey.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1367044867639" ignored="false" />
     <file path="F:/nbworkspace/bbs7/trunk/src/main/java/cn/pconline/bbs7/service/roleright/RoleRightConfigService.java" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1367045045612" ignored="false" />
     <file path="F:/nbworkspace/bbs7/trunk/src/main/webapp/WEB-INF/view/templates/auto/topic_admin.jsp" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1367046464434" ignored="false" />
+    <file path="/Dummy.txt" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1367154819771" ignored="false" />
+    <file path="/log4j.properties" changelist="a0c60421-6183-4d61-af58-1da70d4cf2b4" time="1367156530017" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,36 +108,6 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/cn/vanchee/util/MyAbstractTableModel.java" line="90" class="cn.vanchee.util.MyAbstractTableModel" package="cn.vanchee.util">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/cn/vanchee/util/MyAbstractTableModel.java" line="87" class="cn.vanchee.util.MyAbstractTableModel" package="cn.vanchee.util">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </line_breakpoints>
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -205,6 +142,36 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint url="file://$PROJECT_DIR$/src/cn/vanchee/util/MyAbstractTableModel.java" line="90" class="cn.vanchee.util.MyAbstractTableModel" package="cn.vanchee.util">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/cn/vanchee/util/MyAbstractTableModel.java" line="87" class="cn.vanchee.util.MyAbstractTableModel" package="cn.vanchee.util">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </line_breakpoints>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
@@ -215,10 +182,57 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="UserPanel.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/vanchee/ui/panel/UserPanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="252" column="52" selection-start="8178" selection-end="8178" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#2030#2199#0" expanded="true" />
+                <element signature="e#2184#2185#0" expanded="true" />
+                <element signature="e#2318#2475#0" expanded="true" />
+                <element signature="e#2464#2465#0" expanded="true" />
+                <element signature="e#7947#7955#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JGroupPanel.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/vanchee/ui/JGroupPanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="69" column="57" selection-start="1871" selection-end="1871" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#5516#5729#0" expanded="true" />
+                <element signature="e#5714#5715#0" expanded="true" />
+                <element signature="e#6200#6411#0" expanded="true" />
+                <element signature="e#6396#6397#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="log4j.properties" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/log4j.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="17" selection-start="17" selection-end="17" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OutDetailAdd.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/vanchee/ui/panel/OutDetailAdd.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="40" column="59" selection-start="1017" selection-end="1017" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="InDetailQuery.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/vanchee/ui/panel/InDetailQuery.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="424" column="0" selection-start="15080" selection-end="15080" vertical-scroll-proportion="0.0">
+            <state line="383" column="28" selection-start="13407" selection-end="13407" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -227,71 +241,25 @@
       <file leaf-file-name="OutDetailQuery.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/vanchee/ui/panel/OutDetailQuery.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="517" column="53" selection-start="19374" selection-end="19374" vertical-scroll-proportion="0.0">
+            <state line="475" column="71" selection-start="17596" selection-end="17596" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OutDetailTableModel.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cn/vanchee/ui/table/OutDetailTableModel.java">
+      <file leaf-file-name="Resource.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/vanchee/model/Resource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="46" selection-start="2552" selection-end="2565" vertical-scroll-proportion="0.0">
+            <state line="33" column="38" selection-start="1140" selection-end="1140" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ExcelUtils.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/cn/vanchee/util/ExcelUtils.java">
+      <file leaf-file-name="ResourceService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/vanchee/service/ResourceService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="314" column="139" selection-start="14505" selection-end="14505" vertical-scroll-proportion="0.5729387">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1027#1034#0" expanded="true" />
-                <element signature="e#2122#2129#0" expanded="true" />
-                <element signature="e#3467#3474#0" expanded="true" />
-                <element signature="e#5580#5587#0" expanded="true" />
-                <element signature="e#7315#7322#0" expanded="true" />
-                <element signature="e#9465#9472#0" expanded="true" />
-                <element signature="e#10594#10601#0" expanded="true" />
-                <element signature="e#12470#12477#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InAndOutDetail.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cn/vanchee/ui/panel/InAndOutDetail.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PaidReport.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cn/vanchee/ui/panel/PaidReport.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="389" column="56" selection-start="14354" selection-end="14354" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InDetail.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cn/vanchee/model/InDetail.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="132" column="15" selection-start="2566" selection-end="2566" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyPaidReport.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cn/vanchee/ui/panel/MyPaidReport.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="244" column="22" selection-start="8408" selection-end="8408" vertical-scroll-proportion="0.0">
+            <state line="87" column="33" selection-start="2117" selection-end="2117" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -304,25 +272,34 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="Git.Settings">
+    <option name="SYNC_SETTING" value="DONT" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/cn/vanchee/model/PaidDetail.java" />
-        <option value="$PROJECT_DIR$/src/cn/vanchee/model/User.java" />
-        <option value="$PROJECT_DIR$/src/cn/vanchee/service/ConsumerService.java" />
-        <option value="$PROJECT_DIR$/src/cn/vanchee/util/MyFactory.java" />
-        <option value="$PROJECT_DIR$/src/cn/vanchee/service/ConsumptionService.java" />
-        <option value="$PROJECT_DIR$/src/cn/vanchee/service/InDetailService.java" />
-        <option value="$PROJECT_DIR$/src/cn/vanchee/service/MyPaidService.java" />
         <option value="$PROJECT_DIR$/src/cn/vanchee/service/OutDetailService.java" />
-        <option value="$PROJECT_DIR$/src/cn/vanchee/service/PaidDetailService.java" />
-        <option value="$PROJECT_DIR$/src/cn/vanchee/service/UserService.java" />
         <option value="$PROJECT_DIR$/src/cn/vanchee/ui/panel/PaidReport.java" />
-        <option value="$PROJECT_DIR$/src/cn/vanchee/ui/panel/InDetailQuery.java" />
-        <option value="$PROJECT_DIR$/src/cn/vanchee/ui/panel/OutDetailQuery.java" />
         <option value="$PROJECT_DIR$/src/cn/vanchee/ui/panel/InAndOutDetail.java" />
         <option value="$PROJECT_DIR$/src/cn/vanchee/ui/panel/MyPaidReport.java" />
         <option value="$PROJECT_DIR$/src/cn/vanchee/util/ExcelUtils.java" />
+        <option value="$PROJECT_DIR$/src/cn/vanchee/util/DataUtil.java" />
+        <option value="$PROJECT_DIR$/src/cn/vanchee/service/PaidDetailService.java" />
+        <option value="$PROJECT_DIR$/src/cn/vanchee/service/ResourceService.java" />
+        <option value="$PROJECT_DIR$/src/cn/vanchee/service/UserService.java" />
+        <option value="$PROJECT_DIR$/src/cn/vanchee/ui/panel/UserPanel.java" />
+        <option value="$PROJECT_DIR$/src/log4j.properties" />
+        <option value="$PROJECT_DIR$/src/cn/vanchee/model/Resource.java" />
+        <option value="$PROJECT_DIR$/src/cn/vanchee/ui/panel/OutDetailAdd.java" />
+        <option value="$PROJECT_DIR$/src/cn/vanchee/ui/panel/InDetailQuery.java" />
+        <option value="$PROJECT_DIR$/src/cn/vanchee/ui/panel/OutDetailQuery.java" />
+        <option value="$PROJECT_DIR$/src/cn/vanchee/ui/JGroupPanel.java" />
       </list>
     </option>
   </component>
@@ -342,8 +319,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1456" />
-    <option name="height" value="876" />
+    <option name="width" value="1296" />
+    <option name="height" value="1000" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -393,6 +370,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -404,20 +382,6 @@
               <option name="myItemId" value="External Libraries" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FruitJXC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -426,156 +390,27 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="FruitJXC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FruitJXC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FruitJXC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FruitJXC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FruitJXC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vanchee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FruitJXC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FruitJXC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vanchee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FruitJXC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FruitJXC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vanchee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="table" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FruitJXC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FruitJXC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vanchee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="panel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FruitJXC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FruitJXC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vanchee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GenerateAntBuildDialog.generateIdeaHomeProperty" value="false" />
     <property name="project.structure.last.edited" value="Artifacts" />
-    <property name="project.structure.proportion" value="0.15" />
     <property name="OverrideImplement.combined" value="true" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="GenerateAntBuildDialog.generateSingleFile" value="false" />
-    <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="GenerateAntBuildDialog.generateSingleFile" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/GitHub/PortableGit_93e8418133eb85e81a81e5e19c272776524496c6/git-cmd.bat" />
     <property name="GenerateAntBuildDialog.inclineRuntiemClasspath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="fruitjxc" />
+    <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -583,13 +418,13 @@
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="options.lastSelected" value="editor.preferences.appearance" />
+    <property name="options.lastSelected" value="vcs.Git" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GenerateAntBuildDialog.backupFiles" value="true" />
-    <property name="dynamic.classpath" value="false" />
     <property name="options.searchVisible" value="true" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -603,7 +438,7 @@
       <recent name="G:\Programing\workspace\googlesvn\project_my\FruitJXC\lib" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MainApp">
+  <component name="RunManager" selected="Application.InitUtil">
     <configuration default="false" name="InitUtil" type="Application" factoryName="Application" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -740,6 +575,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -766,19 +614,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -825,10 +660,11 @@
       <item index="4" class="java.lang.String" itemvalue="Application.CorlorChooserTest" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Application.MainApp" />
-        <item index="1" class="java.lang.String" itemvalue="Application.InitUtil" />
-        <item index="2" class="java.lang.String" itemvalue="Application.CorlorChooserTest" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Application.InitUtil" />
+        <item index="1" class="java.lang.String" itemvalue="Application.MainApp" />
+        <item index="2" class="java.lang.String" itemvalue="Application.DateChooser" />
+        <item index="3" class="java.lang.String" itemvalue="Application.CorlorChooserTest" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -862,28 +698,6 @@
     <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
     <supportedVersion>125</supportedVersion>
   </component>
-  <component name="SvnFileUrlMappingImpl">
-    <option name="myMappingRoots">
-      <list>
-        <SvnCopyRootSimple>
-          <option name="myVcsRoot" value="F:\workspace\MyRepository.git\trunk\FruitJXC" />
-          <option name="myCopyRoot" value="F:\workspace\MyRepository.git\trunk\FruitJXC" />
-        </SvnCopyRootSimple>
-        <SvnCopyRootSimple>
-          <option name="myVcsRoot" value="F:\workspace\MyRepository.git\trunk\FruitJXC\.idea" />
-          <option name="myCopyRoot" value="F:\workspace\MyRepository.git\trunk\FruitJXC\.idea" />
-        </SvnCopyRootSimple>
-      </list>
-    </option>
-    <option name="myMoreRealMappingRoots">
-      <list>
-        <SvnCopyRootSimple>
-          <option name="myVcsRoot" value="F:\workspace\MyRepository.git\trunk\FruitJXC" />
-          <option name="myCopyRoot" value="F:\workspace\MyRepository.git\trunk\FruitJXC" />
-        </SvnCopyRootSimple>
-      </list>
-    </option>
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="a0c60421-6183-4d61-af58-1da70d4cf2b4" name="Default" comment="" />
@@ -893,34 +707,34 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="876" extended-state="1" />
+    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32181168" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39928487" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3146603" sideWeight="0.50405186" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31571627" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3146603" sideWeight="0.49027553" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25251076" sideWeight="0.6940195" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30598053" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25202593" sideWeight="0.6948748" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30512515" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32267037" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1018,134 +832,9 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/service/OutDetailService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="171" column="86" selection-start="5487" selection-end="5487" vertical-scroll-proportion="-8.119769">
-          <folding>
-            <element signature="e#9083#9099#0" expanded="true" />
-            <element signature="e#9152#9168#0" expanded="true" />
-            <element signature="e#9219#9233#0" expanded="true" />
-            <element signature="e#9287#9303#0" expanded="true" />
-            <element signature="e#9360#9376#0" expanded="true" />
-            <element signature="e#11680#12413#0" expanded="true" />
-            <element signature="e#12402#12403#0" expanded="true" />
-            <element signature="e#12545#12556#0" expanded="true" />
-            <element signature="e#12955#12966#0" expanded="true" />
-            <element signature="e#13366#13377#0" expanded="true" />
-            <element signature="e#13784#13795#0" expanded="true" />
-            <element signature="e#14195#14206#0" expanded="true" />
-            <element signature="e#15538#15549#0" expanded="true" />
-            <element signature="e#16275#16286#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/service/InDetailService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="8" selection-start="943" selection-end="1150" vertical-scroll-proportion="0.63492066">
-          <folding>
-            <element signature="e#8407#8417#0" expanded="true" />
-            <element signature="e#8807#8817#0" expanded="true" />
-            <element signature="e#9213#9223#0" expanded="true" />
-            <element signature="e#10538#10548#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/service/PaidDetailService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="13" selection-start="473" selection-end="473" vertical-scroll-proportion="0.2886003">
-          <folding>
-            <element signature="e#6865#6877#0" expanded="true" />
-            <element signature="e#7284#7296#0" expanded="true" />
-            <element signature="e#7706#7718#0" expanded="true" />
-            <element signature="e#8128#8140#0" expanded="true" />
-            <element signature="e#8558#8570#0" expanded="true" />
-            <element signature="e#8976#8988#0" expanded="true" />
-            <element signature="e#10335#10347#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/service/OwnerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="13" selection-start="368" selection-end="368" vertical-scroll-proportion="0.2886003">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/service/MyPaidService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="13" selection-start="469" selection-end="469" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#5731#5739#0" expanded="true" />
-            <element signature="e#6114#6122#0" expanded="true" />
-            <element signature="e#6496#6504#0" expanded="true" />
-            <element signature="e#6882#6890#0" expanded="true" />
-            <element signature="e#8169#8177#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/service/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="13" selection-start="468" selection-end="468" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/ui/panel/ConsumptionQuery.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="13" selection-start="944" selection-end="944" vertical-scroll-proportion="-0.6764706">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/ui/table/ConsumptionTableModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="13" selection-start="390" selection-end="390" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/model/InDetail.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="132" column="15" selection-start="2566" selection-end="2566" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/ui/table/OutDetailTableModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="46" selection-start="2552" selection-end="2565" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/ui/panel/PaidReport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="389" column="56" selection-start="14354" selection-end="14354" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/ui/panel/OutDetailQuery.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="517" column="53" selection-start="19374" selection-end="19374" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/vanchee/ui/panel/InAndOutDetail.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/ui/panel/InDetailQuery.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="424" column="0" selection-start="15080" selection-end="15080" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1159,18 +848,108 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/vanchee/util/ExcelUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="314" column="139" selection-start="14505" selection-end="14505" vertical-scroll-proportion="0.5729387">
+        <state line="28" column="40" selection-start="615" selection-end="615" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/util/FileUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="49" selection-start="1294" selection-end="1294" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/util/DataUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="20" selection-start="918" selection-end="918" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/service/PaidDetailService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="39" selection-start="811" selection-end="811" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="11" selection-start="758" selection-end="758" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/util/MyFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="95" column="32" selection-start="2952" selection-end="2952" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/ui/panel/UserPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="252" column="52" selection-start="8178" selection-end="8178" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1027#1034#0" expanded="true" />
-            <element signature="e#2122#2129#0" expanded="true" />
-            <element signature="e#3467#3474#0" expanded="true" />
-            <element signature="e#5580#5587#0" expanded="true" />
-            <element signature="e#7315#7322#0" expanded="true" />
-            <element signature="e#9465#9472#0" expanded="true" />
-            <element signature="e#10594#10601#0" expanded="true" />
-            <element signature="e#12470#12477#0" expanded="true" />
+            <element signature="e#2030#2199#0" expanded="true" />
+            <element signature="e#2184#2185#0" expanded="true" />
+            <element signature="e#2318#2475#0" expanded="true" />
+            <element signature="e#2464#2465#0" expanded="true" />
+            <element signature="e#7947#7955#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/service/ResourceService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="87" column="33" selection-start="2117" selection-end="2117" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/model/Resource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="38" selection-start="1140" selection-end="1140" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/ui/panel/OutDetailQuery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="475" column="71" selection-start="17596" selection-end="17596" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/ui/panel/InDetailQuery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="383" column="28" selection-start="13407" selection-end="13407" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/ui/panel/OutDetailAdd.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="59" selection-start="1017" selection-end="1017" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/vanchee/ui/JGroupPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="57" selection-start="1871" selection-end="1871" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#5516#5729#0" expanded="true" />
+            <element signature="e#5714#5715#0" expanded="true" />
+            <element signature="e#6200#6411#0" expanded="true" />
+            <element signature="e#6396#6397#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/log4j.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="17" selection-start="17" selection-end="17" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1181,8 +960,8 @@
         <settings>
           <artifact-editor>
             <show-content>
-              <type id="artifact" />
               <type id="library" />
+              <type id="artifact" />
             </show-content>
           </artifact-editor>
           <last-edited>FruitJXC:jar</last-edited>

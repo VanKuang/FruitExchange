@@ -16,11 +16,9 @@ import java.util.List;
 public class DataUtil {
 
     private static final Logger log = LoggerFactory.getLogger(DataUtil.class);
-    private static final int MAX_SIZE = 5000;
 
     public static void writeListToFile(String fileName, List list) {
         List result = new ArrayList(list);
-        long start = System.currentTimeMillis();
         FileOutputStream fileOutputStream = null;
         RandomAccessFile file = null;
         ObjectOutputStream objectOutputStream = null;
@@ -46,12 +44,9 @@ public class DataUtil {
                 e.printStackTrace();
             }
         }
-        long end = System.currentTimeMillis();
-        log.info("write file:" + fileName + " use time:" + (end - start) + ",data size:" + list.size());
     }
 
     public static List readListFromFile(String fileName) {
-        long start = System.currentTimeMillis();
         List list = new ArrayList();
         FileInputStream fileInputStream = null;
         ObjectInputStream objectInputStream = null;
@@ -77,8 +72,6 @@ public class DataUtil {
                 e.printStackTrace();
             }
         }
-        long end = System.currentTimeMillis();
-        log.info("read file:" + fileName + " use time:" + (end - start) + ",data size:" + list.size());
         return list;
     }
 }
