@@ -36,7 +36,7 @@ public class PaidDetailService {
 
     public void init() {
         long start = System.currentTimeMillis();
-        log.info("start init paid detail data");
+        log.debug("start init paid detail data");
 
         paidDetailList = (List<PaidDetail>) DataUtil.readListFromFile(Constants.FILE_NAME_PAID_DETAIL);
         if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.GET_OTHERS_DATA)) {
@@ -46,7 +46,7 @@ public class PaidDetailService {
         id = paidDetailList.size() + 1;
 
         long end = System.currentTimeMillis();
-        log.info("end init paid detail data, use time:" + (end - start) + "ms" +
+        log.debug("end init paid detail data, use time:" + (end - start) + "ms" +
                 (paidDetailList != null ? ",data size:" + paidDetailList.size() : ""));
     }
 

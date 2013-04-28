@@ -378,7 +378,7 @@ public class InDetailQuery extends JPanel {
         }
         InDetail selectedRow = result == null ? null : result.get(row);
         if (selectedRow != null) {
-            OutDetailAdd outDetailAdd = new OutDetailAdd(mainApp);
+            OutDetailAdd outDetailAdd = new OutDetailAdd(mainApp, false);
             OutDetail outDetail = new OutDetail();
             outDetail.setIid(selectedRow.getId());
             outDetailAdd.setValue(outDetail, false);

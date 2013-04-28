@@ -134,19 +134,21 @@ public class JGroupPanel extends JPanel {
         }
 
         /*
-        str[1][1] = "新增";
-        bttMember = new JButton(str[1][1]);
-        bttMember.setActionCommand(str[1][1]);
-        addMember(1, bttMember);
-        bttMember.setPreferredSize(new Dimension(1, 40));
-        bttMember.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mainApp.changeRightPanel(new OutDetailAdd(mainApp));
-            }
-        });
-        bttMember.setOpaque(false);
-        getGroup(1).setMemberGap(5, 5);
+        if (resourceService.hasRight(user, Resource.DATA_INIT)) {
+            str[1][1] = "新增";
+            bttMember = new JButton(str[1][1]);
+            bttMember.setActionCommand(str[1][1]);
+            addMember(1, bttMember);
+            bttMember.setPreferredSize(new Dimension(1, 40));
+            bttMember.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    mainApp.changeRightPanel(new OutDetailAdd(mainApp, true));
+                }
+            });
+            bttMember.setOpaque(false);
+            getGroup(1).setMemberGap(5, 5);
+        }
         */
 
         ///////////////////////

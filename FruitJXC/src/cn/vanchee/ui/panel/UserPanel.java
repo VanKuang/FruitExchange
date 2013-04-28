@@ -99,14 +99,16 @@ public class UserPanel extends JPanel {
 
         User user = username == null ? null : MyFactory.getUserService().queryUserByName(username);
 
+        int count = 1;
         for (Map.Entry<Integer, String> m : resourceMap.entrySet()) {
-            JCheckBox cb = new JCheckBox(m.getValue());
+            JCheckBox cb = new JCheckBox(count + "." + m.getValue());
             if (user != null) {
                 if (resourceService.hasRight(user, m.getKey())) {
                     cb.setSelected(true);
                 }
             }
             resourcePanel.add(cb);
+            count++;
         }
 
         if (MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.USER_MNG)) {
@@ -259,6 +261,7 @@ public class UserPanel extends JPanel {
         int[] resource = new int[displayNames.size()];
         int i = 0;
         for (String name : displayNames) {
+            name = name.replace("." ,"").replaceAll("\\d", "");
             resource[i] = resourceService.queryResourceId(name);
             i++;
         }

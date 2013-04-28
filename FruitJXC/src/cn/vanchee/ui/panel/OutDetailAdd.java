@@ -38,7 +38,7 @@ public class OutDetailAdd extends JPanel {
     private int iid = -1;
     private int remain = -1;
 
-    public OutDetailAdd(final MainApp mainApp) {
+    public OutDetailAdd(final MainApp mainApp, boolean init) {
         this.mainApp = mainApp;
 
         Dimension inputDimension = Constants.getInputDimension();

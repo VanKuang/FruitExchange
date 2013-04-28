@@ -473,7 +473,7 @@ public class OutDetailQuery extends JPanel {
         }
         OutDetail selectedRow = result == null ? null : result.get(row);
         if (selectedRow != null) {
-            OutDetailAdd outDetailAdd = new OutDetailAdd(mainApp);
+            OutDetailAdd outDetailAdd = new OutDetailAdd(mainApp, false);
             outDetailAdd.setValue(selectedRow, true);
             mainApp.changeRightPanel(outDetailAdd);
         }
