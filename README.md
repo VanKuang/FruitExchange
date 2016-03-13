@@ -1,6 +1,6 @@
 # FruitJXC
 
-A Swing base system.
+A Swing and file base system.
 
 Main feature:
 1. User management
