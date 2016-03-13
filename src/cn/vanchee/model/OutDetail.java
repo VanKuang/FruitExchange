@@ -6,7 +6,6 @@ import cn.vanchee.service.OwnerService;
 import cn.vanchee.util.Constants;
 import cn.vanchee.util.MyFactory;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -15,17 +14,17 @@ import java.util.List;
  * @package cn.vanchee.model
  * @verson v1.0.0
  */
-public class OutDetail implements Comparable<OutDetail>, Serializable {
+public class OutDetail {
 
-    private int id;
-    private int iid; //进货号
-    private long date;
-    private int cid;
-    private double price;
-    private int num;
-    private int color;
-    private int censored;
-    private int uid;
+    private Integer id;
+    private Integer iid; //进货号
+    private String createAt;
+    private Integer cid;
+    private Double price;
+    private Integer num;
+    private Integer color;
+    private Integer censored;
+    private Integer uid;
 
     /**
      * 0:haven't paid. original status
@@ -45,51 +44,51 @@ public class OutDetail implements Comparable<OutDetail>, Serializable {
     transient String fruitName;
     transient String statusName;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public long getDate() {
-        return date;
+    public String getCreateAt() {
+        return createAt;
     }
 
-    public void setDate(long date) {
-        this.date = date;
+    public void setCreateAt(String createAt) {
+        this.createAt = createAt;
     }
 
-    public int getCid() {
+    public Integer getCid() {
         return cid;
     }
 
-    public void setCid(int cid) {
+    public void setCid(Integer cid) {
         this.cid = cid;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public int getNum() {
+    public Integer getNum() {
         return num;
     }
 
-    public void setNum(int num) {
+    public void setNum(Integer num) {
         this.num = num;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
@@ -97,41 +96,41 @@ public class OutDetail implements Comparable<OutDetail>, Serializable {
         return price * num;
     }
 
-    public int getIid() {
+    public Integer getIid() {
         return iid;
     }
 
-    public void setIid(int iid) {
+    public void setIid(Integer iid) {
         this.iid = iid;
     }
 
-    public int getColor() {
+    public Integer getColor() {
         return color;
     }
 
-    public void setColor(int color) {
+    public void setColor(Integer color) {
         this.color = color;
     }
 
-    public int getCensored() {
+    public Integer getCensored() {
         return censored;
     }
 
-    public void setCensored(int censored) {
+    public void setCensored(Integer censored) {
         this.censored = censored;
     }
 
-    public int getUid() {
+    public Integer getUid() {
         return uid;
     }
 
-    public void setUid(int uid) {
+    public void setUid(Integer uid) {
         this.uid = uid;
     }
 
     public double getPaidMoneyNotIncludeDiscount() {
         double money = 0;
-        List<PaidDetail> result = MyFactory.getPaidDetailService().queryPaidDetail(-1, -1, id, -1, -1, -1, -1, -1, -1, -1);
+        List<PaidDetail> result = MyFactory.getPaidDetailService().queryPaidDetail(-1, -1, id, -1, -1, -1, null, null, -1);
         for (PaidDetail paidDetail : result) {
             money += paidDetail.getMoney();
         }
@@ -140,7 +139,7 @@ public class OutDetail implements Comparable<OutDetail>, Serializable {
 
     public double getPaidMoneyIncludeDiscount() {
         double money = 0;
-        List<PaidDetail> result = MyFactory.getPaidDetailService().queryPaidDetail(-1, -1, id, -1, -1, -1, -1, -1, -1, -1);
+        List<PaidDetail> result = MyFactory.getPaidDetailService().queryPaidDetail(-1, -1, id, -1, -1, -1, null, null, -1);
         for (PaidDetail paidDetail : result) {
             money += paidDetail.getMoney() + paidDetail.getDiscount();
         }
@@ -149,7 +148,7 @@ public class OutDetail implements Comparable<OutDetail>, Serializable {
 
     public double getPaidMoneyDiscount() {
         double money = 0;
-        List<PaidDetail> result = MyFactory.getPaidDetailService().queryPaidDetail(-1, -1, id, -1, -1, -1, -1, -1, -1, -1);
+        List<PaidDetail> result = MyFactory.getPaidDetailService().queryPaidDetail(-1, -1, id, -1, -1, -1, null, null, -1);
         for (PaidDetail paidDetail : result) {
             money += paidDetail.getDiscount();
         }
@@ -158,7 +157,7 @@ public class OutDetail implements Comparable<OutDetail>, Serializable {
 
     public double getDiscounts() {
         double money = 0;
-        List<PaidDetail> result = MyFactory.getPaidDetailService().queryPaidDetail(-1, -1, id, -1, -1, -1, -1, -1, -1, -1);
+        List<PaidDetail> result = MyFactory.getPaidDetailService().queryPaidDetail(-1, -1, id, -1, -1, -1, null, null, -1);
         for (PaidDetail paidDetail : result) {
             money += paidDetail.getDiscount();
         }
@@ -168,7 +167,7 @@ public class OutDetail implements Comparable<OutDetail>, Serializable {
     public int getOwnerId() {
         if (ownerId == 0 && iid != -1) {
             InDetail inDetail = MyFactory.getInDetailService().getInDetailById(iid);
-            ownerId = inDetail.getOwner();
+            ownerId = inDetail.getOid();
         }
         return ownerId;
     }
@@ -176,7 +175,7 @@ public class OutDetail implements Comparable<OutDetail>, Serializable {
     public int getFruitId() {
         if (fruitId == 0 && iid != -1) {
             InDetail inDetail = MyFactory.getInDetailService().getInDetailById(iid);
-            fruitId = inDetail.getFruit();
+            fruitId = inDetail.getFid();
         }
         return fruitId;
     }
@@ -185,7 +184,7 @@ public class OutDetail implements Comparable<OutDetail>, Serializable {
         if (ownerName == null && iid != -1) {
             InDetail inDetail = MyFactory.getInDetailService().getInDetailById(iid);
             OwnerService ownerService = MyFactory.getOwnerService();
-            ownerName = ownerService.getOwnerName(inDetail.getOwner());
+            ownerName = ownerService.getOwnerName(inDetail.getOid());
         }
         return ownerName;
     }
@@ -202,7 +201,7 @@ public class OutDetail implements Comparable<OutDetail>, Serializable {
         if (fruitName == null && iid != -1) {
             InDetail inDetail = MyFactory.getInDetailService().getInDetailById(iid);
             FruitService fruitService = MyFactory.getFruitService();
-            fruitName = fruitService.getFruitName(inDetail.getFruit());
+            fruitName = fruitService.getFruitName(inDetail.getFid());
         }
         return fruitName;
     }
@@ -225,11 +224,6 @@ public class OutDetail implements Comparable<OutDetail>, Serializable {
             }
         }
         return statusName;
-    }
-
-    @Override
-    public int compareTo(OutDetail o) {
-        return this.getDate() > o.getDate() ? this.getDate() == o.getDate() ? 0 : -1 : 1;
     }
 
     @Override

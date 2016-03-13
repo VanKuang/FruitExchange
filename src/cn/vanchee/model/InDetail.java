@@ -4,7 +4,6 @@ import cn.vanchee.service.FruitService;
 import cn.vanchee.service.OwnerService;
 import cn.vanchee.util.MyFactory;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -13,146 +12,141 @@ import java.util.List;
  * @package cn.vanchee.model
  * @verson v1.0.0
  */
-public class InDetail implements Serializable, Comparable<InDetail> {
+public class InDetail {
 
-    private int id; //货号
-    private int owner;
-    private int fruit;
-    private int num;
-    private double price;
-    private long date;
-    private int sale; //销售数量
-    private int color;
-    private int censored; //审核状态
-    private int uid;
+    private Integer id; //货号
+    private Integer oid;
+    private Integer fid;
+    private Integer num;
+    private Double price;
+    private String createAt;
+    private Integer sale; //销售数量
+    private Integer color;
+    private Integer censored; //审核状态
+    private Integer uid;
 
     transient double money;
     transient String ownerName;
     transient String fruitName;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getOwner() {
-        return owner;
+    public Integer getOid() {
+        return oid;
     }
 
-    public void setOwner(int owner) {
-        this.owner = owner;
+    public void setOid(Integer oid) {
+        this.oid = oid;
     }
 
-    public int getFruit() {
-        return fruit;
+    public Integer getFid() {
+        return fid;
     }
 
-    public void setFruit(int fruit) {
-        this.fruit = fruit;
+    public void setFid(Integer fid) {
+        this.fid = fid;
     }
 
-    public int getNum() {
+    public Integer getNum() {
         return num;
     }
 
-    public void setNum(int num) {
+    public void setNum(Integer num) {
         this.num = num;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public long getDate() {
-        return date;
+    public String getCreateAt() {
+        return createAt;
     }
 
-    public void setDate(long date) {
-        this.date = date;
+    public void setCreateAt(String createAt) {
+        this.createAt = createAt;
     }
 
     public double getMoney() {
         return this.price * this.num;
     }
 
-    public int getSale() {
+    public Integer getSale() {
         return sale;
     }
 
-    public void setSale(int sale) {
+    public void setSale(Integer sale) {
         this.sale = sale;
     }
 
-    public int getColor() {
+    public Integer getColor() {
         return color;
     }
 
-    public void setColor(int color) {
+    public void setColor(Integer color) {
         this.color = color;
     }
 
-    public int getCensored() {
+    public Integer getCensored() {
         return censored;
     }
 
-    public void setCensored(int censored) {
+    public void setCensored(Integer censored) {
         this.censored = censored;
     }
 
-    public int getUid() {
+    public Integer getUid() {
         return uid;
     }
 
-    public void setUid(int uid) {
+    public void setUid(Integer uid) {
         this.uid = uid;
     }
 
     public String getOwnerName() {
-        if (ownerName == null && owner != -1) {
+        if (ownerName == null && oid != -1) {
             OwnerService ownerService = MyFactory.getOwnerService();
-            ownerName = ownerService.getOwnerName(owner);
+            ownerName = ownerService.getOwnerName(oid);
         }
         return ownerName;
     }
 
     public String getFruitName() {
-        if (fruitName == null && fruit != -1) {
+        if (fruitName == null && fid != -1) {
             FruitService fruitService = MyFactory.getFruitService();
-            fruitName = fruitService.getFruitName(fruit);
+            fruitName = fruitService.getFruitName(oid);
         }
         return fruitName;
     }
 
-    public int getRemain() {
+    public Integer getRemain() {
         return num - sale;
     }
 
     public double getPaidMoney() {
         double money = 0;
-        List<MyPaid> result = MyFactory.getMyPaidService().queryMyPaid(-1, id, -1, -1, -1, -1, -1, -1);
-        for (MyPaid myPaid : result) {
+        List<PaidDetail> result = MyFactory.getPaidDetailService().queryMyPaidDetail(-1, id, -1, -1, -1, null, null, -1);
+        for (PaidDetail myPaid : result) {
             money += myPaid.getMoney();
         }
         return money;
     }
 
     @Override
-    public int compareTo(InDetail o) {
-        return this.getDate() > o.getDate() ? 0 : 1;
-    }
-
-    @Override
     public String toString() {
         return "in detail--[owner:" + getOwnerName()
                 + ",fruit:" + getFruitName()
-                + ",price" + this.price
+                + ",price:" + this.price
                 + ",num:" + this.num
                 + ",sale:" + this.sale
                 + ",color:" + this.color

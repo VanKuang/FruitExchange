@@ -3,17 +3,15 @@ package cn.vanchee.model;
 import cn.vanchee.util.MyFactory;
 import sun.misc.BASE64Encoder;
 
-import java.io.Serializable;
-
 /**
  * @author vanchee
  * @date 13-1-30
  * @package cn.vanchee.model
  * @verson v1.0.0
  */
-public class User implements Serializable {
+public class User {
 
-    private int id;
+    private Integer id;
     private String name;
     private String password;
     private int[] resource;
@@ -28,11 +26,11 @@ public class User implements Serializable {
         admin.setResource(MyFactory.getResourceService().getAllResources());
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

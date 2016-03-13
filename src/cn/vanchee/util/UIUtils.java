@@ -17,8 +17,6 @@ public class UIUtils {
     }
 
     /**
-     * ��������
-     *
      * @param fontName
      * @param style
      * @param size

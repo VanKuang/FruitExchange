@@ -10,12 +10,18 @@ import java.io.*;
  */
 public class FileUtil {
 
+    private static final String DB_NAME = "FruitJXC.db";
+
     public static String getDataPath() {
         return new File("").getAbsolutePath() + "\\data\\";
     }
 
     public static String getDataBackupPath() {
         return new File("").getAbsolutePath() + "\\backup\\";
+    }
+
+    public static String getDataBase() {
+        return new File("").getAbsolutePath() + "\\data\\" + DB_NAME;
     }
 
     public static String getFileNameWithPath(String name) {

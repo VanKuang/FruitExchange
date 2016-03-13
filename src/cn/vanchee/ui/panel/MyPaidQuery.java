@@ -1,10 +1,10 @@
 package cn.vanchee.ui.panel;
 
-import cn.vanchee.model.MyPaid;
+import cn.vanchee.model.PaidDetail;
 import cn.vanchee.model.Resource;
 import cn.vanchee.model.User;
 import cn.vanchee.ui.MainApp;
-import cn.vanchee.ui.table.MyPaidTableModel;
+import cn.vanchee.ui.table.PaidTableModel;
 import cn.vanchee.util.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,8 +32,8 @@ public class MyPaidQuery extends JPanel {
 
     private MainApp mainApp;
 
-    private JTextField jtfId;
-    private JTextField jtfIid;
+    private DigitalTextField jtfId;
+    private DigitalTextField jtfIid;
     private JTextField jtfOwner;
     private JTextField jtfFruit;
     private JTextField showDateFrom;
@@ -49,7 +49,7 @@ public class MyPaidQuery extends JPanel {
     private double weightX, weightY;
     private Insets insert = null;
 
-    private List<MyPaid> result;
+    private List<PaidDetail> result;
     private boolean init = true;
 
     public MyPaidQuery(MainApp mainApp) {
@@ -78,23 +78,11 @@ public class MyPaidQuery extends JPanel {
         JLabel jlId = new JLabel("还款单号");
         searchPanel.add(jlId);
 
-        jtfIid = new JTextField();
+        jtfIid = new DigitalTextField();
         jtfIid.setPreferredSize(inputDimension);
-        jtfIid.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
+        jtfIid.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                if (!InputUtils.checkNum(e)) {
-                    String value = jtfIid.getText();
-                    jtfIid.setText(value.substring(0, value.length() - 1));
-                }
                 if (e.getKeyChar() == KeyEvent.VK_ENTER) {
                     refreshData();
                 }
@@ -105,15 +93,11 @@ public class MyPaidQuery extends JPanel {
         JLabel jlIid = new JLabel("货号");
         searchPanel.add(jlIid);
 
-        jtfId = new JTextField();
+        jtfId = new DigitalTextField();
         jtfId.setPreferredSize(inputDimension);
         jtfId.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                if (!InputUtils.checkNum(e)) {
-                    String value = jtfId.getText();
-                    jtfId.setText(value.substring(0, value.length() - 1));
-                }
                 if (e.getKeyChar() == KeyEvent.VK_ENTER) {
                     refreshData();
                 }
@@ -248,30 +232,26 @@ public class MyPaidQuery extends JPanel {
         int fid = MyFactory.getFruitService().getIdByName4Query(jtfFruit.getText());
         int censored = init ? -1 : jcbCensored.getSelectedIndex() - 1;
 
-        long f = -1;
+        Date f = null;
         String from = showDateFrom.getText();
         if (!from.equals("开始日期") && !"".equals(from)) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date fromDate = null;
             try {
-                fromDate = sdf.parse(from);
+                f = sdf.parse(from);
             } catch (ParseException e) {
                 log.error(e.getMessage());
             }
-            f = fromDate.getTime();
         }
 
-        long e = -1;
+        Date e = null;
         String end = showDateTo.getText();
         if (!end.equals("结束日期") && !"".equals(end)) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date endDate = null;
             try {
-                endDate = sdf.parse(end);
+                e = sdf.parse(end);
             } catch (ParseException e1) {
                 log.error(e1.getMessage());
             }
-            e = endDate.getTime();
         }
 
         User user = MyFactory.getCurrentUser();
@@ -281,13 +261,13 @@ public class MyPaidQuery extends JPanel {
             uid = user.getId();
         }
 
-        result = MyFactory.getMyPaidService().queryMyPaid(id, iid, oid, fid, censored, f, e, uid);
+        result = MyFactory.getPaidDetailService().queryMyPaidDetail(id, iid, oid, fid, censored, f, e, uid);
         String[] columnNames = new String[]{"还款单号", "货号", "货主", "货品", "还款", "还款日期", "审核状态", "操作", "审核"};
         if (!MyFactory.getResourceService().hasRight(user, Resource.CENSORED)) {
-            result = MyFactory.getMyPaidService().selectCensoredReverse(result, Constants.CENSORED_PASS);
+            result = MyFactory.getPaidDetailService().selectCensoredReverse(result, Constants.CENSORED_PASS);
             columnNames = new String[]{"还款单号", "货号", "货主", "货品", "还款", "还款日期", "审核状态", "操作"};
         }
-        MyPaidTableModel paidTableModel = new MyPaidTableModel(result, columnNames);
+        PaidTableModel paidTableModel = new PaidTableModel(result, columnNames);
         JTable table = new JTable(paidTableModel);
         table.setAutoCreateRowSorter(true);
 
@@ -305,7 +285,7 @@ public class MyPaidQuery extends JPanel {
 
         table.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void mousePressed(MouseEvent e) {
                 int row = ((JTable) e.getSource()).getSelectedRow();
                 int column = ((JTable) e.getSource()).getSelectedColumn();
                 if (e.getClickCount() > 1) {
@@ -357,9 +337,9 @@ public class MyPaidQuery extends JPanel {
         if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.MY_PAID_W)) {
             return;
         }
-        MyPaid selectedRow = result == null ? null : result.get(row);
+        PaidDetail selectedRow = result == null ? null : result.get(row);
         if (selectedRow != null) {
-            MyPaidAdd paidAdd = new MyPaidAdd(mainApp);
+            PaidAdd paidAdd = new PaidAdd(mainApp);
             paidAdd.update(selectedRow);
             mainApp.changeRightPanel(paidAdd);
         }
@@ -369,10 +349,10 @@ public class MyPaidQuery extends JPanel {
         if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.MY_PAID_W)) {
             return;
         }
-        MyPaid selectedRow = result == null ? null : result.get(row);
+        PaidDetail selectedRow = result == null ? null : result.get(row);
         if (selectedRow != null) {
             if (JOptionPane.showConfirmDialog(null, "确定要删除？") == JOptionPane.OK_OPTION) {
-                if (MyFactory.getMyPaidService().delete(selectedRow.getId())) {
+                if (MyFactory.getPaidDetailService().delete(selectedRow.getId())) {
                     JOptionPane.showMessageDialog(null, "删除成功！");
                     refreshData();
                 }
@@ -384,11 +364,11 @@ public class MyPaidQuery extends JPanel {
         if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.CENSORED)) {
             return;
         }
-        MyPaid selectedRow = result == null ? null : result.get(row);
+        PaidDetail selectedRow = result == null ? null : result.get(row);
         if (selectedRow != null) {
             int result = JOptionPane.showConfirmDialog(null, "点击“是”审核通过，“否”审核不通过，“取消”则不作任何操作");
             if (result != JOptionPane.CANCEL_OPTION) {
-                if (MyFactory.getMyPaidService().censored(selectedRow.getId(),
+                if (MyFactory.getPaidDetailService().censored(selectedRow.getId(),
                         result == JOptionPane.YES_OPTION ? true : false)) {
                     JOptionPane.showMessageDialog(null, "审核成功！");
                     refreshData();

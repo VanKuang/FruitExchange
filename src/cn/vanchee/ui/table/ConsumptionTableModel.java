@@ -5,8 +5,6 @@ import cn.vanchee.util.Constants;
 
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -51,12 +49,11 @@ public class ConsumptionTableModel implements TableModel {
 
     public Object getValueAt(int rowIndex, int columnIndex) {
         Consumption consumption = consumptionList.get(rowIndex);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         switch (columnIndex) {
             case 0:
                 return consumption.getId();
             case 1:
-                return sdf.format(new Date(consumption.getDate()));
+                return consumption.getCreateAt();
             case 2:
                 return consumption.getMoney();
             case 3:

@@ -5,7 +5,7 @@ import cn.vanchee.model.User;
 import cn.vanchee.service.ResourceService;
 import cn.vanchee.ui.panel.*;
 import cn.vanchee.util.BackupUtils;
-import cn.vanchee.util.InitUtil;
+import cn.vanchee.util.InitDBUtil;
 import cn.vanchee.util.MyFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -371,7 +371,7 @@ public class JGroupPanel extends JPanel {
                 public void actionPerformed(ActionEvent e) {
                     int result = JOptionPane.showConfirmDialog(null, "确定要初始化所有数据，初始化所有数据会把所有数据清空？");
                     if (result == JOptionPane.YES_OPTION) {
-                        InitUtil initUtil = new InitUtil();
+                        InitDBUtil initUtil = new InitDBUtil();
                         try {
                             BackupUtils.backupInit();
                             initUtil.initAllData();
@@ -604,8 +604,8 @@ public class JGroupPanel extends JPanel {
      * @param p     JPanel 目标面板
      * @param index int 顺序号
      * @param name  String 组名
-     *              <p/>
-     *              <p/>
+     *              <p>
+     *              <p>
      *              /** 插入一个组
      * @param p     JPanel 目标面板
      * @param index int 顺序号

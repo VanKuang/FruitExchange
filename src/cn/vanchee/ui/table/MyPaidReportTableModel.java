@@ -4,8 +4,6 @@ import cn.vanchee.model.PaidVo;
 
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -49,14 +47,13 @@ public class MyPaidReportTableModel implements TableModel {
 
     public Object getValueAt(int rowIndex, int columnIndex) {
         PaidVo paidVo = paidVoList.get(rowIndex);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         switch (columnIndex) {
             case 0:
                 return paidVo.getName();
             case 1:
                 return paidVo.getFruitName();
             case 2:
-                return sdf.format(new Date(paidVo.getDate()));
+                return paidVo.getCreateAt();
             case 3:
                 return paidVo.getShouldPaid();
             case 4:

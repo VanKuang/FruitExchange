@@ -32,9 +32,9 @@ public class PaidQuery extends JPanel {
 
     private MainApp mainApp;
 
-    private JTextField jtfId;
-    private JTextField jtfOid;
-    private JTextField jtfIid;
+    private DigitalTextField jtfId;
+    private DigitalTextField jtfOid;
+    private DigitalTextField jtfIid;
     private JTextField jtfConsumer;
     private JTextField jtfFruit;
     private JTextField showDateFrom;
@@ -78,23 +78,11 @@ public class PaidQuery extends JPanel {
 
         JLabel jlId = new JLabel("还款单号");
         searchPanel.add(jlId);
-        jtfId = new JTextField();
+        jtfId = new DigitalTextField();
         jtfId.setPreferredSize(inputDimension);
-        jtfId.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
+        jtfId.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                if (!InputUtils.checkNum(e)) {
-                    String value = jtfId.getText();
-                    jtfId.setText(value.substring(0, value.length() - 1));
-                }
                 if (e.getKeyChar() == KeyEvent.VK_ENTER) {
                     refreshData();
                 }
@@ -104,23 +92,11 @@ public class PaidQuery extends JPanel {
 
         JLabel jlOid = new JLabel("销售单号");
         searchPanel.add(jlOid);
-        jtfOid = new JTextField();
+        jtfOid = new DigitalTextField();
         jtfOid.setPreferredSize(inputDimension);
-        jtfOid.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
+        jtfOid.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                if (!InputUtils.checkNum(e)) {
-                    String value = jtfOid.getText();
-                    jtfOid.setText(value.substring(0, value.length() - 1));
-                }
                 if (e.getKeyChar() == KeyEvent.VK_ENTER) {
                     refreshData();
                 }
@@ -130,15 +106,11 @@ public class PaidQuery extends JPanel {
 
         JLabel jlIid = new JLabel("货号");
         searchPanel.add(jlIid);
-        jtfIid = new JTextField();
+        jtfIid = new DigitalTextField();
         jtfIid.setPreferredSize(inputDimension);
         jtfIid.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                if (!InputUtils.checkNum(e)) {
-                    String value = jtfIid.getText();
-                    jtfIid.setText(value.substring(0, value.length() - 1));
-                }
                 if (e.getKeyChar() == KeyEvent.VK_ENTER) {
                     refreshData();
                 }
@@ -279,30 +251,26 @@ public class PaidQuery extends JPanel {
         int fid = MyFactory.getFruitService().getIdByName4Query(jtfFruit.getText());
         int censored = init ? -1 : jcbCensored.getSelectedIndex() - 1;
 
-        long f = -1;
+        Date f = null;
         String from = showDateFrom.getText();
         if (!from.equals("开始日期") && !"".equals(from)) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date fromDate = null;
             try {
-                fromDate = sdf.parse(from);
+                f = sdf.parse(from);
             } catch (ParseException e) {
                 log.error("date parse error:", e);
             }
-            f = fromDate.getTime();
         }
 
-        long e = -1;
+        Date e = null;
         String end = showDateTo.getText();
         if (!end.equals("结束日期") && !"".equals(end)) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date endDate = null;
             try {
-                endDate = sdf.parse(end);
+                e = sdf.parse(end);
             } catch (ParseException e1) {
                 log.error("date parse error:", e1);
             }
-            e = endDate.getTime();
         }
 
         User user = MyFactory.getCurrentUser();
@@ -312,7 +280,7 @@ public class PaidQuery extends JPanel {
             uid = user.getId();
         }
 
-        result = MyFactory.getPaidDetailService().queryPaidDetail(id, iid, oid, -1, cid, fid, censored, f, e, uid);
+        result = MyFactory.getPaidDetailService().queryPaidDetail(id, iid, oid, -1, fid, censored, f, e, uid);
         String[] columnNames =
                 new String[]{"还款单号", "销售单号", "货号", "货品", "买家", "还款", "折扣",
                         "审核状态", "还款日期", "操作", "审核"};
@@ -339,7 +307,7 @@ public class PaidQuery extends JPanel {
 
         table.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void mousePressed(MouseEvent e) {
                 int row = ((JTable) e.getSource()).getSelectedRow();
                 int column = ((JTable) e.getSource()).getSelectedColumn();
                 if (e.getClickCount() > 1) {

@@ -4,15 +4,17 @@ import cn.vanchee.model.Consumption;
 import cn.vanchee.ui.MainApp;
 import cn.vanchee.util.Constants;
 import cn.vanchee.util.DateChooser;
-import cn.vanchee.util.InputUtils;
+import cn.vanchee.util.DigitalTextField;
 import cn.vanchee.util.MyFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.text.ParseException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -29,11 +31,12 @@ public class ConsumptionAdd extends JPanel {
     private MainApp mainApp;
 
     private JTextField date_jtf;
-    private JTextField money_jtf;
+    private DigitalTextField money_jtf;
     private JTextArea desc_jta;
     private JTextField color;
 
     private int cid = -1;
+    private int uid = -1;
 
     public ConsumptionAdd(final MainApp mainApp) {
 
@@ -59,25 +62,8 @@ public class ConsumptionAdd extends JPanel {
         JPanel p2 = new JPanel();
         JLabel price = new JLabel("花费：");
         p2.add(price);
-        money_jtf = new JTextField();
+        money_jtf = new DigitalTextField();
         money_jtf.setPreferredSize(inputDimension);
-        money_jtf.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                if (!InputUtils.checkNum(e)) {
-                    String value = money_jtf.getText();
-                    money_jtf.setText(value.substring(0, value.length() - 1));
-                }
-            }
-        });
         p2.add(money_jtf);
 
         JLabel jbl_color = new JLabel("颜色：");
@@ -166,12 +152,7 @@ public class ConsumptionAdd extends JPanel {
         String desc = desc_jta.getText();
 
         Consumption consumption = new Consumption();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            consumption.setDate(sdf.parse(date).getTime());
-        } catch (ParseException e) {
-            log.error(e.getMessage());
-        }
+        consumption.setCreateAt(date);
         try {
             consumption.setMoney(Double.parseDouble(price));
         } catch (NumberFormatException e) {
@@ -186,6 +167,7 @@ public class ConsumptionAdd extends JPanel {
             flag = MyFactory.getConsumptionService().create(consumption);
         } else {
             consumption.setId(cid);
+            consumption.setUid(uid);
             flag = MyFactory.getConsumptionService().update(consumption);
         }
 
@@ -211,11 +193,12 @@ public class ConsumptionAdd extends JPanel {
 
     public void setValue(Consumption consumption) {
         cid = consumption.getId();
+        uid = consumption.getUid();
         money_jtf.setText(consumption.getMoney() + "");
         desc_jta.setText(consumption.getDesc());
         color.setBackground(new Color(consumption.getColor()));
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        date_jtf.setText(sdf.format(new Date(consumption.getDate())));
+        date_jtf.setText(sdf.format(consumption.getCreateAt()));
     }
 
     private Color chooseColor(Component comp) {

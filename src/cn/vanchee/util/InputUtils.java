@@ -7,12 +7,16 @@ public class InputUtils {
     private InputUtils() {
     }
 
+    @Deprecated
     public static boolean checkNum(KeyEvent e) {
         int code = e.getKeyChar();
         if (code == KeyEvent.VK_PERIOD ||
                 code == KeyEvent.VK_ENTER ||
                 code == KeyEvent.VK_BACK_SPACE ||
                 code == KeyEvent.VK_TAB ||
+                code == KeyEvent.VK_ALT ||
+                code == KeyEvent.VK_SHIFT ||
+                code == KeyEvent.VK_CONTROL ||
                 code == KeyEvent.VK_0 ||
                 code == KeyEvent.VK_1 ||
                 code == KeyEvent.VK_2 ||

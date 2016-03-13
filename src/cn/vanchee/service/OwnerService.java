@@ -1,18 +1,16 @@
 package cn.vanchee.service;
 
+import cn.vanchee.dao.OwnerDao;
 import cn.vanchee.model.Owner;
 import cn.vanchee.util.Constants;
-import cn.vanchee.util.DataUtil;
-import cn.vanchee.util.MyFactory;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * @author vanchee
- * @date 13-1-30
+ * @date 13-5-6
  * @package cn.vanchee.service
  * @verson v1.0.0
  */
@@ -20,32 +18,17 @@ public class OwnerService {
 
     private List<Owner> ownerList;
     private Map<Integer, String> ownerMap;
-    private int id;
 
-    public List<Owner> getOwnerList() {
-        return ownerList;
-    }
-
-    public Map<Integer, String> getOwnerMap() {
-        return ownerMap;
-    }
+    private static OwnerDao ownerDao;
 
     public OwnerService() {
+        ownerDao = new OwnerDao();
         init();
         analyze();
     }
 
-    public void init() {
-        ownerList = (List<Owner>) DataUtil.readListFromFile(Constants.FILE_NAME_OWNER);
-        id = ownerList.size() + 1;
-    }
-
-    public void analyze() {
-        checkData();
-        ownerMap = new HashMap<Integer, String>();
-        for (Owner owner : ownerList) {
-            ownerMap.put(owner.getId(), owner.getName());
-        }
+    public boolean createTable() {
+        return ownerDao.createTable();
     }
 
     public String[] listNames() {
@@ -59,78 +42,35 @@ public class OwnerService {
         return data;
     }
 
-    public boolean isExist(int id, String name) {
-        checkData();
-        for (Owner owner : ownerList) {
-            if (id == owner.getId() && name.equals(owner.getName())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public boolean isExist(String name) {
-        checkData();
-        for (Owner owner : ownerList) {
-            if (name.equals(owner.getName())) {
-                return true;
-            }
-        }
-        return false;
+        return ownerDao.isExist(name);
     }
 
     public boolean create(String name) {
-        checkData();
         if (isExist(name)) {
             return false;
         }
         Owner owner = new Owner();
-        owner.setId(id);
         owner.setName(name);
-        ownerList.add(0, owner);
 
-        id++;
+        boolean flag = ownerDao.create(name);
 
-        updateFile();
-        updateMap(owner, Constants.CREATE);
-
-        return true;
-    }
-
-    public boolean delete(int id) {
-        checkData();
-        for (Owner owner : ownerList) {
-            if (id == owner.getId()) {
-                ownerList.remove(owner);
-                updateFile();
-                updateMap(owner, Constants.DELETE);
-                return true;
-            }
+        if (flag) {
+            owner = ownerDao.findByName(name);
+            checkData();
+            ownerList.add(0, owner);
+            updateMap(owner, Constants.CREATE);
         }
-        return true;
-    }
-
-    public boolean update(Owner owner) {
-        checkData();
-        int i = 0;
-        for (Owner o : ownerList) {
-            if (owner.getId() == o.getId()) {
-                ownerList.set(i, owner);
-                updateFile();
-                updateMap(owner, Constants.UPDATE);
-                return true;
-            }
-            i++;
-        }
-        return true;
+        return flag;
     }
 
     public String getOwnerName(int id) {
+        checkData();
         return ownerMap.get(id);
     }
 
     public int getIdByName4Query(String name) {
-        if (name == null || "".equals(name)) {
+        if (name == null || "".equals(name.trim())) {
             return -1;
         }
         for (Owner o : ownerList) {
@@ -142,38 +82,35 @@ public class OwnerService {
     }
 
     public int getIdByName4Add(String name) {
-        int oid = getIdByName4Query(name);
-        if (oid == -2) {
-            oid = id;
+        int cid = getIdByName4Query(name);
+        if (cid == -2) {
             //需要新增记录
             create(name);
         }
-        return oid;
+        return cid;
     }
 
-    public List<Owner> queryOwnerByName(String name) {
-        List<Owner> list = new ArrayList<Owner>();
-        for (Owner o : ownerList) {
-            if (o.getName().indexOf(name) != -1) {
-                list.add(o);
-            }
+    private void init() {
+        ownerList = ownerDao.getList();
+    }
+
+    private void analyze() {
+        if (ownerList == null) {
+            init();
         }
-        return list;
+        ownerMap = new HashMap<Integer, String>();
+        for (Owner owner : ownerList) {
+            ownerMap.put(owner.getId(), owner.getName());
+        }
     }
 
     private void checkData() {
         if (ownerList == null) {
             init();
         }
-    }
-
-    private synchronized void updateFile() {
-        MyFactory.getExecutorService().execute(new Runnable() {
-            @Override
-            public void run() {
-                DataUtil.writeListToFile(Constants.FILE_NAME_OWNER, ownerList);
-            }
-        });
+        if (ownerMap == null) {
+            analyze();
+        }
     }
 
     private void updateMap(Owner owner, int type) {
@@ -189,5 +126,4 @@ public class OwnerService {
             ownerMap.put(oid, name);
         }
     }
-
 }

@@ -1,11 +1,5 @@
 package cn.vanchee.util;
 
-import cn.vanchee.model.*;
-import org.apache.commons.lang.time.DateUtils;
-
-import java.io.IOException;
-import java.util.*;
-
 /**
  * @author vanchee
  * @date 13-1-28
@@ -14,6 +8,7 @@ import java.util.*;
  */
 public class InitUtil {
 
+    /*
     private void initOwner() throws IOException {
         FileUtil.createFile(Constants.FILE_NAME_OWNER, true);
 
@@ -207,4 +202,6 @@ public class InitUtil {
         initUtil.initOutDetailBackup();
         initUtil.initConsumption();
     }
+
+    */
 }

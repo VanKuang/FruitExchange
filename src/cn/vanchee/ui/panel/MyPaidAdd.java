@@ -1,19 +1,21 @@
 package cn.vanchee.ui.panel;
 
 import cn.vanchee.model.InDetail;
-import cn.vanchee.model.MyPaid;
+import cn.vanchee.model.PaidDetail;
 import cn.vanchee.ui.MainApp;
 import cn.vanchee.util.Constants;
 import cn.vanchee.util.DateChooser;
-import cn.vanchee.util.InputUtils;
+import cn.vanchee.util.DigitalTextField;
 import cn.vanchee.util.MyFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.text.ParseException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -30,12 +32,13 @@ public class MyPaidAdd extends JPanel {
     private MainApp mainApp;
 
     private JTextField date_jtf;
-    private JTextField money_jtf;
+    private DigitalTextField money_jtf;
     private JButton save;
     private JTextField color;
 
     private int pid = -1;
     private int iid = -1;
+    private int uid = -1;
     private double oldMoney = 0;
     private boolean updated = false;
 
@@ -47,25 +50,8 @@ public class MyPaidAdd extends JPanel {
 
         JLabel price = new JLabel("还款：");
         this.add(price);
-        money_jtf = new JTextField();
+        money_jtf = new DigitalTextField();
         money_jtf.setPreferredSize(inputDimension);
-        money_jtf.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                if (!InputUtils.checkNum(e)) {
-                    String value = money_jtf.getText();
-                    money_jtf.setText(value.substring(0, value.length() - 1));
-                }
-            }
-        });
         this.add(money_jtf);
 
         JLabel date = new JLabel("日期：");
@@ -143,8 +129,8 @@ public class MyPaidAdd extends JPanel {
             JOptionPane.showMessageDialog(null, "日期必须填");
             return;
         }
-        MyPaid myPaid = new MyPaid();
-        myPaid.setIid(iid);
+        PaidDetail myPaid = new PaidDetail();
+        myPaid.setOid(iid);
         myPaid.setColor(color.getBackground().getRGB());
 
         try {
@@ -153,12 +139,7 @@ public class MyPaidAdd extends JPanel {
             JOptionPane.showMessageDialog(null, "还款必须是数字");
             return;
         }
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            myPaid.setDate(sdf.parse(date).getTime());
-        } catch (ParseException e) {
-            log.error(e.getMessage());
-        }
+        myPaid.setCreateAt(date);
 
         //检查是否已经超过了应还款
         InDetail inDetail = MyFactory.getInDetailService().getInDetailById(iid);
@@ -175,10 +156,11 @@ public class MyPaidAdd extends JPanel {
         }
         boolean flag = false;
         if (pid == -1) {
-            flag = MyFactory.getMyPaidService().create(myPaid);
+            flag = MyFactory.getPaidDetailService().create(myPaid);
         } else {
             myPaid.setId(pid);
-            flag = MyFactory.getMyPaidService().update(myPaid);
+            myPaid.setUid(uid);
+            flag = MyFactory.getPaidDetailService().update(myPaid);
         }
 
         if (flag) {
@@ -206,13 +188,14 @@ public class MyPaidAdd extends JPanel {
         this.iid = oid;
     }
 
-    public void update(MyPaid myPaid) {
+    public void update(PaidDetail myPaid) {
         this.iid = myPaid.getIid();
         pid = myPaid.getId();
+        uid = myPaid.getUid();
         oldMoney = myPaid.getMoney();
         updated = true;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        date_jtf.setText(sdf.format(new Date(myPaid.getDate())));
+        date_jtf.setText(sdf.format(myPaid.getCreateAt()));
         money_jtf.setText(myPaid.getMoney() + "");
         color.setBackground(new Color(myPaid.getColor()));
         save.setText("修改");

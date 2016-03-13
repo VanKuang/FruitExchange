@@ -187,30 +187,26 @@ public class PaidReport extends JPanel {
     private void addDataPanel() {
         int cid = MyFactory.getConsumerService().getIdByName4Query(jtfConsumer.getText());
         int status = jcbStatus.getSelectedIndex() - 1;
-        long f = -1;
+        Date f = null;
         String from = showDateFrom.getText();
         if (!from.equals("开始日期") && !"".equals(from)) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date fromDate = null;
             try {
-                fromDate = sdf.parse(from);
+                f = sdf.parse(from);
             } catch (ParseException e) {
                 log.error(e.getMessage());
             }
-            f = fromDate.getTime();
         }
 
-        long e = -1;
+        Date e = null;
         String end = showDateTo.getText();
         if (!end.equals("结束日期") && !"".equals(end)) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date endDate = null;
             try {
-                endDate = sdf.parse(end);
+                e = sdf.parse(end);
             } catch (ParseException e1) {
                 log.error(e1.getMessage());
             }
-            e = endDate.getTime();
         }
 
         User user = MyFactory.getCurrentUser();
@@ -348,30 +344,26 @@ public class PaidReport extends JPanel {
         int cid = MyFactory.getConsumerService().getIdByName4Query(jtfConsumer.getText());
         int status = jcbStatus.getSelectedIndex() - 1;
 
-        long f = -1;
+        Date f = null;
         String from = showDateFrom.getText();
         if (!from.equals("开始日期") && !"".equals(from)) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date fromDate = null;
             try {
-                fromDate = sdf.parse(from);
+                f = sdf.parse(from);
             } catch (ParseException e) {
                 log.error(e.getMessage());
             }
-            f = fromDate.getTime();
         }
 
-        long e = -1;
+        Date e = null;
         String end = showDateTo.getText();
         if (!end.equals("结束日期") && !"".equals(end)) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date endDate = null;
             try {
-                endDate = sdf.parse(end);
+                e = sdf.parse(end);
             } catch (ParseException e1) {
                 log.error(e1.getMessage());
             }
-            e = endDate.getTime();
         }
 
         User user = MyFactory.getCurrentUser();

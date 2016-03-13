@@ -1,16 +1,14 @@
 package cn.vanchee.model;
 
-import java.io.Serializable;
-
 /**
  * @author vanchee
  * @date 13-1-30
  * @package cn.vanchee.model
  * @verson v1.0.0
  */
-public class Owner implements Serializable {
+public class Owner {
 
-    private int id;
+    private Integer id;
     private String name;
 
     public String getName() {
@@ -21,11 +19,11 @@ public class Owner implements Serializable {
         this.name = name;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 }

@@ -5,7 +5,7 @@ public class PaidVo {
     private int oid;
     private double shouldPaid;
     private double hadPaid;
-    private long date;
+    private String createAt;
     private String fruitName;
     private String name;
     private int color;
@@ -35,12 +35,12 @@ public class PaidVo {
         this.oid = oid;
     }
 
-    public long getDate() {
-        return date;
+    public String getCreateAt() {
+        return createAt;
     }
 
-    public void setDate(long date) {
-        this.date = date;
+    public void setCreateAt(String createAt) {
+        this.createAt = createAt;
     }
 
     public String getFruitName() {

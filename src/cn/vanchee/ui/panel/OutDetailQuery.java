@@ -34,8 +34,8 @@ public class OutDetailQuery extends JPanel {
 
     private MainApp mainApp;
 
-    private JTextField jtfId;
-    private JTextField jtfIid;
+    private DigitalTextField jtfId;
+    private DigitalTextField jtfIid;
     private JTextField jtfOwner;
     private JTextField jtfConsumer;
     private JTextField jtfFruit;
@@ -82,15 +82,11 @@ public class OutDetailQuery extends JPanel {
 
         JLabel jlId = new JLabel("销售单号");
         searchPanel.add(jlId);
-        jtfId = new JTextField();
+        jtfId = new DigitalTextField();
         jtfId.setPreferredSize(inputDimension);
         jtfId.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                if (!InputUtils.checkNum(e)) {
-                    String value = jtfId.getText();
-                    jtfId.setText(value.substring(0, value.length() - 1));
-                }
                 if (e.getKeyChar() == KeyEvent.VK_ENTER) {
                     refreshData();
                 }
@@ -100,15 +96,11 @@ public class OutDetailQuery extends JPanel {
 
         JLabel jlIid = new JLabel("货号");
         searchPanel.add(jlIid);
-        jtfIid = new JTextField();
+        jtfIid = new DigitalTextField();
         jtfIid.setPreferredSize(inputDimension);
         jtfIid.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                if (!InputUtils.checkNum(e)) {
-                    String value = jtfIid.getText();
-                    jtfIid.setText(value.substring(0, value.length() - 1));
-                }
                 if (e.getKeyChar() == KeyEvent.VK_ENTER) {
                     refreshData();
                 }
@@ -146,15 +138,7 @@ public class OutDetailQuery extends JPanel {
 
         jtfConsumer = new JTextField();
         jtfConsumer.setPreferredSize(inputDimension);
-        jtfConsumer.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
+        jtfConsumer.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
                 if (e.getKeyChar() == KeyEvent.VK_ENTER) {
@@ -179,15 +163,7 @@ public class OutDetailQuery extends JPanel {
 
         jtfFruit = new JTextField();
         jtfFruit.setPreferredSize(inputDimension);
-        jtfFruit.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
+        jtfFruit.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
                 if (e.getKeyChar() == KeyEvent.VK_ENTER) {
@@ -301,30 +277,26 @@ public class OutDetailQuery extends JPanel {
         int status = init ? -1 : jcbStatus.getSelectedIndex() - 1;
         int censored = init ? -1 : jcbCensored.getSelectedIndex() - 1;
 
-        long f = -1;
+        Date f = null;
         String from = showDateFrom.getText();
         if (!from.equals("开始日期") && !"".equals(from)) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date fromDate = null;
             try {
-                fromDate = sdf.parse(from);
+                f = sdf.parse(from);
             } catch (ParseException e) {
                 log.error("date parse error:", e);
             }
-            f = fromDate.getTime();
         }
 
-        long e = -1;
+        Date e = null;
         String end = showDateTo.getText();
         if (!end.equals("结束日期") && !"".equals(end)) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date endDate = null;
             try {
-                endDate = sdf.parse(end);
+                e = sdf.parse(end);
             } catch (ParseException e1) {
                 log.error("date parse error:", e1);
             }
-            e = endDate.getTime();
         }
 
         User user = MyFactory.getCurrentUser();

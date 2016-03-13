@@ -1,11 +1,11 @@
 package cn.vanchee.ui.panel;
 
 import cn.vanchee.model.InDetail;
-import cn.vanchee.model.MyPaid;
+import cn.vanchee.model.PaidDetail;
 import cn.vanchee.model.Resource;
 import cn.vanchee.model.User;
 import cn.vanchee.ui.MainApp;
-import cn.vanchee.ui.table.MyPaidTableModel;
+import cn.vanchee.ui.table.PaidTableModel;
 import cn.vanchee.util.MyColorTableCellRenderer;
 import cn.vanchee.util.MyFactory;
 
@@ -26,7 +26,7 @@ public class MyPaidPanel extends JPanel {
 
     private MainApp mainApp;
 
-    private List<MyPaid> result;
+    private List<PaidDetail> result;
 
     public MyPaidPanel(MainApp mainApp, JPanel panel, int iid) {
         InDetail inDetail = MyFactory.getInDetailService().getInDetailById(iid);
@@ -53,9 +53,9 @@ public class MyPaidPanel extends JPanel {
             uid = user.getId();
         }
 
-        result = MyFactory.getMyPaidService().queryMyPaid(-1, iid, -1, -1, -1, -1, -1, uid);
+        result = MyFactory.getPaidDetailService().queryMyPaidDetail(-1, iid, -1, -1, -1, null, null, uid);
         String[] columnNames = new String[]{"还款单号", "货号", "货品", "卖家", "还款", "还款日期"};
-        MyPaidTableModel paidTableModel = new MyPaidTableModel(result, columnNames);
+        PaidTableModel paidTableModel = new PaidTableModel(result, columnNames);
         JTable table = new JTable(paidTableModel);
         table.setAutoCreateRowSorter(true);
 

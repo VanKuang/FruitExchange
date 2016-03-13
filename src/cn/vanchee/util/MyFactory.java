@@ -20,14 +20,13 @@ public class MyFactory {
     private static UserService userService;
     private static ConsumerService consumerService;
     private static FruitService fruitService;
-    private static PaidDetailService paidDetailService;
+    private static PaidService paidDetailService;
     private static ConsumptionService consumptionService;
-    private static MyPaidService myPaidService;
     private static ResourceService resourceService;
 
     private static ExecutorService executorService;
 
-    public void init() {
+    static {
         executorService = Executors.newCachedThreadPool();
         outDetailService = new OutDetailService();
         inDetailService = new InDetailService();
@@ -35,9 +34,8 @@ public class MyFactory {
         userService = new UserService();
         consumerService = new ConsumerService();
         fruitService = new FruitService();
-        paidDetailService = new PaidDetailService();
+        paidDetailService = new PaidService();
         consumptionService = new ConsumptionService();
-        myPaidService = new MyPaidService();
         resourceService = new ResourceService();
     }
 
@@ -51,7 +49,6 @@ public class MyFactory {
         fruitService = null;
         paidDetailService = null;
         consumptionService = null;
-        myPaidService = null;
         resourceService = null;
     }
 
@@ -112,9 +109,9 @@ public class MyFactory {
         return fruitService;
     }
 
-    public synchronized static PaidDetailService getPaidDetailService() {
+    public synchronized static PaidService getPaidDetailService() {
         if (paidDetailService == null) {
-            paidDetailService = new PaidDetailService();
+            paidDetailService = new PaidService();
         }
         return paidDetailService;
     }
@@ -124,13 +121,6 @@ public class MyFactory {
             consumptionService = new ConsumptionService();
         }
         return consumptionService;
-    }
-
-    public synchronized static MyPaidService getMyPaidService() {
-        if (myPaidService == null) {
-            myPaidService = new MyPaidService();
-        }
-        return myPaidService;
     }
 
     public synchronized static ResourceService getResourceService() {

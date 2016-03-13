@@ -2,24 +2,22 @@ package cn.vanchee.model;
 
 import cn.vanchee.util.MyFactory;
 
-import java.io.Serializable;
-
 /**
  * @author vanchee
  * @date 13-2-1
  * @package cn.vanchee.model
  * @verson v1.0.0
  */
-public class PaidDetail implements Serializable, Comparable<PaidDetail> {
+public class PaidDetail {
 
-    private int id;
-    private int oid; //销售ID
-    private double money;
-    private double discount; //折扣
-    private long date;
-    private int color;
-    private int censored;
-    private int uid;
+    private Integer id;
+    private Integer oid; //销售ID
+    private Double money;
+    private Double discount; //折扣(如果是我的还款，则是-1)
+    private String createAt;
+    private Integer color;
+    private Integer censored;
+    private Integer uid;
 
     transient int iid;
     transient int ownerId;
@@ -29,67 +27,67 @@ public class PaidDetail implements Serializable, Comparable<PaidDetail> {
     transient String fruitName;
     transient String consumerName;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getOid() {
+    public Integer getOid() {
         return oid;
     }
 
-    public void setOid(int oid) {
+    public void setOid(Integer oid) {
         this.oid = oid;
     }
 
-    public double getMoney() {
+    public Double getMoney() {
         return money;
     }
 
-    public void setMoney(double money) {
+    public void setMoney(Double money) {
         this.money = money;
     }
 
-    public long getDate() {
-        return date;
+    public String getCreateAt() {
+        return createAt;
     }
 
-    public void setDate(long date) {
-        this.date = date;
+    public void setCreateAt(String createAt) {
+        this.createAt = createAt;
     }
 
-    public int getColor() {
+    public Integer getColor() {
         return color;
     }
 
-    public void setColor(int color) {
+    public void setColor(Integer color) {
         this.color = color;
     }
 
-    public double getDiscount() {
+    public Double getDiscount() {
         return discount;
     }
 
-    public void setDiscount(double discount) {
+    public void setDiscount(Double discount) {
         this.discount = discount;
     }
 
-    public int getCensored() {
+    public Integer getCensored() {
         return censored;
     }
 
-    public void setCensored(int censored) {
+    public void setCensored(Integer censored) {
         this.censored = censored;
     }
 
-    public int getUid() {
+    public Integer getUid() {
         return uid;
     }
 
-    public void setUid(int uid) {
+    public void setUid(Integer uid) {
         this.uid = uid;
     }
 
@@ -136,7 +134,7 @@ public class PaidDetail implements Serializable, Comparable<PaidDetail> {
     public int getOwnerId() {
         if (ownerId == 0 && iid != -1) {
             InDetail inDetail = MyFactory.getInDetailService().getInDetailById(iid);
-            ownerId = inDetail != null ? inDetail.getOwner() : 0;
+            ownerId = inDetail != null ? inDetail.getOid() : 0;
         }
         return ownerId;
     }
@@ -150,16 +148,12 @@ public class PaidDetail implements Serializable, Comparable<PaidDetail> {
     }
 
     @Override
-    public int compareTo(PaidDetail o) {
-        return this.getDate() > o.getDate() ? this.getDate() == o.getDate() ? 0 : -1 : 1;
-    }
-
-    @Override
     public String toString() {
         return "paid detail--[owner:" + getOwnerName()
                 + ",consumer:" + getConsumerName()
                 + ",money:" + this.money
                 + ",discount:" + this.discount
+                + ",color:" + this.color
                 + ",censored:" + this.censored
                 + ",uid:" + uid
                 + "]";

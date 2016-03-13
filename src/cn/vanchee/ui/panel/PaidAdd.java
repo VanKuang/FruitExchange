@@ -5,15 +5,17 @@ import cn.vanchee.model.PaidDetail;
 import cn.vanchee.ui.MainApp;
 import cn.vanchee.util.Constants;
 import cn.vanchee.util.DateChooser;
-import cn.vanchee.util.InputUtils;
+import cn.vanchee.util.DigitalTextField;
 import cn.vanchee.util.MyFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.text.ParseException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -30,12 +32,13 @@ public class PaidAdd extends JPanel {
     private MainApp mainApp;
 
     private JTextField date_jtf;
-    private JTextField money_jtf;
-    private JTextField discount_jtf;
+    private DigitalTextField money_jtf;
+    private DigitalTextField discount_jtf;
     private JButton save;
     private JTextField color;
 
     private int pid = -1;
+    private int uid = -1;
     private int oid = -1;
     private boolean updated = false;
     private double oldMoney = 0;
@@ -48,25 +51,8 @@ public class PaidAdd extends JPanel {
 
         JLabel price = new JLabel("还款：");
         this.add(price);
-        money_jtf = new JTextField();
+        money_jtf = new DigitalTextField();
         money_jtf.setPreferredSize(inputDimension);
-        money_jtf.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                if (!InputUtils.checkNum(e)) {
-                    String value = money_jtf.getText();
-                    money_jtf.setText(value.substring(0, value.length() - 1));
-                }
-            }
-        });
         this.add(money_jtf);
 
         JLabel date = new JLabel("日期：");
@@ -80,25 +66,8 @@ public class PaidAdd extends JPanel {
 
         JLabel discount_jbl = new JLabel("折扣：");
         this.add(discount_jbl);
-        discount_jtf = new JTextField();
+        discount_jtf = new DigitalTextField();
         discount_jtf.setPreferredSize(inputDimension);
-        discount_jtf.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                if (!InputUtils.checkNum(e)) {
-                    String value = discount_jtf.getText();
-                    discount_jtf.setText(value.substring(0, value.length() - 1));
-                }
-            }
-        });
         this.add(discount_jtf);
 
         JLabel jbl_color = new JLabel("颜色：");
@@ -107,26 +76,10 @@ public class PaidAdd extends JPanel {
         color.setEnabled(false);
         color.setBackground(Color.WHITE);
         color.setPreferredSize(inputDimension);
-        color.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                ((JTextField) e.getSource()).setBackground(chooseColor((JTextField) e.getSource()));
-            }
-
+        color.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
+                ((JTextField) e.getSource()).setBackground(chooseColor((JTextField) e.getSource()));
             }
         });
         this.add(color);
@@ -184,12 +137,7 @@ public class PaidAdd extends JPanel {
             JOptionPane.showMessageDialog(null, "折扣必须是数字");
             return;
         }
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            paidDetail.setDate(sdf.parse(date).getTime());
-        } catch (ParseException e) {
-            log.error(e.getMessage());
-        }
+        paidDetail.setCreateAt(date);
 
         //检查是否已经超过了应还款
         OutDetail outDetail = MyFactory.getOutDetailService().getOutDetail(oid);
@@ -208,6 +156,7 @@ public class PaidAdd extends JPanel {
             flag = MyFactory.getPaidDetailService().create(paidDetail);
         } else {
             paidDetail.setId(pid);
+            paidDetail.setUid(uid);
             flag = MyFactory.getPaidDetailService().update(paidDetail);
         }
 
@@ -239,8 +188,9 @@ public class PaidAdd extends JPanel {
     public void update(PaidDetail paidDetail) {
         this.oid = paidDetail.getOid();
         pid = paidDetail.getId();
+        uid = paidDetail.getUid();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        date_jtf.setText(sdf.format(new Date(paidDetail.getDate())));
+        date_jtf.setText(sdf.format(paidDetail.getCreateAt()));
         money_jtf.setText(paidDetail.getMoney() + "");
         discount_jtf.setText(paidDetail.getDiscount() + "");
         color.setBackground(new Color(paidDetail.getColor()));

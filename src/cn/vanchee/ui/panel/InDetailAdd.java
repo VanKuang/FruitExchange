@@ -8,8 +8,10 @@ import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.text.ParseException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -28,12 +30,13 @@ public class InDetailAdd extends JPanel {
     private JTextField owner_jtf;
     private JTextField fruit_jtf;
     private JTextField date_jtf;
-    private JTextField price_jtf;
-    private JTextField num_jtf;
+    private DigitalTextField price_jtf;
+    private DigitalTextField num_jtf;
     private JButton save;
     private JTextField color;
 
     private int iid = -1;
+    private int uid = -1;
     private int sale = -1;
 
     public InDetailAdd(final MainApp mainApp) {
@@ -97,25 +100,8 @@ public class InDetailAdd extends JPanel {
         JPanel p4 = new JPanel();
         JLabel price = new JLabel("价格：");
         p4.add(price);
-        price_jtf = new JTextField();
+        price_jtf = new DigitalTextField();
         price_jtf.setPreferredSize(inputDimension);
-        price_jtf.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                if (!InputUtils.checkNum(e)) {
-                    String value = price_jtf.getText();
-                    price_jtf.setText(value.substring(0, value.length() - 1));
-                }
-            }
-        });
         p4.add(price_jtf);
         p4.setPreferredSize(Constants.getAddPanelDimension());
         this.add(p4);
@@ -123,25 +109,8 @@ public class InDetailAdd extends JPanel {
         JPanel p5 = new JPanel();
         JLabel num = new JLabel("数量：");
         p5.add(num);
-        num_jtf = new JTextField();
+        num_jtf = new DigitalTextField();
         num_jtf.setPreferredSize(inputDimension);
-        num_jtf.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                if (!InputUtils.checkNum(e)) {
-                    String value = num_jtf.getText();
-                    num_jtf.setText(value.substring(0, value.length() - 1));
-                }
-            }
-        });
         p5.add(num_jtf);
         p5.setPreferredSize(Constants.getAddPanelDimension());
         this.add(p5);
@@ -153,26 +122,10 @@ public class InDetailAdd extends JPanel {
         color.setEnabled(false);
         color.setBackground(Color.WHITE);
         color.setPreferredSize(inputDimension);
-        color.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                ((JTextField) e.getSource()).setBackground(chooseColor((JTextField) e.getSource()));
-            }
-
+        color.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
+                ((JTextField) e.getSource()).setBackground(chooseColor((JTextField) e.getSource()));
             }
         });
         p6.add(color);
@@ -243,15 +196,10 @@ public class InDetailAdd extends JPanel {
         }
         InDetail inDetail = new InDetail();
         inDetail.setSale(0);
-        inDetail.setOwner(MyFactory.getOwnerService().getIdByName4Add(owner));
-        inDetail.setFruit(MyFactory.getFruitService().getIdByName4Add(fruit));
+        inDetail.setOid(MyFactory.getOwnerService().getIdByName4Add(owner));
+        inDetail.setFid(MyFactory.getFruitService().getIdByName4Add(fruit));
         inDetail.setColor(color.getBackground().getRGB());
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            inDetail.setDate(sdf.parse(date).getTime());
-        } catch (ParseException e) {
-            log.error(e.getMessage());
-        }
+        inDetail.setCreateAt(date);
         try {
             inDetail.setPrice(Double.parseDouble(price));
         } catch (NumberFormatException e) {
@@ -265,11 +213,12 @@ public class InDetailAdd extends JPanel {
             return;
         }
 
-        boolean flag = false;
+        boolean flag;
         if (iid == -1) {
             flag = MyFactory.getInDetailService().create(inDetail);
         } else {
             inDetail.setId(iid);
+            inDetail.setUid(uid);
             inDetail.setSale(sale);
             flag = MyFactory.getInDetailService().update(inDetail);
         }
@@ -301,11 +250,12 @@ public class InDetailAdd extends JPanel {
 
     public void setValue(InDetail inDetail) {
         iid = inDetail.getId();
+        uid = inDetail.getUid();
         sale = inDetail.getSale();
         owner_jtf.setText(inDetail.getOwnerName());
         fruit_jtf.setText(inDetail.getFruitName());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        date_jtf.setText(sdf.format(new Date(inDetail.getDate())));
+        date_jtf.setText(sdf.format(inDetail.getCreateAt()));
         price_jtf.setText(inDetail.getPrice() + "");
         num_jtf.setText(inDetail.getNum() + "");
         color.setBackground(new Color(inDetail.getColor()));

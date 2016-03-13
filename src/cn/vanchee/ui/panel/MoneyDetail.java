@@ -1,9 +1,11 @@
 package cn.vanchee.ui.panel;
 
-import cn.vanchee.model.*;
+import cn.vanchee.model.Consumption;
+import cn.vanchee.model.PaidDetail;
+import cn.vanchee.model.Resource;
+import cn.vanchee.model.User;
 import cn.vanchee.ui.MainApp;
 import cn.vanchee.ui.table.ConsumptionTableModel;
-import cn.vanchee.ui.table.MyPaidTableModel;
 import cn.vanchee.ui.table.PaidTableModel;
 import cn.vanchee.util.*;
 import org.slf4j.Logger;
@@ -51,7 +53,7 @@ public class MoneyDetail extends JPanel {
     private double weightX, weightY;
     private Insets insert = null;
 
-    private List<MyPaid> myPaid;
+    private List<PaidDetail> myPaid;
     private List<PaidDetail> otherPaid;
     private List<Consumption> consumptions;
 
@@ -199,30 +201,26 @@ public class MoneyDetail extends JPanel {
         int oid = MyFactory.getOwnerService().getIdByName4Query(name);
         int fid = MyFactory.getFruitService().getIdByName4Query(jtfFruit.getText());
 
-        long f = -1;
+        Date f = null;
         String from = showDateFrom.getText();
         if (!from.equals("开始日期") && !"".equals(from)) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date fromDate = null;
             try {
-                fromDate = sdf.parse(from);
+                f = sdf.parse(from);
             } catch (ParseException e) {
                 log.error(e.getMessage());
             }
-            f = fromDate.getTime();
         }
 
-        long e = -1;
+        Date e = null;
         String end = showDateTo.getText();
         if (!end.equals("结束日期") && !"".equals(end)) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date endDate = null;
             try {
-                endDate = sdf.parse(end);
+                e = sdf.parse(end);
             } catch (ParseException e1) {
                 log.error(e1.getMessage());
             }
-            e = endDate.getTime();
         }
 
         User user = MyFactory.getCurrentUser();
@@ -232,12 +230,12 @@ public class MoneyDetail extends JPanel {
             uid = user.getId();
         }
 
-        myPaid = MyFactory.getMyPaidService().queryMyPaid(-1, -1, oid, fid, -1, f, e, uid);
+        myPaid = MyFactory.getPaidDetailService().queryMyPaidDetail(-1, -1, oid, fid, -1, f, e, uid);
         if (!MyFactory.getResourceService().hasRight(user, Resource.CENSORED)) {
-            myPaid = MyFactory.getMyPaidService().selectCensoredReverse(myPaid, Constants.CENSORED_PASS);
+            myPaid = MyFactory.getPaidDetailService().selectCensoredReverse(myPaid, Constants.CENSORED_PASS);
         }
         String[] columnNames = new String[]{"还款单号", "货号", "货主", "货品", "还款", "还款日期"};
-        MyPaidTableModel paidTableModel = new MyPaidTableModel(myPaid, columnNames);
+        PaidTableModel paidTableModel = new PaidTableModel(myPaid, columnNames);
         JTable table = new JTable(paidTableModel);
         table.setAutoCreateRowSorter(true);
         TableColumnModel tableColumnModel = table.getColumnModel();
@@ -267,7 +265,7 @@ public class MoneyDetail extends JPanel {
         this.add(inScrollPane);
 
 
-        otherPaid = MyFactory.getPaidDetailService().queryPaidDetail(-1, -1, -1, oid, -1, fid, -1, f, e, uid);
+        otherPaid = MyFactory.getPaidDetailService().queryPaidDetail(-1, -1, -1, oid, fid, -1, f, e, uid);
         String[] outColumn = new String[]{"还款单号", "销售单号", "货号", "货品", "买家", "还款", "折扣", "还款日期"};
         PaidTableModel outDetailTableModel = new PaidTableModel(otherPaid, outColumn);
         JTable outTable = new JTable(outDetailTableModel);

@@ -35,7 +35,7 @@ public class InDetailQuery extends JPanel {
 
     private MainApp mainApp;
 
-    private JTextField jtfIid;
+    private DigitalTextField jtfIid;
     private JTextField jtfOwner;
     private JTextField jtfFruit;
     private JTextField showDateFrom;
@@ -80,23 +80,11 @@ public class InDetailQuery extends JPanel {
         JLabel jlIid = new JLabel("货号");
         searchPanel.add(jlIid);
 
-        jtfIid = new JTextField();
+        jtfIid = new DigitalTextField();
         jtfIid.setPreferredSize(inputDimension);
-        jtfIid.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
+        jtfIid.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                if (!InputUtils.checkNum(e)) {
-                    String value = jtfIid.getText();
-                    jtfIid.setText(value.substring(0, value.length() - 1));
-                }
                 if (e.getKeyChar() == KeyEvent.VK_ENTER) {
                     refreshData();
                 }
@@ -109,15 +97,7 @@ public class InDetailQuery extends JPanel {
 
         jtfOwner = new JTextField();
         jtfOwner.setPreferredSize(inputDimension);
-        jtfOwner.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
+        jtfOwner.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
                 if (e.getKeyChar() == KeyEvent.VK_ENTER) {
@@ -142,15 +122,7 @@ public class InDetailQuery extends JPanel {
 
         jtfFruit = new JTextField();
         jtfFruit.setPreferredSize(inputDimension);
-        jtfFruit.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
+        jtfFruit.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
                 if (e.getKeyChar() == KeyEvent.VK_ENTER) {
@@ -248,30 +220,26 @@ public class InDetailQuery extends JPanel {
         int fid = MyFactory.getFruitService().getIdByName4Query(jtfFruit.getText());
         int censored = init ? -1 : jcbCensored.getSelectedIndex() - 1;
 
-        long f = -1;
+        Date f = null;
         String from = showDateFrom.getText();
         if (!from.equals("开始日期") && !"".equals(from)) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date fromDate = null;
             try {
-                fromDate = sdf.parse(from);
+                f = sdf.parse(from);
             } catch (ParseException e) {
                 log.error(e.getMessage());
             }
-            f = fromDate.getTime();
         }
 
-        long e = -1;
+        Date e = null;
         String end = showDateTo.getText();
         if (!end.equals("结束日期") && !"".equals(end)) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date endDate = null;
             try {
-                endDate = sdf.parse(end);
+                e = sdf.parse(end);
             } catch (ParseException e1) {
                 log.error(e1.getMessage());
             }
-            e = endDate.getTime();
         }
 
         User user = MyFactory.getCurrentUser();
@@ -288,7 +256,7 @@ public class InDetailQuery extends JPanel {
         if (!MyFactory.getResourceService().hasRight(user, Resource.CENSORED)) {
             result = MyFactory.getInDetailService().selectCensoredReverse(result, Constants.CENSORED_PASS);
             columnNames = new String[]{"货号", "日期", "货主", "货品", "价钱", "数量",
-                    "总价", "还款", "销售数量", "库存", "审核状态", "审核"};
+                    "总价", "还款", "销售数量", "库存", "审核状态"};
         }
         InDetailTableModel inDetailTableModel = new InDetailTableModel(result, columnNames);
         JTable table = new JTable(inDetailTableModel);

@@ -1,8 +1,8 @@
 package cn.vanchee.service;
 
+import cn.vanchee.dao.OutDetailDao;
 import cn.vanchee.model.*;
 import cn.vanchee.util.Constants;
-import cn.vanchee.util.DataUtil;
 import cn.vanchee.util.MyFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,43 +11,22 @@ import java.util.*;
 
 /**
  * @author vanchee
- * @date 13-1-28
+ * @date 13-5-6
  * @package cn.vanchee.service
  * @verson v1.0.0
  */
 public class OutDetailService {
 
-    private static Logger log = LoggerFactory.getLogger(OutDetailService.class);
+    private static final Logger log = LoggerFactory.getLogger(OutDetailService.class);
 
-    private List<OutDetail> outDetailList;
-    private int id;
-
-    public List<OutDetail> getOutDetailList() {
-        return outDetailList;
-    }
-
+    private OutDetailDao outDetailDao;
 
     public OutDetailService() {
-        init();
+        outDetailDao = new OutDetailDao();
     }
 
-    public void init() {
-        long start = System.currentTimeMillis();
-        log.debug("start init out detail data");
-
-        outDetailList = (List<OutDetail>) DataUtil.readListFromFile(Constants.FILE_NAME_OUT_DETAIL);
-
-        if (!MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.GET_OTHERS_DATA)) {
-            outDetailList = queryOutDetail(-1, -1, -1, -1, -1, -1, -1, -1, -1, MyFactory.getCurrentUserId());
-        }
-
-        Collections.sort(outDetailList);
-        id = outDetailList.size() + 1;
-
-
-        long end = System.currentTimeMillis();
-        log.debug("end init out detail data, use time:" + (end - start) + "ms" +
-                (outDetailList != null ? ",data size:" + outDetailList.size() : ""));
+    public boolean createTable() {
+        return outDetailDao.createTable();
     }
 
     public boolean create(OutDetail outDetail) {
@@ -61,20 +40,13 @@ public class OutDetailService {
             return false;
         }
 
-        checkData();
-        outDetail.setId(id);
         outDetail.setUid(MyFactory.getCurrentUser().getId());
         if (MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.CENSORED)) {
             outDetail.setCensored(Constants.CENSORED_PASS);
         }
-        outDetailList.add(0, outDetail);
 
-        id++;
-
-        updateFile();
-
-        log.info(MyFactory.getUserService().getCurrentUserName() + " create " + outDetail);
-        return true;
+        log.debug(MyFactory.getUserService().getCurrentUserName() + " create " + outDetail);
+        return outDetailDao.create(outDetail);
     }
 
     public boolean delete(int id) {
@@ -92,20 +64,11 @@ public class OutDetailService {
             }
         }
 
-        checkData();
-        boolean flag = false;
-        OutDetail o = null;
-        for (OutDetail od : outDetailList) {
-            if (id == od.getId()) {
-                o = od;
-                outDetailList.remove(od);
-                flag = true;
-                break;
-            }
-        }
+        boolean flag;
+        OutDetail o = outDetailDao.find(id);
+        flag = outDetailDao.delete(id);
         if (flag) {
             log.debug(MyFactory.getUserService().getCurrentUserName() + " delete " + o);
-            updateFile();
         }
         return flag;
     }
@@ -114,7 +77,8 @@ public class OutDetailService {
 
         // first need find the old out detail
         // if sale number had change, need update in detail
-        OutDetail old = getOutDetail(outDetail.getId());
+        int id = outDetail.getId();
+        OutDetail old = outDetailDao.find(id);
         if (old.getNum() != outDetail.getNum()) {
             InDetailService inDetailService = MyFactory.getInDetailService();
             InDetail inDetail = inDetailService.getInDetailById(outDetail.getIid());
@@ -126,51 +90,26 @@ public class OutDetailService {
             }
         }
 
-        checkData();
-        int oid = outDetail.getId();
-        int i = 0;
-        boolean flag = false;
-        OutDetail o = null;
-        for (OutDetail od : outDetailList) {
-            if (oid == od.getId()) {
-                o = od;
-                if (MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.CENSORED)) {
-                    outDetail.setCensored(Constants.CENSORED_PASS);
-                } else {
-                    outDetail.setCensored(Constants.CENSORED_ORIGINAL);
-                }
-                outDetailList.set(i, outDetail);
-                flag = true;
-                break;
-            }
-            i++;
+        if (MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.CENSORED)) {
+            outDetail.setCensored(Constants.CENSORED_PASS);
+        } else {
+            outDetail.setCensored(Constants.CENSORED_ORIGINAL);
         }
+        boolean flag = outDetailDao.update(outDetail);
         if (flag) {
             log.debug(MyFactory.getUserService().getCurrentUserName()
-                    + " update " + o + " to " + outDetail);
-            updateFile();
+                    + " update " + old + " to " + outDetail);
         }
         return flag;
     }
 
     public boolean censored(int id, boolean pass) {
-        checkData();
-        int i = 0;
-        boolean flag = false;
-        OutDetail o = null;
-        for (OutDetail od : outDetailList) {
-            if (id == od.getId()) {
-                o = od;
-                o.setCensored(pass ? Constants.CENSORED_PASS : Constants.CENSORED_REFUSE);
-                outDetailList.set(i, o);
-                flag = true;
-                break;
-            }
-            i++;
-        }
+        boolean flag;
+        OutDetail old = outDetailDao.find(id);
+        old.setCensored(pass ? Constants.CENSORED_PASS : Constants.CENSORED_REFUSE);
+        flag = outDetailDao.update(old);
         if (flag) {
-            log.debug(MyFactory.getUserService().getCurrentUserName() + " censor " + o);
-            updateFile();
+            log.debug(MyFactory.getUserService().getCurrentUserName() + " censor " + old);
         }
         return flag;
     }
@@ -180,15 +119,13 @@ public class OutDetailService {
         if (outDetail != null) {
             if (outDetail.getPaidMoneyIncludeDiscount() >= outDetail.getPrice() * outDetail.getNum()) {
                 outDetail.setStatus(Constants.OUT_STATUS_PAID_ENOUGH);
-                backup(outDetail);
             } else if (outDetail.getPaidMoneyIncludeDiscount() == 0) {
                 outDetail.setStatus(Constants.OUT_STATUS_ORIGINAL);
-                update(outDetail);
             } else {
                 outDetail.setStatus(Constants.OUT_STATUS_PAID_NOT_ENOUGH);
-                update(outDetail);
             }
         }
+        backup(outDetail);
     }
 
     /**
@@ -196,60 +133,26 @@ public class OutDetailService {
      * @return
      */
     public OutDetail getOutDetail(int id) {
-        checkData();
-        List<OutDetail> result = new ArrayList<OutDetail>();
-        result.addAll(outDetailList);
-        for (OutDetail outDetail : result) {
-            if (id == outDetail.getId()) {
-                return outDetail;
-            }
-        }
-        return null;
+        return outDetailDao.find(id);
     }
 
     /**
-     * @param owner
-     * @param consumer
-     * @param fruit
+     * @param oid
+     * @param cid
+     * @param fid
      * @param from
      * @param to
      * @param status
      * @return
      */
-    public List<OutDetail> queryOutDetail(int id, int iid, int owner, int consumer, int fruit, int censored,
-                                          long from, long to, int status, int uid) {
-        checkData();
-        List<OutDetail> result = new ArrayList<OutDetail>();
-        result.addAll(outDetailList);
-        if (id != -1) {
-            result = selectOutDetail(result, id);
+    public List<OutDetail> queryOutDetail(int id, int iid, int oid, int cid, int fid, int censored,
+                                          Date from, Date to, int status, int uid) {
+        List<OutDetail> result = outDetailDao.queryOutDetail(id, iid, cid, censored, from, to, status, uid);
+        if (oid != -1) {
+            result = selectOwner(result, oid);
         }
-        if (iid != -1) {
-            result = selectInDetail(result, iid);
-        }
-        if (owner != -1) {
-            result = selectOwner(result, owner);
-        }
-        if (consumer != -1) {
-            result = selectConsumer(result, consumer);
-        }
-        if (fruit != -1) {
-            result = selectFruit(result, fruit);
-        }
-        if (censored != -1) {
-            result = selectCensored(result, censored);
-        }
-        if (from != -1) {
-            result = selectDateFrom(result, from);
-        }
-        if (to != -1) {
-            result = selectDateEnd(result, to);
-        }
-        if (status != -1) {
-            result = selectStatus(result, status);
-        }
-        if (uid != -1) {
-            result = selectUser(result, uid);
+        if (fid != -1) {
+            result = selectFruit(result, fid);
         }
         return result;
     }
@@ -263,40 +166,26 @@ public class OutDetailService {
         return list;
     }
 
-    public List<PaidVo> getUnPaidOutDetail(int consumerId, long from, long to, int uid) {
-        checkData();
-        List<OutDetail> result = new ArrayList<OutDetail>();
-        result.addAll(outDetailList);
-        if (consumerId != -1) {
-            result = selectConsumer(result, consumerId);
-        }
-        if (from != -1) {
-            result = selectDateFrom(result, from);
-        }
-        if (to != -1) {
-            result = selectDateEnd(result, to);
-        }
-        if (uid != -1) {
-            result = selectUser(result, uid);
-        }
+    public List<PaidVo> getUnPaidOutDetail(int cid, Date from, Date to, int uid) {
+        List<OutDetail> result = outDetailDao.queryOutDetail(-1, -1, cid, -1, from, to, -1, uid);
         //result = selectReverseStatus(result, Constants.OUT_STATUS_PAID_ENOUGH);
 
-        Collections.sort(result);
+        //Collections.sort(result);
         Collections.reverse(result);
         Map<String, Double> shouldPaid = new HashMap<String, Double>();
         Map<String, Double> hadPaid = new HashMap<String, Double>();
-        Map<String, Long> dateMap = new HashMap<String, Long>();
+        Map<String, String> dateMap = new HashMap<String, String>();
         Map<String, String> fruitMap = new HashMap<String, String>();
         Map<String, String> consumerMap = new HashMap<String, String>();
         for (OutDetail outDetail : result) {
-            int cid = outDetail.getCid();
+            int cid1 = outDetail.getCid();
             int color = outDetail.getColor();
-            String key = cid + "," + color;
+            String key = cid1 + "," + color;
             if (shouldPaid.get(key) != null) {
                 shouldPaid.put(key, shouldPaid.get(key) + outDetail.getMoney());
             } else {
                 shouldPaid.put(key, outDetail.getMoney());
-                dateMap.put(key, outDetail.getDate());
+                //dateMap.put(key, outDetail.getCreateAt());
                 fruitMap.put(key, outDetail.getFruitName());
                 consumerMap.put(key, outDetail.getConsumerName());
             }
@@ -320,27 +209,12 @@ public class OutDetailService {
                 paidVo.setName(consumerMap.get(key));
                 paidVo.setShouldPaid(m.getValue());
                 paidVo.setHadPaid(hadPaid.get(key));
-                paidVo.setDate(dateMap.get(key));
+                paidVo.setCreateAt(dateMap.get(key));
                 list.add(paidVo);
             }
         }
 
         return list;
-    }
-
-    private void checkData() {
-        if (outDetailList == null) {
-            init();
-        }
-    }
-
-    private synchronized void updateFile() {
-        MyFactory.getExecutorService().execute(new Runnable() {
-            @Override
-            public void run() {
-                DataUtil.writeListToFile(Constants.FILE_NAME_OUT_DETAIL, outDetailList);
-            }
-        });
     }
 
     /**
@@ -352,6 +226,7 @@ public class OutDetailService {
         //update
         update(outDetail);
 
+        /*
         MyFactory.getExecutorService().execute(new Runnable() {
             @Override
             public void run() {
@@ -367,28 +242,7 @@ public class OutDetailService {
                 DataUtil.writeListToFile(Constants.OUT_DETAIL_BACKUP_FILE_NAME, backup);
             }
         });
-    }
-
-    private List<OutDetail> selectOutDetail(List<OutDetail> list, int id) {
-        List<OutDetail> result = new ArrayList<OutDetail>();
-        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
-            OutDetail outDetail = (OutDetail) iterator.next();
-            if (id == outDetail.getId()) {
-                result.add(outDetail);
-            }
-        }
-        return result;
-    }
-
-    private List<OutDetail> selectInDetail(List<OutDetail> list, int iid) {
-        List<OutDetail> result = new ArrayList<OutDetail>();
-        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
-            OutDetail outDetail = (OutDetail) iterator.next();
-            if (iid == outDetail.getIid()) {
-                result.add(outDetail);
-            }
-        }
-        return result;
+        */
     }
 
     private List<OutDetail> selectOwner(List<OutDetail> list, int owner) {
@@ -396,17 +250,6 @@ public class OutDetailService {
         for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
             OutDetail outDetail = (OutDetail) iterator.next();
             if (owner == outDetail.getOwnerId()) {
-                result.add(outDetail);
-            }
-        }
-        return result;
-    }
-
-    private List<OutDetail> selectConsumer(List<OutDetail> list, int cid) {
-        List<OutDetail> result = new ArrayList<OutDetail>();
-        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
-            OutDetail outDetail = (OutDetail) iterator.next();
-            if (cid == outDetail.getCid()) {
                 result.add(outDetail);
             }
         }
@@ -424,61 +267,4 @@ public class OutDetailService {
         return result;
     }
 
-    private List<OutDetail> selectCensored(List<OutDetail> list, int censored) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
-            if (censored != ((OutDetail) iterator.next()).getCensored()) {
-                iterator.remove();
-            }
-        }
-        return list;
-    }
-
-    private List<OutDetail> selectDateFrom(List<OutDetail> list, long from) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
-            if (((OutDetail) iterator.next()).getDate() < from) {
-                iterator.remove();
-            }
-        }
-        return list;
-    }
-
-    private List<OutDetail> selectDateEnd(List<OutDetail> list, long end) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
-            if (((OutDetail) iterator.next()).getDate() > end) {
-                iterator.remove();
-            }
-        }
-        return list;
-    }
-
-    private List<OutDetail> selectStatus(List<OutDetail> list, int status) {
-        List<OutDetail> result = new ArrayList<OutDetail>();
-        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
-            OutDetail outDetail = (OutDetail) iterator.next();
-            if (status == outDetail.getStatus()) {
-                result.add(outDetail);
-            }
-        }
-        return result;
-    }
-
-    private List<OutDetail> selectReverseStatus(List<OutDetail> list, int status) {
-        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
-            if (((OutDetail) iterator.next()).getStatus() == status) {
-                iterator.remove();
-            }
-        }
-        return list;
-    }
-
-    private static List<OutDetail> selectUser(List<OutDetail> list, int uid) {
-        List<OutDetail> result = new ArrayList<OutDetail>();
-        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
-            OutDetail outDetail = (OutDetail) iterator.next();
-            if (uid == outDetail.getUid()) {
-                result.add(outDetail);
-            }
-        }
-        return result;
-    }
 }

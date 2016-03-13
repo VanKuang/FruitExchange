@@ -5,8 +5,6 @@ import cn.vanchee.util.Constants;
 
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -56,7 +54,6 @@ public class PaidTableModel implements TableModel {
 
     public Object getValueAt(int rowIndex, int columnIndex) {
         PaidDetail paidDetail = paidDetailList.get(rowIndex);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         switch (columnIndex) {
             case 0:
                 return paidDetail.getId();
@@ -75,7 +72,7 @@ public class PaidTableModel implements TableModel {
             case 7:
                 return Constants.getCensorName(paidDetail.getCensored());
             case 8:
-                return sdf.format(new Date(paidDetail.getDate()));
+                return paidDetail.getCreateAt();
             case 9:
                 return "删除";
             case 10:

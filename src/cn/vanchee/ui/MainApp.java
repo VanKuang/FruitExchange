@@ -29,7 +29,7 @@ public class MainApp {
 
     private JPanel tempPanel;
 
-    public static boolean debug = false;
+    public static boolean debug = true;
 
     public MainApp() {
 

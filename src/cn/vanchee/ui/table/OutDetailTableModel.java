@@ -5,8 +5,6 @@ import cn.vanchee.util.Constants;
 
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -58,14 +56,13 @@ public class OutDetailTableModel implements TableModel {
 
     public Object getValueAt(int rowIndex, int columnIndex) {
         OutDetail outDetail = outDetailList.get(rowIndex);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         switch (columnIndex) {
             case 0:
                 return outDetail.getId();
             case 1:
                 return outDetail.getIid();
             case 2:
-                return sdf.format(new Date(outDetail.getDate()));
+                return outDetail.getCreateAt();
             case 3:
                 return outDetail.getOwnerName();
             case 4:

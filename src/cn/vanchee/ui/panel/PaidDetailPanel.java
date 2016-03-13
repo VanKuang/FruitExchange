@@ -59,7 +59,7 @@ public class PaidDetailPanel extends JPanel {
             uid = user.getId();
         }
 
-        result = MyFactory.getPaidDetailService().queryPaidDetail(-1, -1, oid, -1, -1, -1, -1, -1, -1, uid);
+        result = MyFactory.getPaidDetailService().queryPaidDetail(-1, -1, -1, oid, -1, -1, null, null, uid);
         String[] columnNames = new String[]{"还款单号", "销售单号", "货号", "货品", "买家", "还款", "折扣", "还款日期"};
         PaidTableModel paidTableModel = new PaidTableModel(result, columnNames);
         JTable table = new JTable(paidTableModel);

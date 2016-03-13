@@ -13,10 +13,7 @@ import org.slf4j.LoggerFactory;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -113,26 +110,9 @@ public class UserPanel extends JPanel {
 
         if (MyFactory.getResourceService().hasRight(MyFactory.getCurrentUser(), Resource.USER_MNG)) {
             JButton save = new JButton("保存");
-            save.addMouseListener(new MouseListener() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    saveResource(username);
-                }
-
-                @Override
+            save.addMouseListener(new MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
+                    saveResource(username);
                 }
             });
 
@@ -211,7 +191,10 @@ public class UserPanel extends JPanel {
             JOptionPane.showMessageDialog(null, "密码不能为空");
         }
 
-        boolean flag = MyFactory.getUserService().create(username, password);
+        User user = new User();
+        user.setName(username);
+        user.setPassword(password);
+        boolean flag = MyFactory.getUserService().create(user);
 
         if (flag) {
             JOptionPane.showMessageDialog(null, "增加成功");
@@ -229,7 +212,7 @@ public class UserPanel extends JPanel {
         if (selectedRow != null) {
             int result = JOptionPane.showConfirmDialog(null, "确定要删除" + selectedRow.getName() + "?");
             if (result == JOptionPane.YES_OPTION) {
-                boolean flag = MyFactory.getUserService().delete(selectedRow.getName());
+                boolean flag = MyFactory.getUserService().delete(selectedRow.getId());
                 if (flag) {
                     JOptionPane.showMessageDialog(null, "删除成功");
                     refresh();

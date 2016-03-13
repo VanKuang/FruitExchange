@@ -16,7 +16,6 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -72,7 +71,7 @@ public class ExcelUtils {
             labels.add(label);
             label = new Label(1, i + 1, paidVo.getFruitName() + "", wcfFC);
             labels.add(label);
-            label = new Label(2, i + 1, sdf.format(new Date(paidVo.getDate())) + "", wcfFC);
+            label = new Label(2, i + 1, sdf.format(paidVo.getCreateAt()) + "", wcfFC);
             labels.add(label);
             label = new Label(3, i + 1, paidVo.getShouldPaid() + "", wcfFC);
             labels.add(label);
@@ -101,7 +100,7 @@ public class ExcelUtils {
             labels.add(label);
             label = new Label(1, i + 1, outDetail.getIid() + "", wcf);
             labels.add(label);
-            label = new Label(2, i + 1, sdf.format(new Date(outDetail.getDate())), wcf);
+            label = new Label(2, i + 1, sdf.format(outDetail.getCreateAt()), wcf);
             labels.add(label);
             label = new Label(3, i + 1, outDetail.getOwnerName(), wcf);
             labels.add(label);
@@ -140,7 +139,7 @@ public class ExcelUtils {
 
             Label label = new Label(0, i + 1, inDetail.getId() + "", wcfFC);
             labels.add(label);
-            label = new Label(1, i + 1, sdf.format(new Date(inDetail.getDate())), wcfFC);
+            label = new Label(1, i + 1, sdf.format(inDetail.getCreateAt()), wcfFC);
             labels.add(label);
             label = new Label(2, i + 1, inDetail.getOwnerName(), wcfFC);
             labels.add(label);
@@ -177,7 +176,7 @@ public class ExcelUtils {
             labels.add(label);
             label = new Label(1, i + 1, outDetail.getIid() + "", wcfFC);
             labels.add(label);
-            label = new Label(2, i + 1, sdf.format(new Date(outDetail.getDate())), wcfFC);
+            label = new Label(2, i + 1, sdf.format(outDetail.getCreateAt()), wcfFC);
             labels.add(label);
             label = new Label(3, i + 1, outDetail.getOwnerName() + "", wcfFC);
             labels.add(label);
@@ -218,7 +217,7 @@ public class ExcelUtils {
 
             Label label = new Label(0, i + 1, consumption.getId() + "", wcfFC);
             labels.add(label);
-            label = new Label(1, i + 1, sdf.format(new Date(consumption.getDate())), wcfFC);
+            label = new Label(1, i + 1, sdf.format(consumption.getCreateAt()), wcfFC);
             labels.add(label);
             label = new Label(2, i + 1, consumption.getMoney() + "", wcfFC);
             labels.add(label);
@@ -242,7 +241,7 @@ public class ExcelUtils {
 
             Label label = new Label(0, i + 1, inDetail.getId() + "", wcfFC);
             labels.add(label);
-            label = new Label(1, i + 1, sdf.format(new Date(inDetail.getDate())), wcfFC);
+            label = new Label(1, i + 1, sdf.format(inDetail.getCreateAt()), wcfFC);
             labels.add(label);
             label = new Label(2, i + 1, inDetail.getOwnerName(), wcfFC);
             labels.add(label);
@@ -283,7 +282,7 @@ public class ExcelUtils {
             labels.add(label);
             label = new Label(1, i + 1, outDetail.getIid() + "", wcfFC);
             labels.add(label);
-            label = new Label(2, i + 1, sdf.format(new Date(outDetail.getDate())), wcfFC);
+            label = new Label(2, i + 1, sdf.format(outDetail.getCreateAt()), wcfFC);
             labels.add(label);
             label = new Label(3, i + 1, outDetail.getOwnerName(), wcfFC);
             labels.add(label);

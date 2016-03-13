@@ -25,7 +25,7 @@ public class AutoCompleteExtender {
      */
     private JPopupMenu popupMenu;
     /**
-     * ����չʾƥ�������б����
+     * ����չʾƥ������б����
      */
     private JList resultList;
     /**
@@ -33,11 +33,11 @@ public class AutoCompleteExtender {
      */
     private JScrollPane scrollPane;
     /**
-     * �����ṩ��
+     * ����ṩ��
      */
     private DataProvider dataProvider;
     /**
-     * ���ƥ�������Ƿ����ı�
+     * ���ƥ������Ƿ���ı�
      */
     private boolean matchDataChanged;
     /**
@@ -49,7 +49,7 @@ public class AutoCompleteExtender {
      */
     private String originalEditText;
     /**
-     * ����ƥ����
+     * ���ƥ����
      */
     private DataMatchHelper dataMatchHelper;
     /**
@@ -57,7 +57,7 @@ public class AutoCompleteExtender {
      */
     private CommitListener commitListener;
     /**
-     * Ĭ�ϵ����ݸı������
+     * Ĭ�ϵ���ݸı������
      */
     private final DataProvider.DataChangeListener DefaultDataChangeListener = new DataProvider.DataChangeListener() {
 
@@ -76,7 +76,7 @@ public class AutoCompleteExtender {
     private boolean autoSizeToFit;
 
     /**
-     * ָ���󶨵Ķ��������ṩ����ƥ����������һ������
+     * ָ���󶨵Ķ�������ṩ����ƥ����������һ������
      *
      * @param textComponent   ����Ϊnull
      * @param dataProvider    ����Ϊnull
@@ -91,7 +91,7 @@ public class AutoCompleteExtender {
         }
         if (dataProvider == null) {
             /**
-             * ȷ�������ṩ����Ϊnull
+             * ȷ������ṩ����Ϊnull
              */
             throw new IllegalArgumentException("dataProvider����Ϊnull!");
         }
@@ -104,16 +104,16 @@ public class AutoCompleteExtender {
             this.dataMatchHelper = dataMatchHelper;
         }
         /**
-         * ��ʼ������
+         * ��ʼ�����
          */
         resetAll();
     }
 
     /**
-     * ָ���󶨵Ķ���ƥ�����ݺ�ƥ����������һ������
+     * ָ���󶨵Ķ���ƥ����ݺ�ƥ����������һ������
      *
      * @param textComponent   ����Ϊnull
-     * @param data            ��ʼ��ƥ������
+     * @param data            ��ʼ��ƥ�����
      * @param dataMatchHelper ���Ϊnull����ʹ��Ĭ�ϵ�ƥ����
      */
     public AutoCompleteExtender(JTextComponent textComponent, Object[] data, DataMatchHelper dataMatchHelper) {
@@ -137,7 +137,7 @@ public class AutoCompleteExtender {
             this.dataMatchHelper = dataMatchHelper;
         }
         /**
-         * ��ʼ������
+         * ��ʼ�����
          */
         resetAll();
     }
@@ -147,7 +147,7 @@ public class AutoCompleteExtender {
     }
 
     /**
-     * ����ΪĬ�����ã�ԭ�����ݽ������
+     * ����ΪĬ�����ã�ԭ����ݽ������
      */
     public synchronized void resetAll() {
         initTextComponent();
@@ -177,7 +177,7 @@ public class AutoCompleteExtender {
     }
 
     /**
-     * ���ƥ�����ݸı���
+     * ���ƥ����ݸı���
      */
     private void notifyDataChanged() {
         matchDataChanged = true;
@@ -251,7 +251,7 @@ public class AutoCompleteExtender {
     }
 
     /**
-     * �򿪽���б�(���δ��ƥ�䣬���Զ�ִ��ƥ�䴦���������Ч����򲻻ᱻչ��)(�����ת�Ƶ��б�)
+     * �򿪽���б�(���δ��ƥ�䣬���Զ�ִ��ƥ�䴦�?�������Ч����򲻻ᱻչ��)(�����ת�Ƶ��б�)
      *
      * @return
      */
@@ -269,7 +269,7 @@ public class AutoCompleteExtender {
     }
 
     /**
-     * �رս���б�(���ݲ��ᱻ��գ��ٴδ�ʱֱ��������ʾ)
+     * �رս���б�(��ݲ��ᱻ��գ��ٴδ�ʱֱ��������ʾ)
      */
     public synchronized void collapse() {
         removeSelectionInterval();
@@ -336,7 +336,7 @@ public class AutoCompleteExtender {
     }
 
     /**
-     * ȡ����ǰ�б��ϵ�ѡ��״̬(ʹselectedIndex==-1)
+     * ȡ��ǰ�б��ϵ�ѡ��״̬(ʹselectedIndex==-1)
      */
     public synchronized void removeSelectionInterval() {
         final int selectedIndex = resultList.getSelectedIndex();
@@ -396,7 +396,7 @@ public class AutoCompleteExtender {
     }
 
     /**
-     * �����첽ƥ������
+     * �����첽ƥ�����
      *
      * @param async
      */
@@ -432,7 +432,7 @@ public class AutoCompleteExtender {
     /**
      * �ڽ���б�����ʾ����ѡ�������ʾ��
      *
-     * @param asNeed �Ƿ������Ҫ��ʾ��true->�ı����ȳ�����ʾ��Χʱ����ʾ��
+     * @param asNeed �Ƿ�����Ҫ��ʾ��true->�ı����ȳ�����ʾ��Χʱ����ʾ��
      */
     public synchronized void showToolTipsWithSelectedValue(boolean asNeed) {
         Object value = resultList.getSelectedValue();
@@ -479,7 +479,7 @@ public class AutoCompleteExtender {
     }
 
     /**
-     * ��ȡ����б�Ԫ��Ŀ��
+     * ��ȡ����б?Ԫ��Ŀ��
      *
      * @return
      */
@@ -488,7 +488,7 @@ public class AutoCompleteExtender {
     }
 
     /**
-     * ��ȡ����б�Ԫ��ĸ߶�
+     * ��ȡ����б?Ԫ��ĸ߶�
      *
      * @return
      */
@@ -511,7 +511,7 @@ public class AutoCompleteExtender {
     }
 
     /**
-     * ʹ��С�������
+     * ʹ��С������
      */
     public synchronized void setSizeFitComponent() {
         autoSizeToFit = true;
@@ -532,7 +532,7 @@ public class AutoCompleteExtender {
     }
 
     /**
-     * ָ�����Ƿ��ڽ���б�Χ��
+     * ָ�����Ƿ��ڽ���б?Χ��
      *
      * @param p
      * @return
@@ -599,7 +599,7 @@ public class AutoCompleteExtender {
     }
 
     /**
-     * ���ݸ�����ִֵ��ƥ�����(�ò���Ϊ�첽��)
+     * ��ݸ��ִֵ��ƥ�����(�ò���Ϊ�첽��)
      *
      * @param content
      * @return
@@ -631,7 +631,7 @@ public class AutoCompleteExtender {
     }
 
     /**
-     * ���ݸ�����ִֵ��ƥ�����(�ò���Ϊͬ����)
+     * ��ݸ��ִֵ��ƥ�����(�ò���Ϊͬ����)
      *
      * @param content
      * @return
@@ -707,7 +707,7 @@ public class AutoCompleteExtender {
         int preferredWidth = 0;
         if (autoSizeToFit) {
             /**
-             * �Զ�ʹ��С�������
+             * �Զ�ʹ��С������
              */
             resultList.setFixedCellWidth(textComponent.getWidth());
             resultList.setFixedCellHeight(textComponent.getHeight());
@@ -727,7 +727,7 @@ public class AutoCompleteExtender {
             }
         }
 
-        int preferredHeight = Math.min(resultList.getVisibleRowCount(), dataSize) * resultList.getFixedCellHeight() + 3; // ��Ԥ��һЩ�ռ䣬���ֵ���Լ��������Ǻ�׼��
+        int preferredHeight = Math.min(resultList.getVisibleRowCount(), dataSize) * resultList.getFixedCellHeight() + 3; // ��Ԥ��һЩ�ռ䣬���ֵ���Լ������Ǻ�׼��
 
         scrollPane.setPreferredSize(new Dimension(preferredWidth, preferredHeight));
         resultList.updateUI();
@@ -769,7 +769,7 @@ public class AutoCompleteExtender {
         public void mouseClicked(MouseEvent e) {
             /**
              * �ò��������:
-             * ���ñ༭������Ϊѡ����رս���б�����ص��༭��ͬʱ����commit������
+             * ���ñ༭������Ϊѡ����رս���б?����ص��༭��ͬʱ����commit������
              */
             Point p = e.getPoint();
             if (isExpandListContains(p)) {
@@ -807,7 +807,7 @@ public class AutoCompleteExtender {
                 case KeyEvent.VK_ENTER:
                     /**
                      * �ò��������:
-                     * ���ñ༭������Ϊѡ����رս���б�����ص��༭��ͬʱ����commit������
+                     * ���ñ༭������Ϊѡ����رս���б?����ص��༭��ͬʱ����commit������
                      */
                     commitTextBySelectedValue();
                     break;
@@ -815,13 +815,13 @@ public class AutoCompleteExtender {
                 case KeyEvent.VK_DOWN:
                     /**
                      * �ò��������:
-                     * 1.�������б�δ�򿪣��򿪽���б���ѡ�е�һ����ñ༭������
-                     * 2.�����ǰѡ����Ϊ���һ��ý���ص��༭��
+                     * 1.������б�δ�򿪣��򿪽���б?��ѡ�е�һ����ñ༭������
+                     * 2.���ǰѡ����Ϊ���һ��ý���ص��༭��
                      * 3.��������ѡ����ı�༭������Ϊ��ǰѡ��
                      */
                     if (isExpanded()) {
                         /**
-                         * ����б���չ��״̬
+                         * ����б?��չ��״̬
                          */
                         final int selectedIndex = getSelectedIndex();
                         if (selectedIndex == getResultCount() - 1) {
@@ -853,13 +853,13 @@ public class AutoCompleteExtender {
                 case KeyEvent.VK_UP:
                     /**
                      * �ò��������:
-                     * 1.�������б�δ�򿪣��򿪽���б���ѡ�����һ����ñ༭������
-                     * 2.�����ǰѡ����Ϊ��һ��ý���ص��༭��
+                     * 1.������б�δ�򿪣��򿪽���б?��ѡ�����һ����ñ༭������
+                     * 2.���ǰѡ����Ϊ��һ��ý���ص��༭��
                      * 3.��������ѡ����ı�༭������Ϊ��ǰѡ��
                      */
                     if (isExpanded()) {
                         /**
-                         * ����б���չ��״̬
+                         * ����б?��չ��״̬
                          */
                         final int selectedIndex = getSelectedIndex();
                         if (selectedIndex == 0) {
@@ -896,11 +896,11 @@ public class AutoCompleteExtender {
                 case KeyEvent.VK_RIGHT: // ���ҵĲ�����ͬ
                     /**
                      * �ò��������:
-                     * ���ñ༭����Ϊѡ������رս���б�����ص��༭��
+                     * ���ñ༭����Ϊѡ������رս���б?����ص��༭��
                      */
                     if (isExpanded()) {
                         /**
-                         * ����б���չ��״̬
+                         * ����б?��չ��״̬
                          */
                         if (getSelectedIndex() != -1) {
                             /**
@@ -954,7 +954,7 @@ public class AutoCompleteExtender {
     }
 
     /**
-     * �����ṩ�ӿ�
+     * ����ṩ�ӿ�
      *
      * @author Univasity
      */
@@ -983,7 +983,7 @@ public class AutoCompleteExtender {
         public void setDataChangeListener(DataChangeListener listener);
 
         /**
-         * ���ݸı�����ӿ�
+         * ��ݸı����ӿ�
          */
         public interface DataChangeListener {
 
@@ -1008,7 +1008,7 @@ public class AutoCompleteExtender {
         public boolean isMatchTextAccept(String text);
 
         /**
-         * �жϸ�����ֵ�Ƿ����ı�ֵƥ��
+         * �жϸ��ֵ�Ƿ����ı�ֵƥ��
          *
          * @param matchText
          * @param data
@@ -1102,7 +1102,7 @@ public class AutoCompleteExtender {
     }
 
     /**
-     * Ĭ�ϵ�����ƥ������
+     * Ĭ�ϵ����ƥ������
      */
     private class DefaultDataMatchHelper implements DataMatchHelper {
 

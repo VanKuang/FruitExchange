@@ -1,18 +1,16 @@
 package cn.vanchee.service;
 
+import cn.vanchee.dao.ConsumerDao;
 import cn.vanchee.model.Consumer;
 import cn.vanchee.util.Constants;
-import cn.vanchee.util.DataUtil;
-import cn.vanchee.util.MyFactory;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * @author vanchee
- * @date 13-1-30
+ * @date 13-5-5
  * @package cn.vanchee.service
  * @verson v1.0.0
  */
@@ -20,24 +18,16 @@ public class ConsumerService {
 
     private List<Consumer> consumerList;
     private Map<Integer, String> consumerMap;
-    private int id;
+
+    private static ConsumerDao consumerDao = new ConsumerDao();
 
     public ConsumerService() {
         init();
         analyze();
     }
 
-    public void init() {
-        consumerList = (List<Consumer>) DataUtil.readListFromFile(Constants.FILE_NAME_CONSUMER);
-        id = consumerList.size() + 1;
-    }
-
-    public void analyze() {
-        checkData();
-        consumerMap = new HashMap<Integer, String>();
-        for (Consumer consumer : consumerList) {
-            consumerMap.put(consumer.getId(), consumer.getName());
-        }
+    public boolean createTable() {
+        return consumerDao.createTable();
     }
 
     public String[] listNames() {
@@ -51,77 +41,35 @@ public class ConsumerService {
         return data;
     }
 
-    public boolean isExist(int id, String name) {
-        checkData();
-        for (Consumer consumer : consumerList) {
-            if (id == consumer.getId() && name.equals(consumer.getName())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public boolean isExist(String name) {
-        checkData();
-        for (Consumer consumer : consumerList) {
-            if (name.equals(consumer.getName())) {
-                return true;
-            }
-        }
-        return false;
+        return consumerDao.isExist(name);
     }
 
     public boolean create(String name) {
-        checkData();
         if (isExist(name)) {
             return false;
         }
         Consumer consumer = new Consumer();
-        consumer.setId(id);
         consumer.setName(name);
-        consumerList.add(0, consumer);
 
-        id++;
+        boolean flag = consumerDao.create(name);
 
-        updateFile();
-        updateMap(consumer, Constants.CREATE);
-        return true;
-    }
-
-    public boolean delete(int id) {
-        checkData();
-        for (Consumer consumer : consumerList) {
-            if (id == consumer.getId()) {
-                consumerList.remove(consumer);
-                updateFile();
-                updateMap(consumer, Constants.DELETE);
-                return true;
-            }
+        if (flag) {
+            consumer = consumerDao.findByName(name);
+            checkData();
+            consumerList.add(0, consumer);
+            updateMap(consumer, Constants.CREATE);
         }
-        return true;
-    }
-
-    public boolean update(Consumer consumer) {
-        checkData();
-        int i = 0;
-        for (Consumer o : consumerList) {
-            if (consumer.getId() == o.getId()) {
-                consumerList.set(i, consumer);
-                updateFile();
-                updateMap(consumer, Constants.UPDATE);
-                return true;
-            }
-            i++;
-        }
-        return true;
+        return flag;
     }
 
     public String getConsumerName(int id) {
+        checkData();
         return consumerMap.get(id);
     }
 
     public int getIdByName4Query(String name) {
-        if (name == null || "".equals(name)) {
+        if (name == null || "".equals(name.trim())) {
             return -1;
         }
         for (Consumer o : consumerList) {
@@ -135,36 +83,33 @@ public class ConsumerService {
     public int getIdByName4Add(String name) {
         int cid = getIdByName4Query(name);
         if (cid == -2) {
-            cid = id;
             //需要新增记录
             create(name);
         }
         return cid;
     }
 
-    public List<Consumer> queryConsumerByName(String name) {
-        List<Consumer> list = new ArrayList<Consumer>();
-        for (Consumer o : consumerList) {
-            if (o.getName().indexOf(name) != -1) {
-                list.add(o);
-            }
+    private void init() {
+        consumerList = consumerDao.getList();
+    }
+
+    private void analyze() {
+        if (consumerList == null) {
+            init();
         }
-        return list;
+        consumerMap = new HashMap<Integer, String>();
+        for (Consumer consumer : consumerList) {
+            consumerMap.put(consumer.getId(), consumer.getName());
+        }
     }
 
     private void checkData() {
         if (consumerList == null) {
             init();
         }
-    }
-
-    private synchronized void updateFile() {
-        MyFactory.getExecutorService().execute(new Runnable() {
-            @Override
-            public void run() {
-                DataUtil.writeListToFile(Constants.FILE_NAME_CONSUMER, consumerList);
-            }
-        });
+        if (consumerMap == null) {
+            analyze();
+        }
     }
 
     private void updateMap(Consumer consumer, int type) {
@@ -180,5 +125,4 @@ public class ConsumerService {
             consumerMap.put(oid, name);
         }
     }
-
 }
